@@ -1,0 +1,11 @@
+D:\Program\DFNew\build\SYS.Model.dll
+D:\Program\DFNew\build\SYS.Model.pdb
+D:\Program\DFNew\SYS.Model\obj\Release\SYS.Model.csproj.CoreCompileInputs.cache
+D:\Program\DFNew\SYS.Model\obj\Release\SYS.Model.dll
+D:\Program\DFNew\SYS.Model\obj\Release\SYS.Model.pdb
+D:\Program\DFNew\SYS.Model\obj\Release\SYS.Model.csprojAssemblyReference.cache
+E:\Program\DFNew\build\SYS.Model.dll
+E:\Program\DFNew\build\SYS.Model.pdb
+E:\Program\DFNew\SYS.Model\obj\Release\SYS.Model.csproj.CoreCompileInputs.cache
+E:\Program\DFNew\SYS.Model\obj\Release\SYS.Model.dll
+E:\Program\DFNew\SYS.Model\obj\Release\SYS.Model.pdb

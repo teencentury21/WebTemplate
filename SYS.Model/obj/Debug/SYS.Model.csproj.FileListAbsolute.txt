@@ -1,0 +1,38 @@
+D:\Users\User\Documents\Program\CSharp\DFWebService\SYS.Model\bin\Debug\SYS.Model.dll
+D:\Users\User\Documents\Program\CSharp\DFWebService\SYS.Model\bin\Debug\SYS.Model.pdb
+D:\Users\User\Documents\Program\CSharp\DFWebService\SYS.Model\obj\Debug\SYS.Model.csproj.AssemblyReference.cache
+D:\Users\User\Documents\Program\CSharp\DFWebService\SYS.Model\obj\Debug\SYS.Model.csproj.CoreCompileInputs.cache
+D:\Users\User\Documents\Program\CSharp\DFWebService\SYS.Model\obj\Debug\SYS.Model.dll
+D:\Users\User\Documents\Program\CSharp\DFWebService\SYS.Model\obj\Debug\SYS.Model.pdb
+D:\Users\User\Documents\Program\CSharp\DFWebService\build\SYS.Model.dll
+D:\Users\User\Documents\Program\CSharp\DFWebService\build\SYS.Model.pdb
+D:\Program\DFWebService\SYS.Model\obj\Debug\SYS.Model.csprojAssemblyReference.cache
+D:\Program\DFWebService\SYS.Model\obj\Debug\SYS.Model.csproj.CoreCompileInputs.cache
+D:\Program\DFWebService\SYS.Model\obj\Debug\SYS.Model.dll
+D:\Program\DFWebService\SYS.Model\obj\Debug\SYS.Model.pdb
+D:\Program\DFWebService\build\SYS.Model.dll
+D:\Program\DFWebService\build\SYS.Model.pdb
+D:\Program\DFNew\build\SYS.Model.dll
+D:\Program\DFNew\build\SYS.Model.pdb
+D:\Program\DFNew\SYS.Model\obj\Debug\SYS.Model.csprojAssemblyReference.cache
+D:\Program\DFNew\SYS.Model\obj\Debug\SYS.Model.csproj.CoreCompileInputs.cache
+D:\Program\DFNew\SYS.Model\obj\Debug\SYS.Model.dll
+D:\Program\DFNew\SYS.Model\obj\Debug\SYS.Model.pdb
+E:\ITS\BPM_DFE_[SYS-Other] Chatbot\Source\build\SYS.Model.dll
+E:\ITS\BPM_DFE_[SYS-Other] Chatbot\Source\build\SYS.Model.pdb
+E:\ITS\BPM_DFE_[SYS-Other] Chatbot\Source\SYS.Model\obj\Debug\SYS.Model.csprojAssemblyReference.cache
+E:\ITS\BPM_DFE_[SYS-Other] Chatbot\Source\SYS.Model\obj\Debug\SYS.Model.csproj.CoreCompileInputs.cache
+E:\ITS\BPM_DFE_[SYS-Other] Chatbot\Source\SYS.Model\obj\Debug\SYS.Model.dll
+E:\ITS\BPM_DFE_[SYS-Other] Chatbot\Source\SYS.Model\obj\Debug\SYS.Model.pdb
+E:\ITS\BPM_DFE_[SYS-Other] Web template\Source\build\SYS.Model.dll
+E:\ITS\BPM_DFE_[SYS-Other] Web template\Source\build\SYS.Model.pdb
+E:\ITS\BPM_DFE_[SYS-Other] Web template\Source\SYS.Model\obj\Debug\SYS.Model.csproj.CoreCompileInputs.cache
+E:\ITS\BPM_DFE_[SYS-Other] Web template\Source\SYS.Model\obj\Debug\SYS.Model.dll
+E:\ITS\BPM_DFE_[SYS-Other] Web template\Source\SYS.Model\obj\Debug\SYS.Model.pdb
+E:\ITS\BPM_DFE_[SYS-Other] Web template\Source\SYS.Model\obj\Debug\SYS.Model.csprojAssemblyReference.cache
+E:\Program\WebTemplate\build\SYS.Model.dll
+E:\Program\WebTemplate\build\SYS.Model.pdb
+E:\Program\WebTemplate\SYS.Model\obj\Debug\SYS.Model.csprojAssemblyReference.cache
+E:\Program\WebTemplate\SYS.Model\obj\Debug\SYS.Model.csproj.CoreCompileInputs.cache
+E:\Program\WebTemplate\SYS.Model\obj\Debug\SYS.Model.dll
+E:\Program\WebTemplate\SYS.Model\obj\Debug\SYS.Model.pdb

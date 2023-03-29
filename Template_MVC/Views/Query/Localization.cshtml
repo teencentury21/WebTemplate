@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Localization";
+}
+
+@*@model CultureSwitcherModel
+
+<div>
+    <form id="culture-switcher">
+        <select name="culture" id="culture-options">
+            <option></option>
+            @foreach (var culture in Model.SupportedCultures)
+            {
+                <option value="@culture.Name" selected="@(Model.CurrentUICulture.Name == culture.Name)">@culture.DisplayName</option>
+            }
+        </select>
+    </form>
+</div>*@

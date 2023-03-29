@@ -1,0 +1,21 @@
+D:\Program\DFNew\build\SYS.DAL.dll
+D:\Program\DFNew\build\SYS.DAL.pdb
+D:\Program\DFNew\SYS.DAL\obj\Release\SYS.DAL.csprojAssemblyReference.cache
+D:\Program\DFNew\SYS.DAL\obj\Release\SYS.DAL.csproj.CoreCompileInputs.cache
+D:\Program\DFNew\SYS.DAL\obj\Release\SYS.DAL.csproj.CopyComplete
+D:\Program\DFNew\SYS.DAL\obj\Release\SYS.DAL.dll
+D:\Program\DFNew\SYS.DAL\obj\Release\SYS.DAL.pdb
+E:\Program\DFNew\build\SYS.DAL.dll
+E:\Program\DFNew\build\SYS.DAL.pdb
+E:\Program\DFNew\SYS.DAL\obj\Release\SYS.DAL.csprojAssemblyReference.cache
+E:\Program\DFNew\SYS.DAL\obj\Release\SYS.DAL.csproj.CoreCompileInputs.cache
+E:\Program\DFNew\SYS.DAL\obj\Release\SYS.DAL.csproj.CopyComplete
+E:\Program\DFNew\SYS.DAL\obj\Release\SYS.DAL.dll
+E:\Program\DFNew\SYS.DAL\obj\Release\SYS.DAL.pdb
+E:\ITS\BPM_DFE_[SYS-Other] Chatbot\Source\build\SYS.DAL.dll
+E:\ITS\BPM_DFE_[SYS-Other] Chatbot\Source\build\SYS.DAL.pdb
+E:\ITS\BPM_DFE_[SYS-Other] Chatbot\Source\SYS.DAL\obj\Release\SYS.DAL.csprojAssemblyReference.cache
+E:\ITS\BPM_DFE_[SYS-Other] Chatbot\Source\SYS.DAL\obj\Release\SYS.DAL.csproj.CoreCompileInputs.cache
+E:\ITS\BPM_DFE_[SYS-Other] Chatbot\Source\SYS.DAL\obj\Release\SYS.DAL.csproj.CopyComplete
+E:\ITS\BPM_DFE_[SYS-Other] Chatbot\Source\SYS.DAL\obj\Release\SYS.DAL.dll
+E:\ITS\BPM_DFE_[SYS-Other] Chatbot\Source\SYS.DAL\obj\Release\SYS.DAL.pdb

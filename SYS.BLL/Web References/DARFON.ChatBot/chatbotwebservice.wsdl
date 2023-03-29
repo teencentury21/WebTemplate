@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="IsRegisted">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lineId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsRegistedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsRegistedResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateEmailandEmpNo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lineId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateEmailandEmpNoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ValidateEmailandEmpNoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthHeader" type="tns:AuthHeader" />
+      <s:complexType name="AuthHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="SendRegistCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lineId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="empNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="empMail" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendRegistCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendRegistCodeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateRegistCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lineId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="code" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateRegistCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ValidateRegistCodeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmpByEmpNo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="input" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmpByEmpNoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEmpByEmpNoResult" type="tns:EmpEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="EmpEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="GAIAId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmpId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmpNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EnName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Site" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExtNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IsDL" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsActive" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="remark" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetEmpByLineId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="input" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmpByLineIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEmpByLineIdResult" type="tns:AccountRegist" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AccountRegist">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Active" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cdt" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Emp_Id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Emp_mail" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Emp_no" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Emp_phone" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="Line_Id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Setting" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetSimulateEmpByEmpNo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="input" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSimulateEmpByEmpNoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSimulateEmpByEmpNoResult" type="tns:AccountRegist" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmpByName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lan" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="empName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmpByNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEmpByNameResult" type="tns:ArrayOfEmpEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfEmpEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EmpEntity" nillable="true" type="tns:EmpEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetGAIASSOredirectURL">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="apiKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sourceSystem" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="targetSystem" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userLineId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="targetPage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGAIASSOredirectURLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGAIASSOredirectURLResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateAcc">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="input" type="tns:AccountRegist" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateAccResponse">
+        <s:complexType />
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="IsRegistedSoapIn">
+    <wsdl:part name="parameters" element="tns:IsRegisted" />
+  </wsdl:message>
+  <wsdl:message name="IsRegistedSoapOut">
+    <wsdl:part name="parameters" element="tns:IsRegistedResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidateEmailandEmpNoSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidateEmailandEmpNo" />
+  </wsdl:message>
+  <wsdl:message name="ValidateEmailandEmpNoSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidateEmailandEmpNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidateEmailandEmpNoAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="SendRegistCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:SendRegistCode" />
+  </wsdl:message>
+  <wsdl:message name="SendRegistCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:SendRegistCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendRegistCodeAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="ValidateRegistCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidateRegistCode" />
+  </wsdl:message>
+  <wsdl:message name="ValidateRegistCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidateRegistCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidateRegistCodeAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetEmpByEmpNoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEmpByEmpNo" />
+  </wsdl:message>
+  <wsdl:message name="GetEmpByEmpNoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEmpByEmpNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEmpByEmpNoAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetEmpByLineIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEmpByLineId" />
+  </wsdl:message>
+  <wsdl:message name="GetEmpByLineIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEmpByLineIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEmpByLineIdAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetSimulateEmpByEmpNoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSimulateEmpByEmpNo" />
+  </wsdl:message>
+  <wsdl:message name="GetSimulateEmpByEmpNoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSimulateEmpByEmpNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSimulateEmpByEmpNoAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetEmpByNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEmpByName" />
+  </wsdl:message>
+  <wsdl:message name="GetEmpByNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEmpByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEmpByNameAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetGAIASSOredirectURLSoapIn">
+    <wsdl:part name="parameters" element="tns:GetGAIASSOredirectURL" />
+  </wsdl:message>
+  <wsdl:message name="GetGAIASSOredirectURLSoapOut">
+    <wsdl:part name="parameters" element="tns:GetGAIASSOredirectURLResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetGAIASSOredirectURLAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="CreateAccSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateAcc" />
+  </wsdl:message>
+  <wsdl:message name="CreateAccSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateAccResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateAccAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:portType name="ChatBotWebServiceSoap">
+    <wsdl:operation name="IsRegisted">
+      <wsdl:input message="tns:IsRegistedSoapIn" />
+      <wsdl:output message="tns:IsRegistedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateEmailandEmpNo">
+      <wsdl:input message="tns:ValidateEmailandEmpNoSoapIn" />
+      <wsdl:output message="tns:ValidateEmailandEmpNoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendRegistCode">
+      <wsdl:input message="tns:SendRegistCodeSoapIn" />
+      <wsdl:output message="tns:SendRegistCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateRegistCode">
+      <wsdl:input message="tns:ValidateRegistCodeSoapIn" />
+      <wsdl:output message="tns:ValidateRegistCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmpByEmpNo">
+      <wsdl:input message="tns:GetEmpByEmpNoSoapIn" />
+      <wsdl:output message="tns:GetEmpByEmpNoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmpByLineId">
+      <wsdl:input message="tns:GetEmpByLineIdSoapIn" />
+      <wsdl:output message="tns:GetEmpByLineIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSimulateEmpByEmpNo">
+      <wsdl:input message="tns:GetSimulateEmpByEmpNoSoapIn" />
+      <wsdl:output message="tns:GetSimulateEmpByEmpNoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmpByName">
+      <wsdl:input message="tns:GetEmpByNameSoapIn" />
+      <wsdl:output message="tns:GetEmpByNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGAIASSOredirectURL">
+      <wsdl:input message="tns:GetGAIASSOredirectURLSoapIn" />
+      <wsdl:output message="tns:GetGAIASSOredirectURLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateAcc">
+      <wsdl:input message="tns:CreateAccSoapIn" />
+      <wsdl:output message="tns:CreateAccSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ChatBotWebServiceSoap" type="tns:ChatBotWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="IsRegisted">
+      <soap:operation soapAction="http://tempuri.org/IsRegisted" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateEmailandEmpNo">
+      <soap:operation soapAction="http://tempuri.org/ValidateEmailandEmpNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:ValidateEmailandEmpNoAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendRegistCode">
+      <soap:operation soapAction="http://tempuri.org/SendRegistCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SendRegistCodeAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateRegistCode">
+      <soap:operation soapAction="http://tempuri.org/ValidateRegistCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:ValidateRegistCodeAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmpByEmpNo">
+      <soap:operation soapAction="http://tempuri.org/GetEmpByEmpNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetEmpByEmpNoAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmpByLineId">
+      <soap:operation soapAction="http://tempuri.org/GetEmpByLineId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetEmpByLineIdAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSimulateEmpByEmpNo">
+      <soap:operation soapAction="http://tempuri.org/GetSimulateEmpByEmpNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetSimulateEmpByEmpNoAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmpByName">
+      <soap:operation soapAction="http://tempuri.org/GetEmpByName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetEmpByNameAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGAIASSOredirectURL">
+      <soap:operation soapAction="http://tempuri.org/GetGAIASSOredirectURL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetGAIASSOredirectURLAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateAcc">
+      <soap:operation soapAction="http://tempuri.org/CreateAcc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreateAccAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ChatBotWebServiceSoap12" type="tns:ChatBotWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="IsRegisted">
+      <soap12:operation soapAction="http://tempuri.org/IsRegisted" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateEmailandEmpNo">
+      <soap12:operation soapAction="http://tempuri.org/ValidateEmailandEmpNo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ValidateEmailandEmpNoAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendRegistCode">
+      <soap12:operation soapAction="http://tempuri.org/SendRegistCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:SendRegistCodeAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateRegistCode">
+      <soap12:operation soapAction="http://tempuri.org/ValidateRegistCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ValidateRegistCodeAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmpByEmpNo">
+      <soap12:operation soapAction="http://tempuri.org/GetEmpByEmpNo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetEmpByEmpNoAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmpByLineId">
+      <soap12:operation soapAction="http://tempuri.org/GetEmpByLineId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetEmpByLineIdAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSimulateEmpByEmpNo">
+      <soap12:operation soapAction="http://tempuri.org/GetSimulateEmpByEmpNo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetSimulateEmpByEmpNoAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmpByName">
+      <soap12:operation soapAction="http://tempuri.org/GetEmpByName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetEmpByNameAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGAIASSOredirectURL">
+      <soap12:operation soapAction="http://tempuri.org/GetGAIASSOredirectURL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetGAIASSOredirectURLAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateAcc">
+      <soap12:operation soapAction="http://tempuri.org/CreateAcc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreateAccAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ChatBotWebService">
+    <wsdl:port name="ChatBotWebServiceSoap" binding="tns:ChatBotWebServiceSoap">
+      <soap:address location="https://www.darfon.com.tw/lineapi/webservices/line/chatbotwebservice.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ChatBotWebServiceSoap12" binding="tns:ChatBotWebServiceSoap12">
+      <soap12:address location="https://www.darfon.com.tw/lineapi/webservices/line/chatbotwebservice.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

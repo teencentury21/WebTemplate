@@ -1,0 +1,31 @@
+D:\Program\DFNew\build\appsettings.json
+D:\Program\DFNew\build\SYS.BLL.dll.config
+D:\Program\DFNew\build\SYS.BLL.dll
+D:\Program\DFNew\build\SYS.BLL.pdb
+D:\Program\DFNew\SYS.BLL\obj\Release\SYS.BLL.csprojAssemblyReference.cache
+D:\Program\DFNew\SYS.BLL\obj\Release\SYS.BLL.csproj.CoreCompileInputs.cache
+D:\Program\DFNew\SYS.BLL\obj\Release\SYS.BLL.csproj.CopyComplete
+D:\Program\DFNew\SYS.BLL\obj\Release\SYS.BLL.dll
+D:\Program\DFNew\SYS.BLL\obj\Release\SYS.BLL.pdb
+E:\Program\DFNew\build\appsettings.json
+E:\Program\DFNew\build\SYS.BLL.dll.config
+E:\Program\DFNew\build\SYS.BLL.dll
+E:\Program\DFNew\build\SYS.BLL.pdb
+E:\Program\DFNew\SYS.BLL\obj\Release\SYS.BLL.csprojAssemblyReference.cache
+E:\Program\DFNew\SYS.BLL\obj\Release\SYS.BLL.csproj.CoreCompileInputs.cache
+E:\Program\DFNew\SYS.BLL\obj\Release\SYS.BLL.csproj.CopyComplete
+E:\Program\DFNew\SYS.BLL\obj\Release\SYS.BLL.dll
+E:\Program\DFNew\SYS.BLL\obj\Release\SYS.BLL.pdb
+E:\Program\DFNew\build\SYS.BLL.XmlSerializers.dll
+E:\Program\DFNew\SYS.BLL\obj\Release\SYS.BLL.XmlSerializers.dll
+E:\ITS\BPM_DFE_[SYS-Other] Chatbot\Source\build\appsettings.json
+E:\ITS\BPM_DFE_[SYS-Other] Chatbot\Source\build\SYS.BLL.dll.config
+E:\ITS\BPM_DFE_[SYS-Other] Chatbot\Source\build\SYS.BLL.dll
+E:\ITS\BPM_DFE_[SYS-Other] Chatbot\Source\build\SYS.BLL.XmlSerializers.dll
+E:\ITS\BPM_DFE_[SYS-Other] Chatbot\Source\build\SYS.BLL.pdb
+E:\ITS\BPM_DFE_[SYS-Other] Chatbot\Source\SYS.BLL\obj\Release\SYS.BLL.csprojAssemblyReference.cache
+E:\ITS\BPM_DFE_[SYS-Other] Chatbot\Source\SYS.BLL\obj\Release\SYS.BLL.csproj.CoreCompileInputs.cache
+E:\ITS\BPM_DFE_[SYS-Other] Chatbot\Source\SYS.BLL\obj\Release\SYS.BLL.csproj.CopyComplete
+E:\ITS\BPM_DFE_[SYS-Other] Chatbot\Source\SYS.BLL\obj\Release\SYS.BLL.dll
+E:\ITS\BPM_DFE_[SYS-Other] Chatbot\Source\SYS.BLL\obj\Release\SYS.BLL.pdb
+E:\ITS\BPM_DFE_[SYS-Other] Chatbot\Source\SYS.BLL\obj\Release\SYS.BLL.XmlSerializers.dll
