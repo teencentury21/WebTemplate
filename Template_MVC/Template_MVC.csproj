@@ -223,7 +223,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\Admin\Account\AccountController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CaptchaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProjectBase.cs" />
@@ -620,11 +620,12 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Query\Localization.cshtml" />
     <Content Include="Services\ValidatePicture.ashx" />
-    <Content Include="Views\Admin\Account\Login.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Resources\" />
+    <Folder Include="Views\Admin\" />
     <Folder Include="Views\Captcha\" />
     <Folder Include="Views\ProjectBase\" />
   </ItemGroup>

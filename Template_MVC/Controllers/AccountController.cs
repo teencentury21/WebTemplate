@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Template_MVC.Controllers.Admin.Account
+namespace Template_MVC.Controllers.Admin
 {
     public class AccountController : Controller
     {
@@ -17,7 +17,7 @@ namespace Template_MVC.Controllers.Admin.Account
         // GET: Account/Login
         public ActionResult Login()
         {
-            return View("Admin/Account/Login");
+            return View();
         }
 
         // GET: Account/Regist
