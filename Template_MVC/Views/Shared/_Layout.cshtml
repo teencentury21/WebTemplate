@@ -7,23 +7,25 @@
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <style>
-        .captcha-box {
-            width: 400px;
-            margin: 0 auto;
-        }
+    @*<style>
+            .captcha-box {
+                width: 400px;
+                margin: 0 auto;
+            }
 
-        #canvas {
-            border: 1px solid #cccccc;
-        }
-    </style>
+            #canvas {
+                border: 1px solid #cccccc;
+            }
+        </style>*@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/captcha")
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)    
+
     <script type="text/javascript">
+        console.log('Initial');
         // step-1
+                
         const captcha = new Captcha($('#canvas'), {
             length: 6,                          // 校验码长度
             width: 150,                         // canvas宽度
@@ -40,6 +42,29 @@
 
         });
 
+        $('#refresh').on('click', function() {
+            captcha.refresh();
+        });
+        $('#valid').on('click', function() {
+            const val = $('input[name="code"]').val();
+            if (val === "") {
+            alert("请输入验证码");
+            return
+            }
+            console.log("val:", val);
+            console.log("code:", captcha.getCode());
+            if (captcha.valid(val)) {
+            // success
+            $("#txt_msg").val('pass');
+            alert('验证通过');
+            } else {
+            // failure
+                //$("#txt_msg").val(@Resources.Resource.ErrorCaptcha);
+            $("#txt_msg").val('error');
+            alert('验证码错误');
+            }
+        });
+
         // modal login/ regist
         var myModal = document.getElementById('loginModal')
         var myModalTab = document.getElementById('login-register-tabs')
@@ -50,8 +75,9 @@
             modal.show()
             tab.show('login-tab')
         });
-
     </script>
+
+    @RenderSection("scripts", required: false)
 </head>
 <body>
     <!-- Nav header-->
@@ -125,7 +151,10 @@
     </nav>
     <div class="container body-content">
         <canvas id="canvas"></canvas>
-
+        <button id="refresh">刷新</button>
+        <input name="code">
+        <button id="valid">校验</button>
+        <input id="txt_msg" type="text" readonly />
         @RenderBody()
         <!-- Footer -->
         <div class="container">

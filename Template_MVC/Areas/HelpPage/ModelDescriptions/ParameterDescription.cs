@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace DarfonTemplate_MVC.Areas.HelpPage.ModelDescriptions
+namespace Template_MVC.Areas.HelpPage.ModelDescriptions
 {
     public class ParameterDescription
     {

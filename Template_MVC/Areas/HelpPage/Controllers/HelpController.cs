@@ -1,10 +1,10 @@
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
-using DarfonTemplate_MVC.Areas.HelpPage.ModelDescriptions;
-using DarfonTemplate_MVC.Areas.HelpPage.Models;
+using Template_MVC.Areas.HelpPage.ModelDescriptions;
+using Template_MVC.Areas.HelpPage.Models;
 
-namespace DarfonTemplate_MVC.Areas.HelpPage.Controllers
+namespace Template_MVC.Areas.HelpPage.Controllers
 {
     /// <summary>
     /// The controller that will handle requests for the help page.

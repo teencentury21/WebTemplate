@@ -5,7 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace DarfonTemplate_MVC.Controllers
+namespace Template_MVC.Controllers
 {
     public class ValuesController : ApiController
     {

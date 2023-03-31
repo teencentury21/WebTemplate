@@ -1,6 +1,6 @@
 using System;
 
-namespace DarfonTemplate_MVC.Areas.HelpPage
+namespace Template_MVC.Areas.HelpPage
 {
     /// <summary>
     /// This represents an image sample on the help page. There's a display template named ImageSample associated with this class.

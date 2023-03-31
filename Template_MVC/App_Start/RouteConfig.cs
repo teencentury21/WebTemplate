@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace DarfonTemplate_MVC
+namespace Template_MVC
 {
     public class RouteConfig
     {

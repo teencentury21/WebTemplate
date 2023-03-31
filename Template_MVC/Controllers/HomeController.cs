@@ -1,13 +1,13 @@
 ﻿using BotDetect.Web;
 using BotDetect.Web.Mvc;
-using DarfonTemplate_MVC.Models;
+using Template_MVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace DarfonTemplate_MVC.Controllers
+namespace Template_MVC.Controllers
 {
     public class HomeController : Controller
     {

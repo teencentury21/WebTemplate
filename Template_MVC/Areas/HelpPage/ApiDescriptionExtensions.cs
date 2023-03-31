@@ -3,7 +3,7 @@ using System.Text;
 using System.Web;
 using System.Web.Http.Description;
 
-namespace DarfonTemplate_MVC.Areas.HelpPage
+namespace Template_MVC.Areas.HelpPage
 {
     public static class ApiDescriptionExtensions
     {

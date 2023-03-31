@@ -5,9 +5,9 @@ using System.Reflection;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
 using System.Xml.XPath;
-using DarfonTemplate_MVC.Areas.HelpPage.ModelDescriptions;
+using Template_MVC.Areas.HelpPage.ModelDescriptions;
 
-namespace DarfonTemplate_MVC.Areas.HelpPage
+namespace Template_MVC.Areas.HelpPage
 {
     /// <summary>
     /// A custom <see cref="IDocumentationProvider"/> that reads the API documentation from an XML documentation file.

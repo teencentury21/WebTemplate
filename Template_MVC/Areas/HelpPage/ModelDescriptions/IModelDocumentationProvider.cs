@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace DarfonTemplate_MVC.Areas.HelpPage.ModelDescriptions
+namespace Template_MVC.Areas.HelpPage.ModelDescriptions
 {
     public interface IModelDocumentationProvider
     {

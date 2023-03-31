@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DarfonTemplate_MVC.App_GlobalResources {
+namespace Template_MVC.App_GlobalResources {
     using System;
     
     

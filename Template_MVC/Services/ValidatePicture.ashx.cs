@@ -9,7 +9,7 @@ using System.Web;
 using System.Web.SessionState; // 使用 Session 所以會用到
 
 
-namespace DarfonTemplate_MVC.Services
+namespace Template_MVC.Services
 {
     /// <summary>
     /// Summary description for ValidatePicture

@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Mvc;
 
-namespace DarfonTemplate_MVC.Controllers
+namespace Template_MVC.Controllers
 {
     public class QueryController : Controller
     {

@@ -2,17 +2,72 @@
 @{
     ViewBag.Title = "Localization";
 }
+    <style>
 
+        /*.captcha-box {
+            width: 800px;
+            margin: 0 auto;
+        }
+
+        #canvas {
+            border: 1px solid #cccccc;
+        }*/
+    </style>
+    <div class="captcha-box">
+        <canvas id="canvas2"></canvas>
+        <button id="refresh2">刷新</button>
+        <input name="code2">
+        <button id="valid2">校验</button>
+        <input id="txt_msg2" type="text" readonly/>
+        
+    </div>
+    <script type="text/javascript">
+          // step-1
+          const captcha2 = new Captcha($('#canvas2'), {
+            length: 6,                          // 校验码长度
+            width: 150,                         // canvas宽度
+            height: 50,                         // canvas高度
+            font: 'bold 23px 微软雅黑',          // 文本字体样式
+            resourceType: 'aA0',                // 资源类型：a-小写字母、A-大写字母、0-数字，可任意组合
+            resourceExtra: [],                  // 额外资源
+            clickRefresh: true,                 // 点击刷新
+            autoRefresh: true,                  // 调用校验接口后是否自动刷新（校验成功不会刷新）
+            caseSensitive: false,               // 大小写是否敏感
+          });
+
+           $('#refresh2').on('click', function() {
+             captcha2.refresh();
+           });
+           $('#valid2').on('click', function() {
+             const val = $('input[name="code2"]').val();
+             if (val === "") {
+               alert("请输入验证码");
+               return
+             }
+             console.log("val:", val);
+             console.log("code:", captcha2.getCode());
+             if (captcha2.valid(val)) {
+               // success
+                $("#txt_msg2").val('pass');
+                 alert('验证通过');
+                 captcha2.refresh();
+             } else {
+               // failure
+                 //$("#txt_msg").val(@Resources.Resource.ErrorCaptcha);
+                $("#txt_msg2").val('error');
+                alert('验证码错误');
+             }
+           });
+    </script>
 @*@model CultureSwitcherModel
-
-<div>
-    <form id="culture-switcher">
-        <select name="culture" id="culture-options">
-            <option></option>
-            @foreach (var culture in Model.SupportedCultures)
-            {
-                <option value="@culture.Name" selected="@(Model.CurrentUICulture.Name == culture.Name)">@culture.DisplayName</option>
-            }
-        </select>
-    </form>
-</div>*@
+    <div>
+        <form id="culture-switcher">
+            <select name="culture" id="culture-options">
+                <option></option>
+                @foreach (var culture in Model.SupportedCultures)
+                {
+                    <option value="@culture.Name" selected="@(Model.CurrentUICulture.Name == culture.Name)">@culture.DisplayName</option>
+                }
+            </select>
+        </form>
+    </div>*@

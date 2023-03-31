@@ -11,10 +11,10 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
-using DarfonTemplate_MVC.Areas.HelpPage.ModelDescriptions;
-using DarfonTemplate_MVC.Areas.HelpPage.Models;
+using Template_MVC.Areas.HelpPage.ModelDescriptions;
+using Template_MVC.Areas.HelpPage.Models;
 
-namespace DarfonTemplate_MVC.Areas.HelpPage
+namespace Template_MVC.Areas.HelpPage
 {
     public static class HelpPageConfigurationExtensions
     {

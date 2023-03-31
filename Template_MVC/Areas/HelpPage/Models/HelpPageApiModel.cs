@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http.Headers;
 using System.Web.Http.Description;
-using DarfonTemplate_MVC.Areas.HelpPage.ModelDescriptions;
+using Template_MVC.Areas.HelpPage.ModelDescriptions;
 
-namespace DarfonTemplate_MVC.Areas.HelpPage.Models
+namespace Template_MVC.Areas.HelpPage.Models
 {
     /// <summary>
     /// The model that represents an API displayed on the help page.

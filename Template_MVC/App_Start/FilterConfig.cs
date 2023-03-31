@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace DarfonTemplate_MVC
+namespace Template_MVC
 {
     public class FilterConfig
     {

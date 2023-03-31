@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
-namespace DarfonTemplate_MVC.Areas.HelpPage.ModelDescriptions
+namespace Template_MVC.Areas.HelpPage.ModelDescriptions
 {
     internal static class ModelNameHelper
     {

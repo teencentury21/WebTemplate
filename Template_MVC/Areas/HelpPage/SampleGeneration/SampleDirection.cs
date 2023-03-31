@@ -1,4 +1,4 @@
-namespace DarfonTemplate_MVC.Areas.HelpPage
+namespace Template_MVC.Areas.HelpPage
 {
     /// <summary>
     /// Indicates whether the sample is used for request or response

@@ -6,7 +6,7 @@ using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
-namespace DarfonTemplate_MVC.Controllers
+namespace Template_MVC.Controllers
 {
     public class ProjectBase : Controller
     {

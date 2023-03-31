@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
-namespace DarfonTemplate_MVC
+namespace Template_MVC
 {
     public class WebApiApplication : System.Web.HttpApplication
     {
@@ -20,6 +20,11 @@ namespace DarfonTemplate_MVC
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+        }
+
+        protected void Application_End()
+        {
+            System.Diagnostics.Debugger.Break();
         }
         //設定多國語言
         protected void Application_AcquireRequestState(Object sender, EventArgs e)
@@ -33,5 +38,6 @@ namespace DarfonTemplate_MVC
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(languageSession);
             Thread.CurrentThread.CurrentCulture = new CultureInfo(languageSession);
         }
+
     }
 }

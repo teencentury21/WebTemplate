@@ -1,6 +1,6 @@
 using System;
 
-namespace DarfonTemplate_MVC.Areas.HelpPage.ModelDescriptions
+namespace Template_MVC.Areas.HelpPage.ModelDescriptions
 {
     /// <summary>
     /// Describes a type model.

@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace DarfonTemplate_MVC
+namespace Template_MVC
 {
     public class BundleConfig
     {

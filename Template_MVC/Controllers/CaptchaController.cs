@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BotDetect.Web;
 using BotDetect.Web.Mvc;
 
-namespace DarfonTemplate_MVC.Controllers
+namespace Template_MVC.Controllers
 {
     public class CaptchaController : Controller
     {
@@ -13,6 +14,11 @@ namespace DarfonTemplate_MVC.Controllers
         public ActionResult Index()
         {
             return View();
-        }        
+        }
+        //public ActionResult CaptchaValidate(string userEnteredCaptchaCode, string captchaId)
+        //{            
+        //    SimpleCaptcha yourFirstCaptcha = new SimpleCaptcha();
+        //    bool isHuman = yourFirstCaptcha.Validate(userEnteredCaptchaCode, captchaId);            
+        //}
     }
 }
