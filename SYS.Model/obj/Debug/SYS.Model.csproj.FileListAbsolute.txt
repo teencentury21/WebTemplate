@@ -32,7 +32,7 @@ E:\ITS\BPM_DFE_[SYS-Other] Web template\Source\SYS.Model\obj\Debug\SYS.Model.pdb
 E:\ITS\BPM_DFE_[SYS-Other] Web template\Source\SYS.Model\obj\Debug\SYS.Model.csprojAssemblyReference.cache
 E:\Program\WebTemplate\build\SYS.Model.dll
 E:\Program\WebTemplate\build\SYS.Model.pdb
-E:\Program\WebTemplate\SYS.Model\obj\Debug\SYS.Model.csprojAssemblyReference.cache
 E:\Program\WebTemplate\SYS.Model\obj\Debug\SYS.Model.csproj.CoreCompileInputs.cache
 E:\Program\WebTemplate\SYS.Model\obj\Debug\SYS.Model.dll
 E:\Program\WebTemplate\SYS.Model\obj\Debug\SYS.Model.pdb
+E:\Program\WebTemplate\SYS.Model\obj\Debug\SYS.Model.csprojAssemblyReference.cache

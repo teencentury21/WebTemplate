@@ -4,9 +4,6 @@ using SYS.Model.SQL.ChatBot;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SYS.DAL.ChatBot
 {

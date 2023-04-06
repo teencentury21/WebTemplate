@@ -39,6 +39,9 @@
     <Reference Include="Dapper.SqlBuilder, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dapper.SqlBuilder.2.0.78\lib\net461\Dapper.SqlBuilder.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject, Version=3.3.6.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.3.6\lib\net45\Ninject.dll</HintPath>
     </Reference>
@@ -52,9 +55,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\MappingConfig.cs" />
     <Compile Include="Base\RepositoryFactory.cs" />
     <Compile Include="Base\SQLRepository.cs" />
     <Compile Include="ChatBot\AccountRegistRepository.cs" />
+    <Compile Include="Default\FunctionsRepository.cs" />
+    <Compile Include="Default\GroupFunctionsRepository.cs" />
+    <Compile Include="Default\GroupsRepository.cs" />
+    <Compile Include="Default\UserFunctionsRepository.cs" />
+    <Compile Include="Default\UsersRepository.cs" />
     <Compile Include="Default\TransactionLogRepository.cs" />
     <Compile Include="GAIA\OmStaffRepository.cs" />
     <Compile Include="GAIA\OmUserRepository.cs" />
@@ -64,6 +73,7 @@
   <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="RepositoryMapping.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SYS.Model\SYS.Model.csproj">

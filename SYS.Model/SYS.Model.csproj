@@ -49,7 +49,12 @@
     <Compile Include="Database.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQL\ChatBot\AccountRegist.cs" />
+    <Compile Include="SQL\Default\Functions.cs" />
+    <Compile Include="SQL\Default\Groups.cs" />
+    <Compile Include="SQL\Default\GroupFunctions.cs" />
+    <Compile Include="SQL\Default\Users.cs" />
     <Compile Include="SQL\Default\TransactionLog.cs" />
+    <Compile Include="SQL\Default\UserFunctions.cs" />
     <Compile Include="SQL\GAIA\OmStaff.cs" />
     <Compile Include="SQL\GAIA\OmUser.cs" />
     <Compile Include="SQL\Region.cs" />

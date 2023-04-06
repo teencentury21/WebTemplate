@@ -1,0 +1,44 @@
+{
+  "mappings": [
+    {
+      "repositoryType": "IAccountRegistRepository",
+      "implementationType": "AccountRegistRepository"
+    },
+    {
+      "repositoryType": "IOmStaffRepository",
+      "implementationType": "OmStaffRepository"
+    },
+    {
+      "repositoryType": "IFunctionsRepository",
+      "implementationType": "FunctionsRepository"
+    },
+    {
+      "repositoryType": "IGroupsRepository",
+      "implementationType": "GroupsRepository"
+    },
+    {
+      "repositoryType": "IGroupFunctionsRepository",
+      "implementationType": "GroupFunctionsRepository"
+    },
+    {
+      "repositoryType": "IOmUserRepository",
+      "implementationType": "OmUserRepository"
+    },
+    {
+      "repositoryType": "IRegionRepository",
+      "implementationType": "RegionRepository"
+    },
+    {
+      "repositoryType": "ITransactionLogRepository",
+      "implementationType": "TransactionLogRepository"
+    },
+    {
+      "repositoryType": "IUsersRepository",
+      "implementationType": "UsersRepository"
+    },
+    {
+      "repositoryType": "IUserFunctionsRepository",
+      "implementationType": "UserFunctionsRepository"
+    }
+  ]
+}

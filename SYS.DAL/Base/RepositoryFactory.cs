@@ -1,4 +1,5 @@
-﻿using Ninject;
+﻿using Newtonsoft.Json;
+using Ninject;
 using Ninject.Parameters;
 using SYS.DAL.ChatBot;
 using SYS.DAL.Default;
@@ -8,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,19 +57,30 @@ namespace SYS.DAL.Base
                 ConnectionPool.Add(item.Key, new SqlConnection(item.Value[appSettings.Stage]));
             }
 
+            var json = File.ReadAllText("RepositoryMapping.json");
+            var mappings = JsonConvert.DeserializeObject<MappingConfig>(json);
+
             _kernel
                 .Bind<IRepositoryFactory>()
                 .ToConstant(this)
                 .InSingletonScope();
-            // Example
-            _kernel.Bind<IRegionRepository>().To<RegionRepository>().InSingletonScope().WithConstructorArgument(connection, context => null);
-            // GAIA
-            _kernel.Bind<IOmStaffRepository>().To<OmStaffRepository>().InSingletonScope().WithConstructorArgument(connection, context => null);
-            _kernel.Bind<IOmUserRepository>().To<OmUserRepository>().InSingletonScope().WithConstructorArgument(connection, context => null);
-            // ChatBot
-            _kernel.Bind<IAccountRegistRepository>().To<AccountRegistRepository>().InSingletonScope().WithConstructorArgument(connection, context => null);
-            // Default
-            _kernel.Bind<ITransactionLogRepository>().To<TransactionLogRepository>().InSingletonScope().WithConstructorArgument(connection, context => null);
+
+            foreach (var mapping in mappings.Mappings)
+            {
+                var repositoryType = Type.GetType(mapping.RepositoryType);
+                var implementationType = Type.GetType(mapping.ImplementationType);
+
+                _kernel.Bind(repositoryType).To(implementationType).InSingletonScope().WithConstructorArgument(connection, context => null);
+            }
+            //// Example
+            //_kernel.Bind<IRegionRepository>().To<RegionRepository>().InSingletonScope().WithConstructorArgument(connection, context => null);
+            //// GAIA
+            //_kernel.Bind<IOmStaffRepository>().To<OmStaffRepository>().InSingletonScope().WithConstructorArgument(connection, context => null);
+            //_kernel.Bind<IOmUserRepository>().To<OmUserRepository>().InSingletonScope().WithConstructorArgument(connection, context => null);
+            //// ChatBot
+            //_kernel.Bind<IAccountRegistRepository>().To<AccountRegistRepository>().InSingletonScope().WithConstructorArgument(connection, context => null);
+            //// Default
+            //_kernel.Bind<ITransactionLogRepository>().To<TransactionLogRepository>().InSingletonScope().WithConstructorArgument(connection, context => null);
 
         }
 
