@@ -165,4 +165,24 @@
     <value>Sign Up</value>
     <comment>Regist</comment>
   </data>
+  <data name="EmptyCaptcha" xml:space="preserve">
+    <value>Please enter captcha.</value>
+    <comment>Login error</comment>
+  </data>
+  <data name="AccInvalidate" xml:space="preserve">
+    <value>The account does not exist!</value>
+    <comment>Login</comment>
+  </data>
+  <data name="AccExisted" xml:space="preserve">
+    <value>Username already exists</value>
+    <comment>Regist</comment>
+  </data>
+  <data name="PasswordNotSame" xml:space="preserve">
+    <value>Passwords do not match, please reconfirm your password!</value>
+    <comment>Regist</comment>
+  </data>
+  <data name="PasswordAgain" xml:space="preserve">
+    <value>Reenter Password:</value>
+    <comment>Regist</comment>
+  </data>
 </root>

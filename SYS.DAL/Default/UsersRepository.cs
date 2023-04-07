@@ -4,15 +4,20 @@ using System.Collections.Generic;
 using System.Data;
 using SYS.DAL.Base;
 using SYS.Model.SQL.Default;
+using System.Linq;
+using System.Data.SqlClient;
 
 namespace SYS.DAL.Default
 {
     public interface IUsersRepository : ISQLRepository
     {
+        // Functions
         void Create(Users item);
         IEnumerable<Users> Read();
         void Update(Users item);
         void Delete(int regionId);
+
+        Users GetUsersByAcc(string acc);
     }
     internal class UsersRepository : SQLRepository, IUsersRepository
     {
@@ -20,43 +25,38 @@ namespace SYS.DAL.Default
         {
 
         }
-        public void Create(Users item)
+        public void Create(Users user)
         {
-            //string strSql = "INSERT INTO [dbo].[Account_Regist]([Id],[Line_Id],[Emp_Id],[Emp_no],[Emp_phone],[Emp_mail],[Active],[Setting],[Cdt])" +
-            //     $" VALUES('{item.Id}', '{item.Line_Id}', '{item.Emp_Id}', '{item.Emp_no}', '{item.Emp_phone}', '{item.Emp_mail}', '{item.Active}', '{item.Setting}', '{item.Cdt.ToString("yyyy/MM/dd HH:mm:ss")}' )";
-            //Connection.Execute(strSql);
-
-            //string strSql = "INSERT INTO [dbo].[Account_Regist]([Id],[Line_Id],[Emp_Id],[Emp_no],[Emp_phone],[Emp_mail],[Active],[Setting],[Cdt])" +
-            //     " VALUES(@id, @lineId, @empId, @empNo, @empPhone, @empMail, @active, @setting, @cdt )";
-            //新增多筆參數
-            // string strSql ="INSERT INTO Users(col1,col2) VALUES (@c1,@c2);" ;
-            //dynamic datas = new[]{ new { c1 = "A", c2 = "A2" }
-            //    , new { c1 = "B", c2 = "B2" }
-            //    , new { c1 = "C", c2 = "C2" }};
+            var sql = @"INSERT INTO [dbo].[Users] ([username], [password], [is_admin], [is_active])
+            VALUES (@username, @password, @is_admin, @is_active)";
+            Connection.Execute(sql, user);
         }
         public IEnumerable<Users> Read()
         {
-            return Connection.Query<Users>("SELECT * FROM [dbo].[Account_Regist]");
+            return Connection.Query<Users>("SELECT * FROM [dbo].[Users]");
         }
 
-        public void Update(Users item)
+        public void Update(Users user)
         {
-            //string strSql = "UPDATE [dbo].[Account_Regist] SET" +
-            //    $" [Line_Id] = '{item.Line_Id}'" +
-            //    $" ,[Emp_Id] = '{item.Emp_Id}'" +
-            //    $" ,[Emp_no] = '{item.Emp_no}'" +
-            //    $" ,[Emp_phone] = '{item.Emp_phone}'" +
-            //    $" ,[Emp_mail] = '{item.Emp_mail}'" +
-            //    $" ,[Active] = '{item.Active}'" +
-            //    $" ,[Setting] = '{item.Setting}'" +
-            //    $" ,[Cdt] = '{item.Cdt.ToString("yyyy/MM/dd HH:mm:ss")}'" +
-            //    $" WHERE Id='{item.Id}'";
-            //Connection.Execute(strSql);
+            var sql = @"UPDATE [dbo].[Users] SET [password] = @password, [is_admin] = @is_admin, [is_active] = @is_active
+            WHERE [user_id] = @user_id";
+
+            Connection.Execute(sql, user);
         }
 
-        public void Delete(int regionId)
+        public void Delete(int userId)
         {
-            throw new NotImplementedException();
+            var user = new Users { user_id = userId };
+            var sql = @"DELETE FROM [dbo].[Users] WHERE [user_id] = @user_id";
+
+            Connection.Execute(sql, user);
+
+        }
+
+        public Users GetUsersByAcc(string acc)
+        {
+            return Connection.Query<Users>("SELECT * FROM Users WHERE username = @username AND is_active=1",
+                    new { username = acc }).FirstOrDefault();
         }
     }
 

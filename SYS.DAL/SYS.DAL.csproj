@@ -55,7 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\MappingConfig.cs" />
+    <Compile Include="Base\RepositoryMappingConfig.cs" />
     <Compile Include="Base\RepositoryFactory.cs" />
     <Compile Include="Base\SQLRepository.cs" />
     <Compile Include="ChatBot\AccountRegistRepository.cs" />
@@ -73,7 +73,9 @@
   <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="RepositoryMapping.json" />
+    <Content Include="RepositoryMapping.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SYS.Model\SYS.Model.csproj">

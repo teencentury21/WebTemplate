@@ -35,4 +35,3 @@ E:\Program\WebTemplate\build\SYS.Model.pdb
 E:\Program\WebTemplate\SYS.Model\obj\Debug\SYS.Model.csproj.CoreCompileInputs.cache
 E:\Program\WebTemplate\SYS.Model\obj\Debug\SYS.Model.dll
 E:\Program\WebTemplate\SYS.Model\obj\Debug\SYS.Model.pdb
-E:\Program\WebTemplate\SYS.Model\obj\Debug\SYS.Model.csprojAssemblyReference.cache

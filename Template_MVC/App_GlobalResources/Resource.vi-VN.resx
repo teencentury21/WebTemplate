@@ -168,4 +168,19 @@
   <data name="RegistTitle" xml:space="preserve">
     <value>Đăng Ký</value>
   </data>
+  <data name="EmptyCaptcha" xml:space="preserve">
+    <value>vui lòng nhập mã xác nhận</value>
+  </data>
+  <data name="AccInvalidate" xml:space="preserve">
+    <value>Tài khoản không tồn tại!</value>
+  </data>
+  <data name="AccExisted" xml:space="preserve">
+    <value>Tài khoản đã tồn tại!</value>
+  </data>
+  <data name="PasswordNotSame" xml:space="preserve">
+    <value>Mật khẩu không nhất quán, vui lòng xác nhận lại mật khẩu của bạn!</value>
+  </data>
+  <data name="PasswordAgain" xml:space="preserve">
+    <value>Vui lòng nhập lại mật khẩu!</value>
+  </data>
 </root>

@@ -123,8 +123,8 @@
     <Reference Include="Microsoft.Net.Http.Headers, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Net.Http.Headers.2.2.0\lib\netstandard2.0\Microsoft.Net.Http.Headers.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Ninject, Version=3.3.6.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.3.6\lib\net45\Ninject.dll</HintPath>
@@ -212,6 +212,7 @@
     <Compile Include="Base\BusinessLogic.cs" />
     <Compile Include="Base\BusinessLogicFactory.cs" />
     <Compile Include="Base\DataDrivenLogic.cs" />
+    <Compile Include="Base\LogicMappingConfig.cs" />
     <Compile Include="Common\Descriptor.cs" />
     <Compile Include="Common\Mail\HtmlContentAttributeNames.cs" />
     <Compile Include="Common\Mail\HtmlMailRoot.cs" />
@@ -220,17 +221,20 @@
     <Compile Include="Common\Mail\MailContentKey.cs" />
     <Compile Include="Common\Mail\MailContentStatus.cs" />
     <Compile Include="Common\Mail\MailDataContent.cs" />
+    <Compile Include="Constants\FunctionResultConstant.cs" />
     <Compile Include="Constants\GAIASystemsConstants.cs" />
     <Compile Include="Constants\Line\ConstData.cs" />
     <Compile Include="Constants\Line\SimulateConstants.cs" />
     <Compile Include="Constants\SpecialEditorConstants.cs" />
     <Compile Include="Constants\TransactionLogConstants.cs" />
+    <Compile Include="Domain\UsersLogic.cs" />
     <Compile Include="Domain\DateTimeLogic.cs" />
     <Compile Include="Domain\HttpContextStateLogic.cs" />
     <Compile Include="Domain\Line\LineBotReplyLogic.cs" />
     <Compile Include="Domain\MailLogic.cs" />
     <Compile Include="Domain\WebServiceLogic.cs" />
     <Compile Include="Entities\EmpEntity.cs" />
+    <Compile Include="Entities\FunctionResultEntity.cs" />
     <Compile Include="Entities\GAIA\SSOResult.cs" />
     <Compile Include="Constants\Line\ExtNoConstants.cs" />
     <Compile Include="Constants\Line\RegistConstants.cs" />
@@ -253,6 +257,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="LogicMapping.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

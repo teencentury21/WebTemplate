@@ -52,3 +52,5 @@ E:\Program\WebTemplate\SYS.BLL\obj\Debug\SYS.BLL.csproj.CoreCompileInputs.cache
 E:\Program\WebTemplate\SYS.BLL\obj\Debug\SYS.BLL.csproj.CopyComplete
 E:\Program\WebTemplate\SYS.BLL\obj\Debug\SYS.BLL.dll
 E:\Program\WebTemplate\SYS.BLL\obj\Debug\SYS.BLL.pdb
+E:\Program\WebTemplate\build\LogicMapping.json
+E:\Program\WebTemplate\build\RepositoryMapping.json

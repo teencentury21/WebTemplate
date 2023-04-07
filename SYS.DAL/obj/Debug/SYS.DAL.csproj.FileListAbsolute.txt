@@ -40,3 +40,4 @@ E:\Program\WebTemplate\SYS.DAL\obj\Debug\SYS.DAL.csproj.CoreCompileInputs.cache
 E:\Program\WebTemplate\SYS.DAL\obj\Debug\SYS.DAL.csproj.CopyComplete
 E:\Program\WebTemplate\SYS.DAL\obj\Debug\SYS.DAL.dll
 E:\Program\WebTemplate\SYS.DAL\obj\Debug\SYS.DAL.pdb
+E:\Program\WebTemplate\build\RepositoryMapping.json

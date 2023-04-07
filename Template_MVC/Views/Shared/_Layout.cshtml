@@ -124,19 +124,19 @@
                                 <div class="d-flex align-items-center justify-content-center">
                                     <form class="">
                                         <div class="form-floating mb-4">
-                                            <input id="inputAccount" type="text" class="form-control form-control-lg rounded-3" placeholder="AD Account/ System Account">
-                                            <label for="inputAccount">@Resources.Resource.Account</label>
+                                            <input id="loginAccount" name="loginAccount" type="text" class="form-control form-control-lg rounded-3" placeholder="AD Account/ System Account">
+                                            <label for="loginAccount">@Resources.Resource.Account</label>
                                         </div>
                                         <div class="form-floating mb-4">
-                                            <input id="inputPassword" type="password" class="form-control form-control-lg rounded-3" placeholder="Password">
-                                            <label for="inputPassword">@Resources.Resource.Password</label>
+                                            <input id="loginPassword" name="loginPassword" type="password" class="form-control form-control-lg rounded-3" placeholder="Password">
+                                            <label for="loginPassword">@Resources.Resource.Password</label>
                                         </div>
                                         <div class="form-floating mb-3">
                                             <canvas id="loginCanvas"></canvas>                                            
                                         </div>
                                         <div class="form-floating mb-3">
                                             <input id="loginCaptcha" name="loginCaptcha" type="text" class="form-control form-control-lg rounded-3" placeholder="Captcha">
-                                            <label for="inputCaptcha">@Resources.Resource.Captcha</label>
+                                            <label for="loginCaptcha">@Resources.Resource.Captcha</label>
                                         </div>
                                         <input id="btn_login" name="btn_login" type="button" class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" value="@Resources.Resource.LoginTitle">
                                     </form>
@@ -147,12 +147,16 @@
                                 <div class="d-flex align-items-center justify-content-center">
                                     <form class="">
                                         <div class="form-floating mb-3">
-                                            <input type="text" class="form-control rounded-3" id="inputAccount" placeholder="AD Account/ System Account">
-                                            <label for="inputAccount">@Resources.Resource.Account</label>
+                                            <input id="registAccount" name="registAccount" type="text" class="form-control rounded-3" placeholder="AD Account/ System Account">
+                                            <label for="registAccount">@Resources.Resource.Account</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input type="password" class="form-control rounded-3" id="inputPassword" placeholder="Password">
-                                            <label for="inputPassword">@Resources.Resource.Password</label>
+                                            <input id="registPassword" name="registPassword" type="password" class="form-control rounded-3" placeholder="Password">
+                                            <label for="registPassword">@Resources.Resource.Password</label>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input id="validateRegistPassword" name="validateRegistPassword" type="password" class="form-control rounded-3" placeholder="Password">
+                                            <label for="validateRegistPassword">@Resources.Resource.PasswordAgain</label>
                                         </div>
                                         <div class="form-floating mb-3">
                                             <canvas id="registCanvas"></canvas>
@@ -176,7 +180,12 @@
         </div>
 
         <script type="text/javascript">
-            // step-1
+            // init
+            $(function () {
+
+            });
+
+            // login Captcha
             const loginCaptcha = new Captcha($('#loginCanvas'), {
                 length: 6,                          // 校验码长度
                 width: 150,                         // canvas宽度
@@ -192,21 +201,43 @@
             $('#btn_login').on('click', function() {
                 const val = $('input[name="loginCaptcha"]').val();                
                 if (val === "") {
-                    alert("请输入验证码");
+                    alert('@Resources.Resource.EmptyCaptcha');
                     return
                 }
-
                 if (loginCaptcha.valid(val)) {
                     // success
                     loginCaptcha.refresh();
-                    $("#lbl_errMsg").text('pass');
-                    alert('验证通过');
+                    login();
                 } else {
                     // failure                    
-                    $("#lbl_errMsg").text('error');
-                    alert('验证码错误');
+                    $("#lbl_errMsg").text('@Resources.Resource.ErrorCaptcha');
+                    alert('@Resources.Resource.ErrorCaptcha');
                 }
             });
+
+            function login() {
+                // 取得使用者輸入的帳號和密碼
+                var username = $('#loginAccount').val();
+                var password = $('#loginPassword').val();
+
+                // 發送 HTTP POST 請求，並傳遞帳號和密碼作為參數
+                $.ajax({
+                    type: "POST",
+                    url: "/Account/Login",
+                    data: { username: username, password: password },
+                    success: function (result) {
+                        if (result.success) {
+                            // 登入成功，可以進行相應的處理
+                        } else {
+                            alert(result.message);
+                            $("#lbl_errMsg").text(result.message);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        // 登入失敗後的處理
+                    }
+                });
+            }
 
             // regist Captcha
             const registCaptcha = new Captcha($('#registCanvas'), {
@@ -222,29 +253,52 @@
             });
 
             $('#btn_regist').on('click', function() {
-                const val = $('input[name="registCaptcha"]').val();
-                
-                if (val === "") {
-                    alert("请输入验证码");
+                const val = $('input[name="registCaptcha"]').val();                
+                if (val === "") {                    
+                    alert('@Resources.Resource.EmptyCaptcha');
                 return
                 }
-
                 if (registCaptcha.valid(val)) {
-                    // success
-                    registCaptcha.refresh();
-                    $("#lbl_errMsg").text('pass');
-                    alert('验证通过');
+                    var psw = $('#registPassword').val();
+                    var validatePsw = $('#validateRegistPassword').val();
+                    if (psw != validatePsw) {
+                        $("#lbl_errMsg").text('@Resources.Resource.PasswordNotSame');
+                        alert('@Resources.Resource.PasswordNotSame');
+                    } else {
+                        // success
+                        registCaptcha.refresh();
+                        regist();
+                    }
                 } else {
-                    // failure
-                    $("#lbl_errMsg").text('error');
-                    alert('验证码错误');
+                    // failure                    
+                    $("#lbl_errMsg").text('@Resources.Resource.ErrorCaptcha');
+                    alert('@Resources.Resource.ErrorCaptcha');
                 }
             });
 
-            // init
-            $(function () {
+            function regist() {
+                // 取得使用者輸入的帳號和密碼
+                var username = $('#registAccount').val();
+                var password = $('#registPassword').val();
 
-            });
+                // 發送 HTTP POST 請求，並傳遞帳號和密碼作為參數
+                $.ajax({
+                    type: "POST",
+                    url: "/Account/Regist",
+                    data: { username: username, password: password },
+                    success: function (result) {
+                        if (result.success) {
+                            // 登入成功，可以進行相應的處理
+                        } else {
+                            alert(result.message);
+                            $("#lbl_errMsg").text(result.message);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        // 登入失敗後的處理
+                    }
+                });
+            }            
 
             // modal login/ regist
             var myModal = document.getElementById('loginModal')
@@ -252,10 +306,10 @@
             var modal = new bootstrap.Modal(myModal)
             var tab = new bootstrap.Tab(myModalTab)
 
-            //document.querySelector('.btn-primary').addEventListener('click', function () {
-            //    modal.show()
-            //    tab.show('login-tab')
-            //});
+            document.querySelector('.btn-primary').addEventListener('click', function () {
+                modal.show()
+                tab.show('login-tab')
+            });
         </script>
     </body>
 

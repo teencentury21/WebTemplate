@@ -168,4 +168,19 @@
   <data name="RegistTitle" xml:space="preserve">
     <value>註冊</value>
   </data>
+  <data name="EmptyCaptcha" xml:space="preserve">
+    <value>請輸入驗證碼</value>
+  </data>
+  <data name="AccInvalidate" xml:space="preserve">
+    <value>帳號不存在</value>
+  </data>
+  <data name="AccExisted" xml:space="preserve">
+    <value>帳號已存在</value>
+  </data>
+  <data name="PasswordNotSame" xml:space="preserve">
+    <value>密碼不一致，請重新確認您的密碼</value>
+  </data>
+  <data name="PasswordAgain" xml:space="preserve">
+    <value>請再輸入一次密碼</value>
+  </data>
 </root>

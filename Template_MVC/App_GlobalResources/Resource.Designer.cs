@@ -61,6 +61,24 @@ namespace Template_MVC.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Username already exists.
+        /// </summary>
+        public static string AccExisted {
+            get {
+                return ResourceManager.GetString("AccExisted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The account does not exist!.
+        /// </summary>
+        public static string AccInvalidate {
+            get {
+                return ResourceManager.GetString("AccInvalidate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Account.
         /// </summary>
         public static string Account {
@@ -111,6 +129,15 @@ namespace Template_MVC.App_GlobalResources {
         public static string ChineseTraditional {
             get {
                 return ResourceManager.GetString("ChineseTraditional", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter captcha..
+        /// </summary>
+        public static string EmptyCaptcha {
+            get {
+                return ResourceManager.GetString("EmptyCaptcha", resourceCulture);
             }
         }
         
@@ -183,6 +210,24 @@ namespace Template_MVC.App_GlobalResources {
         public static string Password {
             get {
                 return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reenter Password:.
+        /// </summary>
+        public static string PasswordAgain {
+            get {
+                return ResourceManager.GetString("PasswordAgain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passwords do not match, please reconfirm your password!.
+        /// </summary>
+        public static string PasswordNotSame {
+            get {
+                return ResourceManager.GetString("PasswordNotSame", resourceCulture);
             }
         }
         

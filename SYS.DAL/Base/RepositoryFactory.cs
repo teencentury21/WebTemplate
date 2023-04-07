@@ -11,6 +11,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -57,8 +58,9 @@ namespace SYS.DAL.Base
                 ConnectionPool.Add(item.Key, new SqlConnection(item.Value[appSettings.Stage]));
             }
 
-            var json = File.ReadAllText("RepositoryMapping.json");
-            var mappings = JsonConvert.DeserializeObject<MappingConfig>(json);
+            //var json = File.ReadAllText("RepositoryMapping.json");
+            //var mappings = JsonConvert.DeserializeObject<RepositoryMappingConfig>(json);
+            var mappings = JsonConvert.DeserializeObject<RepositoryMappingConfig>(File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"bin\RepositoryMapping.json")));
 
             _kernel
                 .Bind<IRepositoryFactory>()
@@ -67,8 +69,8 @@ namespace SYS.DAL.Base
 
             foreach (var mapping in mappings.Mappings)
             {
-                var repositoryType = Type.GetType(mapping.RepositoryType);
-                var implementationType = Type.GetType(mapping.ImplementationType);
+                var repositoryType = Assembly.GetExecutingAssembly().GetType(mapping.RepositoryType);
+                var implementationType = Assembly.GetExecutingAssembly().GetType(mapping.ImplementationType);
 
                 _kernel.Bind(repositoryType).To(implementationType).InSingletonScope().WithConstructorArgument(connection, context => null);
             }
