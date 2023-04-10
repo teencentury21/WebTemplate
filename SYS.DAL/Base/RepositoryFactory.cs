@@ -58,8 +58,6 @@ namespace SYS.DAL.Base
                 ConnectionPool.Add(item.Key, new SqlConnection(item.Value[appSettings.Stage]));
             }
 
-            //var json = File.ReadAllText("RepositoryMapping.json");
-            //var mappings = JsonConvert.DeserializeObject<RepositoryMappingConfig>(json);
             var mappings = JsonConvert.DeserializeObject<RepositoryMappingConfig>(File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"bin\RepositoryMapping.json")));
 
             _kernel
@@ -76,13 +74,6 @@ namespace SYS.DAL.Base
             }
             //// Example
             //_kernel.Bind<IRegionRepository>().To<RegionRepository>().InSingletonScope().WithConstructorArgument(connection, context => null);
-            //// GAIA
-            //_kernel.Bind<IOmStaffRepository>().To<OmStaffRepository>().InSingletonScope().WithConstructorArgument(connection, context => null);
-            //_kernel.Bind<IOmUserRepository>().To<OmUserRepository>().InSingletonScope().WithConstructorArgument(connection, context => null);
-            //// ChatBot
-            //_kernel.Bind<IAccountRegistRepository>().To<AccountRegistRepository>().InSingletonScope().WithConstructorArgument(connection, context => null);
-            //// Default
-            //_kernel.Bind<ITransactionLogRepository>().To<TransactionLogRepository>().InSingletonScope().WithConstructorArgument(connection, context => null);
 
         }
 

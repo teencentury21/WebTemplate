@@ -183,4 +183,7 @@
   <data name="PasswordAgain" xml:space="preserve">
     <value>Vui lòng nhập lại mật khẩu!</value>
   </data>
+  <data name="NotAdmin" xml:space="preserve">
+    <value>Tài khoản không phải quản trị viên!</value>
+  </data>
 </root>

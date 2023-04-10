@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+
+
+<div class="d-flex align-items-center justify-content-center">    
+    <form class="">
+        <h2>Login Page</h2>
+        <hr />
+        <div class="form-floating mb-4">
+            <input id="loginAccount" name="loginAccount" type="text" class="form-control form-control-lg rounded-3" placeholder="AD Account/ System Account">
+            <label for="loginAccount">@Resources.Resource.Account</label>
+        </div>
+        <div class="form-floating mb-4">
+            <input id="loginPassword" name="loginPassword" type="password" class="form-control form-control-lg rounded-3" placeholder="Password">
+            <label for="loginPassword">@Resources.Resource.Password</label>
+        </div>
+        <div class="form-floating mb-3">
+            <canvas id="loginCanvas"></canvas>
+        </div>
+        <div class="form-floating mb-3">
+            <input id="loginCaptcha" name="loginCaptcha" type="text" class="form-control form-control-lg rounded-3" placeholder="Captcha">
+            <label for="loginCaptcha">@Resources.Resource.Captcha</label>
+        </div>
+        <input id="btn_login" name="btn_login" type="button" class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" value="@Resources.Resource.LoginTitle">
+        <br />
+        <label id="lbl_errMsg"></label>
+    </form>
+</div>
+<script type="text/javascript">
+    // login Captcha
+    const loginCaptcha = new Captcha($('#loginCanvas'), {
+        length: 6,                          // 校验码长度
+        width: 150,                         // canvas宽度
+        height: 50,                         // canvas高度
+        font: 'bold 23px 微软雅黑',          // 文本字体样式
+        resourceType: 'aA0',                // 资源类型：a-小写字母、A-大写字母、0-数字，可任意组合
+        resourceExtra: [],                  // 额外资源
+        clickRefresh: true,                 // 点击刷新
+        autoRefresh: true,                  // 调用校验接口后是否自动刷新（校验成功不会刷新）
+        caseSensitive: false,               // 大小写是否敏感
+    });
+
+    $('#btn_login').on('click', function() {
+        const val = $('input[name="loginCaptcha"]').val();                
+        if (val === "") {
+            alert('@Resources.Resource.EmptyCaptcha');
+            return
+        }
+        if (loginCaptcha.valid(val)) {
+            // success
+            loginCaptcha.refresh();
+            login();
+        } else {
+            // failure                    
+            $("#lbl_errMsg").text('@Resources.Resource.ErrorCaptcha');
+            alert('@Resources.Resource.ErrorCaptcha');
+        }
+    });
+
+    function login() {
+        // 取得使用者輸入的帳號和密碼
+        var username = $('#loginAccount').val();
+        var password = $('#loginPassword').val();
+
+        // 發送 HTTP POST 請求，並傳遞帳號和密碼作為參數
+        $.ajax({
+            type: "POST",
+            url: "/Admin/Account/Login",
+            data: { username: username, password: password },
+            success: function (result) {
+                if (result.success) {
+                    // 登入成功，可以進行相應的處理
+                    // console.log("Login done");
+                    // location.reload();
+                    window.location.replace('/Admin/Account/Index');
+                } else {
+                    alert(result.message);
+                    $("#lbl_errMsg").text(result.message);
+                }
+            },
+            error: function (xhr, status, error) {
+                // 登入失敗後的處理
+            }
+        });
+    }
+</script>

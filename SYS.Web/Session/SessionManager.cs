@@ -16,15 +16,15 @@ namespace SYS.Web.Session
         {
             get
             {
-                if (HttpContext.Current.Session["u_name"] == null)
+                if (HttpContext.Current.Session["userName"] == null)
                 {
                     return "";
                 }
-                return HttpContext.Current.Session["u_name"].ToString();
+                return HttpContext.Current.Session["userName"].ToString();
             }
             set
             {
-                HttpContext.Current.Session["u_name"] = value;
+                HttpContext.Current.Session["userName"] = value;
             }
         }
 
@@ -35,15 +35,31 @@ namespace SYS.Web.Session
         {
             get
             {
-                if (HttpContext.Current.Session["u_role"] == null)
+                if (HttpContext.Current.Session["userRole"] == null)
                 {
                     return "";
                 }
-                return HttpContext.Current.Session["u_role"].ToString();
+                return HttpContext.Current.Session["userRole"].ToString();
             }
             set
             {
-                HttpContext.Current.Session["u_role"] = value;
+                HttpContext.Current.Session["userRole"] = value;
+            }
+        }
+
+        public static string IsAdmin
+        {
+            get
+            {
+                if (HttpContext.Current.Session["isAdmin"] == null)
+                {
+                    return "";
+                }
+                return HttpContext.Current.Session["isAdmin"].ToString();
+            }
+            set
+            {
+                HttpContext.Current.Session["isAdmin"] = value;
             }
         }
         /// <summary>
@@ -53,15 +69,15 @@ namespace SYS.Web.Session
         {
             get
             {
-                if (HttpContext.Current.Session["Login"] == null)
+                if (HttpContext.Current.Session["isLogin"] == null)
                 {
                     return "";
                 }
-                return HttpContext.Current.Session["Login"].ToString();
+                return HttpContext.Current.Session["isLogin"].ToString();
             }
             set
             {
-                HttpContext.Current.Session["Login"] = value;
+                HttpContext.Current.Session["isLogin"] = value;
             }
         }
 

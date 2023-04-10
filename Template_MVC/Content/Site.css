@@ -1,10 +1,13 @@
 ﻿body {
     /*padding-top: 50px;*/
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding:30px 15px;
+    padding: 30px 15px;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
@@ -55,9 +58,11 @@ textarea {
 /*footer setting*/
 footer {
     position: fixed;
-    height: 100px;
+    
     bottom: 0;
-    width: 80%;
+    width: 90%;
+    flex-shrink: 0;
+    height: 100px; /* 設定 footer 的高度 */
 }
 
 /* Login error message*/

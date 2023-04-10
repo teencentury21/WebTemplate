@@ -17,7 +17,7 @@ namespace SYS.BLL.Domain
     public interface IUsersLogic : IDataDrivenLogic
     {
         // Logic
-
+        IHttpContextStateLogic _HttpContextStateLogic { get; set; }
         // Repository                
         IUsersRepository _UsersRepository { get; set; }
         // Functions
@@ -25,13 +25,16 @@ namespace SYS.BLL.Domain
         FunctionResultEntity UpdateUsersActive(Users user);
         Users GetUsersByAcc(string acc);
         FunctionResultEntity ValidateLogin(string acc, string psw);
+        FunctionResultEntity ValidateAdminLogin(string acc, string psw);
     }
     class UsersLogic : DataDrivenLogic, IUsersLogic
     {
         public IUsersRepository _UsersRepository { get; set; }
+        public IHttpContextStateLogic _HttpContextStateLogic { get; set; }
         public UsersLogic(IBusinessLogicFactory BusinessLogicFactory, IRepositoryFactory RepositoryFactory = null) : base(BusinessLogicFactory, RepositoryFactory)
         {
             _UsersRepository = CreateSqlRepository<IUsersRepository>(Model.Database.Default);
+            _HttpContextStateLogic = CreateLogic<IHttpContextStateLogic>();
         }
 
         public FunctionResultEntity CreateUsers (string acc, string psw)
@@ -90,24 +93,18 @@ namespace SYS.BLL.Domain
             var result = new FunctionResultEntity { isSuccess = true, Message = "" };
             try
             {
+                SHA256Wrapper sha256 = new SHA256Wrapper();
+
                 var user = GetUsersByAcc(acc);
-                if (user != null)
-                {
-                    SHA256Wrapper sha256 = new SHA256Wrapper();
+                var inputPsw = sha256.EncryptData(psw, acc);
 
-                    var inputPsw = sha256.EncryptData(psw, acc);
+                result.Message = user == null ? FunctionResultConstant.Account_Invalidate :
+                                !user.is_active ? FunctionResultConstant.Account_Invalidate :
+                                user.password != inputPsw ? FunctionResultConstant.Error_PassWord : "";
 
-                    if (user.password != inputPsw)
-                    {
-                        result.isSuccess = false;
-                        result.Message = FunctionResultConstant.Error_PassWord;
-                    }
-                }
-                else
-                {
-                    result.isSuccess = false;
-                    result.Message = FunctionResultConstant.Account_Invalidate;
-                }
+                result.isSuccess = string.IsNullOrEmpty(result.Message);
+                result.item = result.isSuccess ? user : null;
+
             }
             catch (Exception ex)
             {
@@ -117,5 +114,33 @@ namespace SYS.BLL.Domain
 
             return result;
         }
+        public FunctionResultEntity ValidateAdminLogin(string acc, string psw)
+        {
+            var result = new FunctionResultEntity { isSuccess = false, Message = "" };
+            try
+            {
+                SHA256Wrapper sha256 = new SHA256Wrapper();
+
+                var user = GetUsersByAcc(acc);
+                var inputPsw = sha256.EncryptData(psw, acc);
+
+                result.Message = user == null ? FunctionResultConstant.Account_Invalidate :
+                                !user.is_active ? FunctionResultConstant.Account_Invalidate :
+                                user.password != inputPsw ? FunctionResultConstant.Error_PassWord :
+                                !user.is_admin ? FunctionResultConstant.Not_Admin : "";
+
+                result.isSuccess = string.IsNullOrEmpty(result.Message);
+                result.item = result.isSuccess ? user : null;
+
+            }
+            catch (Exception ex)
+            {
+                result.isSuccess = false;
+                result.Message = ex.ToString();
+            }
+
+            return result;
+        }
+
     }
 }

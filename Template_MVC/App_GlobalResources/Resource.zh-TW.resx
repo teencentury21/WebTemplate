@@ -183,4 +183,7 @@
   <data name="PasswordAgain" xml:space="preserve">
     <value>請再輸入一次密碼</value>
   </data>
+  <data name="NotAdmin" xml:space="preserve">
+    <value>非管理員帳號</value>
+  </data>
 </root>

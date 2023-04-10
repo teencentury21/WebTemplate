@@ -42,25 +42,8 @@ namespace SYS.BLL.Base
             }
 
             //// example
-            //_kernel
-            //    .Bind<IRegionLogic>().To<RegionLogic>().InSingletonScope().WithConstructorArgument(RepositoryFactory, context => null);
-            //// Domain
-            //_kernel
-            //    .Bind<IDateTimeLogic>().To<DateTimeLogic>().InSingletonScope().WithConstructorArgument(RepositoryFactory, context => null);
-            //_kernel
-            //    .Bind<IHttpContextStateLogic>().To<HttpContextStateLogic>().InSingletonScope().WithConstructorArgument(RepositoryFactory, context => null);
-            //_kernel
-            //    .Bind<IMailLogic>().To<MailLogic>().InSingletonScope().WithConstructorArgument(RepositoryFactory, context => null);
-            //_kernel
-            //    .Bind<IWebServiceLogic>().To<WebServiceLogic>().InSingletonScope().WithConstructorArgument(RepositoryFactory, context => null);
-            //// GAIA
-            //_kernel
-            //    .Bind<IGAIALogic>().To<GAIALogic>().InSingletonScope().WithConstructorArgument(RepositoryFactory, context => null);            
-            //// Line
-            //_kernel
-            //    .Bind<ILineBotLogic>().To<LineBotLogic>().InSingletonScope().WithConstructorArgument(RepositoryFactory, context => null);
-            //_kernel
-            //    .Bind<ILineBotReplyLogic>().To<LineBotReplyLogic>().InSingletonScope().WithConstructorArgument(RepositoryFactory, context => null);
+            //_kernel.Bind<IRegionLogic>().To<RegionLogic>().InSingletonScope().WithConstructorArgument(RepositoryFactory, context => null);
+
         }
 
         public void Dispose()

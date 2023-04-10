@@ -5,11 +5,12 @@
         <meta name="viewport" content="width=device-width" />
         <title>@ViewBag.Title</title>
 
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
-        @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/captcha")
-        @Scripts.Render("~/bundles/bootstrap")    
 
         @RenderSection("scripts", required: false)
     </head>
@@ -54,7 +55,9 @@
                                 <li><a class="dropdown-item" href='/help'>API</a></li>
                                 @*<li><a class="dropdown-item" href='/Account/Login'>Login</a></li>*@
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="https://google.com">Action</a></li>
+                                <li>
+                                    @Html.ActionLink("Admin", "Login", "Account", new { area = "Admin" }, new { @class = "dropdown-item" })
+                                </li>
                                 <li><a class="dropdown-item" href="#">Another action</a></li>
                                 <li><a class="dropdown-item" href="#">Something else here</a></li>
                             </ul>

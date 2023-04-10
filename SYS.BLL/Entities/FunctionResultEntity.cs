@@ -10,5 +10,6 @@ namespace SYS.BLL.Entities
     {
         public bool isSuccess { get; set; }
         public string Message { get; set; }
+        public object item { get; set; }
     }
 }

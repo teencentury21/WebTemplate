@@ -27,9 +27,7 @@ namespace SYS.BLL.Base
         // 讀取設定檔
         public AppSettings GetAppSettings()
         {
-            //var settingFilePath = Path.Combine(Directory.GetCurrentDirectory(), AppSettings.FileName);
             var settingFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"bin\"+ AppSettings.FileName);
-            // var settingFilePath = $"{AppSettings.FileName}";
 
             if (!File.Exists(settingFilePath))
             {

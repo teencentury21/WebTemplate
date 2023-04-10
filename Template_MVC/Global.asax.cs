@@ -39,5 +39,31 @@ namespace Template_MVC
             Thread.CurrentThread.CurrentCulture = new CultureInfo(languageSession);
         }
 
+        protected void Application_EndRequest()
+        {
+            // 刪除名為 "MyCookie" 的 Cookie
+            //if (Request.Cookies["TemplateCookie"] != null)
+            //{
+            //    HttpCookie cookie = new HttpCookie("TemplateCookie");
+            //    cookie.Expires = DateTime.Now.AddDays(-1d);
+            //    Response.Cookies.Add(cookie);
+            //}
+        }
+        protected void Application_AuthenticateRequest()
+        {
+            //if (Request.Cookies["TemplateCookie"] != null)
+            //{
+            //    HttpCookie cookie = Request.Cookies["MyCookie"];
+            //    if (cookie.Expires < DateTime.Now)
+            //    {
+            //        // Cookie 已過期，進行相應處理
+            //    }
+            //    else
+            //    {
+            //        // Cookie 未過期，進行相應處理
+            //    }
+            //}
+        }
+
     }
 }

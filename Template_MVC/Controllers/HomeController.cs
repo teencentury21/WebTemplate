@@ -63,8 +63,7 @@ namespace Template_MVC.Controllers
 
         public ActionResult ChangeLanguage(string lang)
         {
-            Session["lang"] = lang;
-            //return View();
+            Session["lang"] = lang;            
             return Redirect(Request.UrlReferrer.ToString());
             //return RedirectToAction("Index", "Home", new { language = lang });
         }

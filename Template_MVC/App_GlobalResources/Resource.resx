@@ -185,4 +185,8 @@
     <value>Reenter Password:</value>
     <comment>Regist</comment>
   </data>
+  <data name="NotAdmin" xml:space="preserve">
+    <value>Non-admin account!</value>
+    <comment>Login</comment>
+  </data>
 </root>

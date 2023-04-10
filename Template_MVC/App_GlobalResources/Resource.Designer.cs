@@ -205,6 +205,15 @@ namespace Template_MVC.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Non-admin account!.
+        /// </summary>
+        public static string NotAdmin {
+            get {
+                return ResourceManager.GetString("NotAdmin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string Password {
