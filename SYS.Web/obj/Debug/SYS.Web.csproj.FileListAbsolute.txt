@@ -15,3 +15,4 @@ D:\Users\User\Documents\Program\WebTemplate\SYS.Web\obj\Debug\SYS.Web.csproj.Cor
 D:\Users\User\Documents\Program\WebTemplate\SYS.Web\obj\Debug\SYS.Web.dll
 D:\Users\User\Documents\Program\WebTemplate\SYS.Web\obj\Debug\SYS.Web.pdb
 E:\Program\WebTemplate\SYS.Web\obj\Debug\SYS.Web.csprojAssemblyReference.cache
+D:\Users\User\Documents\Program\WebTemplate\SYS.Web\obj\Debug\SYS.Web.csproj.AssemblyReference.cache

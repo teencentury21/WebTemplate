@@ -186,4 +186,10 @@
   <data name="NotAdmin" xml:space="preserve">
     <value>Tài khoản không phải quản trị viên!</value>
   </data>
+  <data name="Logout" xml:space="preserve">
+    <value>đăng xuất</value>
+  </data>
+  <data name="RegistDone" xml:space="preserve">
+    <value>Đăng ký thành công, vui lòng đăng nhập lại!</value>
+  </data>
 </root>

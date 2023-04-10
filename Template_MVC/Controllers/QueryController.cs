@@ -14,7 +14,7 @@ namespace Template_MVC.Controllers
         {
             ViewBag.Title = "Darfon Template";
 
-            return View();
+            return View(); 
         }
     }
 }

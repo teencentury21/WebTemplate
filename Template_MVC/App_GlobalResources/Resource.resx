@@ -189,4 +189,12 @@
     <value>Non-admin account!</value>
     <comment>Login</comment>
   </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Sign Out</value>
+    <comment>Login</comment>
+  </data>
+  <data name="RegistDone" xml:space="preserve">
+    <value>Registration successful, please login again!</value>
+    <comment>Regist</comment>
+  </data>
 </root>

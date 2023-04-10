@@ -14,11 +14,7 @@ namespace Template_MVC.Areas.Admin.Controllers
             base.OnActionExecuting(filterContext);
             
             // 檢查是否已經登入
-            if (SessionManager.UserName == null)
-            {
-                // 未登入，導向登入頁面
-                filterContext.Result = RedirectToAction("Login", "Account", new { area = "Admin" });
-            }else if (SessionManager.IsAdmin != "Y")
+            if (SessionManager.IsAdmin != "Y")
             {
                 // not admin
                 filterContext.Result = RedirectToAction("Login", "Account", new { area = "Admin" });

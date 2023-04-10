@@ -38,15 +38,15 @@
                                 <li><a class="dropdown-item" href='/Query/Localization'>Localization</a></li>
                                 @*<li><a class="dropdown-item" href='/Query/Localization'>@Resource.Content.Language</a></li>*@
                                 @*<li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="https://google.com">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>*@
+                    <li><a class="dropdown-item" href="https://google.com">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>*@
                             </ul>
                         </li>
 
                         @*<li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>*@
+                <a class="nav-link" href="#">Link</a>
+            </li>*@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Functions
@@ -63,10 +63,18 @@
                             </ul>
                         </li>
                         @*<li class="nav-item">
-                            <a class="nav-link disabled">Disabled</a>
-                        </li>*@
+                <a class="nav-link disabled">Disabled</a>
+            </li>*@
                     </ul>
-                    <button id="btn-login" class="btn btn-outline-info me-2" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">@Resources.Resource.LoginTitle</button>
+                    @if (HttpContext.Current.Session["userName"] == null)
+                    {
+                        <button id="btn-login" class="btn btn-outline-info me-2" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">@Resources.Resource.LoginTitle</button>
+                    }
+                    else
+                    {
+                        <label class="me-2" style="color:white" >Hello @HttpContext.Current.Session["userName"] !!</label>
+                        <button id="btn-logout" class="btn btn-outline-info me-2" type="button" data-bs-toggle="modal">@Resources.Resource.Logout</button>
+                    }
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -81,9 +89,9 @@
                         </li>
                     </ul>
                     @*<form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>*@
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>*@
                 </div>
             </div>
         </nav>
@@ -187,6 +195,20 @@
             $(function () {
 
             });
+            // logout
+
+            $('#btn-logout').on('click', function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/Account/Logout",
+                    success: function (result) {
+                        location.reload();                        
+                    },
+                    error: function (xhr, status, error) {
+                        // 登入失敗後的處理
+                    }
+                });
+            });
 
             // login Captcha
             const loginCaptcha = new Captcha($('#loginCanvas'), {
@@ -202,7 +224,7 @@
             });
 
             $('#btn_login').on('click', function() {
-                const val = $('input[name="loginCaptcha"]').val();                
+                const val = $('input[name="loginCaptcha"]').val();
                 if (val === "") {
                     alert('@Resources.Resource.EmptyCaptcha');
                     return
@@ -212,7 +234,7 @@
                     loginCaptcha.refresh();
                     login();
                 } else {
-                    // failure                    
+                    // failure
                     $("#lbl_errMsg").text('@Resources.Resource.ErrorCaptcha');
                     alert('@Resources.Resource.ErrorCaptcha');
                 }
@@ -231,7 +253,6 @@
                     success: function (result) {
                         if (result.success) {
                             // 登入成功，可以進行相應的處理
-                            console.log("Login done");
                             location.reload();
                         } else {
                             alert(result.message);
@@ -258,8 +279,8 @@
             });
 
             $('#btn_regist').on('click', function() {
-                const val = $('input[name="registCaptcha"]').val();                
-                if (val === "") {                    
+                const val = $('input[name="registCaptcha"]').val();
+                if (val === "") {
                     alert('@Resources.Resource.EmptyCaptcha');
                 return
                 }
@@ -275,7 +296,7 @@
                         regist();
                     }
                 } else {
-                    // failure                    
+                    // failure
                     $("#lbl_errMsg").text('@Resources.Resource.ErrorCaptcha');
                     alert('@Resources.Resource.ErrorCaptcha');
                 }
@@ -294,6 +315,8 @@
                     success: function (result) {
                         if (result.success) {
                             // 登入成功，可以進行相應的處理
+                            alert('@Resources.Resource.RegistDone');
+                            location.reload();
                         } else {
                             alert(result.message);
                             $("#lbl_errMsg").text(result.message);
@@ -303,7 +326,7 @@
                         // 登入失敗後的處理
                     }
                 });
-            }            
+            }
 
             // modal login/ regist
             var myModal = document.getElementById('loginModal')
@@ -311,10 +334,10 @@
             var modal = new bootstrap.Modal(myModal)
             var tab = new bootstrap.Tab(myModalTab)
 
-            document.querySelector('.btn-primary').addEventListener('click', function () {
-                modal.show()
-                tab.show('login-tab')
-            });
+            //document.querySelector('.btn-primary').addEventListener('click', function () {
+            //    modal.show()
+            //    tab.show('login-tab')
+            //});
         </script>
     </body>
 

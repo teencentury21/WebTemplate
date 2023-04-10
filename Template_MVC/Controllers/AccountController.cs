@@ -6,7 +6,7 @@ using SYS.Web.Session;
 using System.Web.Mvc;
 
 
-namespace Template_MVC.Controllers.Admin
+namespace Template_MVC.Controllers
 {
     public class AccountController : Controller
     {
@@ -41,7 +41,6 @@ namespace Template_MVC.Controllers.Admin
                 // 登入成功，回傳成功訊息
                 SessionManager.UserName = user.username;
                 SessionManager.IsLogin = "Y";
-                SessionManager.IsAdmin = user.is_admin ? "Y" : "";
 
                 return Json(new { success = true });
             }
@@ -72,10 +71,8 @@ namespace Template_MVC.Controllers.Admin
         {
             // clear session
             Session.Clear();
-
             // do other logout actions (e.g. redirect to login page)
-
-            return RedirectToAction("Index", "Account");
+            return RedirectToAction("Index", "Home");
         }
 
         // Post: Account/Regist
@@ -104,10 +101,6 @@ namespace Template_MVC.Controllers.Admin
                 }
                 return Json(new { success = false, message = errorMsg });
             }
-
-
-        }
-
-        
+        }        
     }
 }

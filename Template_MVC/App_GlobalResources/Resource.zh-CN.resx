@@ -186,4 +186,10 @@
   <data name="NotAdmin" xml:space="preserve">
     <value>非管理员帐号!</value>
   </data>
+  <data name="Logout" xml:space="preserve">
+    <value>登出</value>
+  </data>
+  <data name="RegistDone" xml:space="preserve">
+    <value>注册成功，请重新登入!</value>
+  </data>
 </root>
