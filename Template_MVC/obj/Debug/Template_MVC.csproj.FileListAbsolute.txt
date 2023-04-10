@@ -403,7 +403,6 @@ D:\Users\User\Documents\Program\WebTemplate\Template_MVC\bin\System.Net.Http.For
 D:\Users\User\Documents\Program\WebTemplate\Template_MVC\bin\System.Web.Http.xml
 D:\Users\User\Documents\Program\WebTemplate\Template_MVC\bin\System.Web.Http.WebHost.xml
 D:\Users\User\Documents\Program\WebTemplate\Template_MVC\bin\System.Web.Optimization.xml
-D:\Users\User\Documents\Program\WebTemplate\Template_MVC\bin\SYS.DAL.pdb
 D:\Users\User\Documents\Program\WebTemplate\Template_MVC\bin\LineBot.xml
 D:\Users\User\Documents\Program\WebTemplate\Template_MVC\bin\Ninject.xml
 D:\Users\User\Documents\Program\WebTemplate\Template_MVC\bin\System.Text.Json.xml

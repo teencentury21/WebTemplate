@@ -3,11 +3,9 @@
     ViewBag.Title = "Login";
 }
 
-
-
-<div class="d-flex align-items-center justify-content-center">    
-    <form class="">
-        <h2>Login Page</h2>
+<div class="vh-100 d-flex justify-content-center align-items-center">    
+    <form>
+        <img src="~/Images/Darfon_logo_r.png" />
         <hr />
         <div class="form-floating mb-4">
             <input id="loginAccount" name="loginAccount" type="text" class="form-control form-control-lg rounded-3" placeholder="AD Account/ System Account">
@@ -75,7 +73,7 @@
                     // 登入成功，可以進行相應的處理
                     // console.log("Login done");
                     // location.reload();
-                    window.location.replace('/Admin/Account/Index');
+                    window.location.replace('/Admin/Users/Index');
                 } else {
                     alert(result.message);
                     $("#lbl_errMsg").text(result.message);

@@ -13,5 +13,10 @@ namespace Template_MVC.Areas.Admin.Controllers
         {
             return View();
         }
+
+        public ActionResult Maintain()
+        {
+            return View();
+        }
     }
 }
