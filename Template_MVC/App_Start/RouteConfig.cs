@@ -11,6 +11,7 @@ namespace Template_MVC
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
+            // 
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             // BotDetect captcha requests must not be routed

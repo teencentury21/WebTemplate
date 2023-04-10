@@ -41,3 +41,11 @@ E:\Program\WebTemplate\SYS.DAL\obj\Debug\SYS.DAL.csproj.CopyComplete
 E:\Program\WebTemplate\SYS.DAL\obj\Debug\SYS.DAL.dll
 E:\Program\WebTemplate\SYS.DAL\obj\Debug\SYS.DAL.pdb
 E:\Program\WebTemplate\build\RepositoryMapping.json
+D:\Users\User\Documents\Program\WebTemplate\build\RepositoryMapping.json
+D:\Users\User\Documents\Program\WebTemplate\build\SYS.DAL.dll
+D:\Users\User\Documents\Program\WebTemplate\build\SYS.DAL.pdb
+D:\Users\User\Documents\Program\WebTemplate\SYS.DAL\obj\Debug\SYS.DAL.csproj.AssemblyReference.cache
+D:\Users\User\Documents\Program\WebTemplate\SYS.DAL\obj\Debug\SYS.DAL.csproj.CoreCompileInputs.cache
+D:\Users\User\Documents\Program\WebTemplate\SYS.DAL\obj\Debug\SYS.DAL.csproj.CopyComplete
+D:\Users\User\Documents\Program\WebTemplate\SYS.DAL\obj\Debug\SYS.DAL.dll
+D:\Users\User\Documents\Program\WebTemplate\SYS.DAL\obj\Debug\SYS.DAL.pdb

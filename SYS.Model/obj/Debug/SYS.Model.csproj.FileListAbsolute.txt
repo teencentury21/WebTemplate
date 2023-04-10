@@ -35,3 +35,8 @@ E:\Program\WebTemplate\build\SYS.Model.pdb
 E:\Program\WebTemplate\SYS.Model\obj\Debug\SYS.Model.csproj.CoreCompileInputs.cache
 E:\Program\WebTemplate\SYS.Model\obj\Debug\SYS.Model.dll
 E:\Program\WebTemplate\SYS.Model\obj\Debug\SYS.Model.pdb
+D:\Users\User\Documents\Program\WebTemplate\build\SYS.Model.dll
+D:\Users\User\Documents\Program\WebTemplate\build\SYS.Model.pdb
+D:\Users\User\Documents\Program\WebTemplate\SYS.Model\obj\Debug\SYS.Model.csproj.CoreCompileInputs.cache
+D:\Users\User\Documents\Program\WebTemplate\SYS.Model\obj\Debug\SYS.Model.dll
+D:\Users\User\Documents\Program\WebTemplate\SYS.Model\obj\Debug\SYS.Model.pdb

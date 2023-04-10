@@ -65,7 +65,8 @@ namespace Template_MVC.Controllers
         {
             Session["lang"] = lang;
             //return View();
-            return RedirectToAction("Index", "Home", new { language = lang });
+            return Redirect(Request.UrlReferrer.ToString());
+            //return RedirectToAction("Index", "Home", new { language = lang });
         }
     }
 }

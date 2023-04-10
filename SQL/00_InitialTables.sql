@@ -1,6 +1,6 @@
+USE Northwind
 -- Users
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Users]') AND type in (N'U'))
--- DROP TABLE Users
 CREATE TABLE Users (
     user_id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
     username VARCHAR(50) NOT NULL,
@@ -19,9 +19,9 @@ CREATE TABLE Functions (
     FOREIGN KEY (parent_function_id) REFERENCES Functions(function_id)
 );
 
+
 -- User_Functions
 IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[User_Functions]') AND type in (N'U'))
-DROP TABLE User_Functions
 CREATE TABLE User_Functions (
     user_id INT NOT NULL,
     function_id INT NOT NULL,

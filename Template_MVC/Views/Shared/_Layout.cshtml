@@ -228,6 +228,8 @@
                     success: function (result) {
                         if (result.success) {
                             // 登入成功，可以進行相應的處理
+                            console.log("Login done");
+                            location.reload();
                         } else {
                             alert(result.message);
                             $("#lbl_errMsg").text(result.message);
