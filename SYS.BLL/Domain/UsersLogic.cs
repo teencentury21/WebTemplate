@@ -66,7 +66,7 @@ namespace SYS.BLL.Domain
                     SHA256Wrapper sha256 = new SHA256Wrapper();
                     _UsersRepository.Create(new Users {
                         username= checkGAIA ? gaiaUser.EnName : acc,
-                        userno= checkGAIA ? gaiaUser.EmpNo : ""  ,
+                        userno= checkGAIA ? gaiaUser.EmpNo : acc,
                         email= checkGAIA ? gaiaUser.Email : "",
                         password= sha256.EncryptData(psw, checkGAIA ? gaiaUser.EmpNo : acc),
                         is_active=true,
@@ -160,6 +160,12 @@ namespace SYS.BLL.Domain
                 result.isSuccess = false;
                 result.Message = ex.ToString();
             }
+
+            return result;
+        }
+        private FunctionResultEntity ValidateLoginBlock(string acc)
+        {
+            var result = new FunctionResultEntity { isSuccess = false, Message = "" };
 
             return result;
         }

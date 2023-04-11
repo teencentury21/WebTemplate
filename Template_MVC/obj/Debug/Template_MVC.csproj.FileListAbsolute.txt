@@ -422,3 +422,4 @@ D:\Users\User\Documents\Program\WebTemplate\Template_MVC\obj\Debug\zh-TW\Templat
 D:\Users\User\Documents\Program\WebTemplate\Template_MVC\obj\Debug\Template_MVC.csproj.CopyComplete
 D:\Users\User\Documents\Program\WebTemplate\Template_MVC\obj\Debug\Template_MVC.dll
 D:\Users\User\Documents\Program\WebTemplate\Template_MVC\obj\Debug\Template_MVC.pdb
+D:\Users\User\Documents\Program\WebTemplate\Template_MVC\bin\SYS.DAL.pdb
