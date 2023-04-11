@@ -13,5 +13,6 @@ namespace SYS.BLL.Constants
         public const string Account_Invalidate = "AccInvalidate";
         public const string Error_PassWord = "ErrorPassWord";
         public const string Not_Admin = "NotAdmin";
+        public const string Not_GAIA = "NotGAIA";
     }
 }

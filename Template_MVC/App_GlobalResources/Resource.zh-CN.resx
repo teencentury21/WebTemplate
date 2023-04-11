@@ -192,4 +192,7 @@
   <data name="RegistDone" xml:space="preserve">
     <value>注册成功，请重新登入!</value>
   </data>
+  <data name="NotGAIA" xml:space="preserve">
+    <value>GAIA不存在的工号!</value>
+  </data>
 </root>

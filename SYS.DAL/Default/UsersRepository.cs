@@ -17,7 +17,7 @@ namespace SYS.DAL.Default
         void Update(Users item);
         void Delete(int regionId);
 
-        Users GetUsersByAcc(string acc);
+        Users GetUsersByAny(string acc);
     }
     internal class UsersRepository : SQLRepository, IUsersRepository
     {
@@ -27,8 +27,10 @@ namespace SYS.DAL.Default
         }
         public void Create(Users user)
         {
-            var sql = @"INSERT INTO [dbo].[Users] ([username], [password], [is_admin], [is_active])
-            VALUES (@username, @password, @is_admin, @is_active)";
+            //var sql = @"INSERT INTO Users (username, userno, password, is_active, is_admin, email, role, LastLogin, Setting, Remark, Cdt)
+            //       VALUES (@username, @userno, @password, @is_active, @is_admin, @email, @role, @LastLogin, @Setting, @Remark, @Cdt)";
+            var sql = @"INSERT INTO Users (username, userno, password, is_active, is_admin, email)
+                   VALUES (@username, @userno, @password, @is_active, @is_admin, @email)";
             Connection.Execute(sql, user);
         }
         public IEnumerable<Users> Read()
@@ -38,8 +40,16 @@ namespace SYS.DAL.Default
 
         public void Update(Users user)
         {
-            var sql = @"UPDATE [dbo].[Users] SET [password] = @password, [is_admin] = @is_admin, [is_active] = @is_active
-            WHERE [user_id] = @user_id";
+            var sql = @"UPDATE Users
+                   SET password = @password,
+                       is_active = @is_active,
+                       is_admin = @is_admin,                       
+                       role = @role,
+                       LastLogin = @LastLogin,
+                       Setting = @Setting,
+                       Remark = @Remark,
+                       Cdt = @Cdt
+                   WHERE user_id = @user_id";
 
             Connection.Execute(sql, user);
         }
@@ -53,10 +63,10 @@ namespace SYS.DAL.Default
 
         }
 
-        public Users GetUsersByAcc(string acc)
+        public Users GetUsersByAny(string input)
         {
-            return Connection.Query<Users>("SELECT * FROM Users WHERE username = @username AND is_active=1",
-                    new { username = acc }).FirstOrDefault();
+            return Connection.Query<Users>("SELECT * FROM Users WHERE (LOWER(username) = @condiction OR LOWER(email) = @condiction OR userno = @condiction) AND is_active=1",
+                    new { condiction = input.ToLower() }).FirstOrDefault();
         }
     }
 

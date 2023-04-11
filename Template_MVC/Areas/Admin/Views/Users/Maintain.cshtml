@@ -5,3 +5,45 @@
 
 <h2>User Maintain</h2>
 
+<!-- Nav tabs -->
+<nav>
+    <div class="nav nav-tabs d-flex align-items-center justify-content-center" id="login-register-tabs" role="tablist">
+        <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#search" type="button" role="tab" aria-controls="search" aria-selected="true">Search</button>
+        <button class="nav-link" id="register-tab" data-bs-toggle="tab" data-bs-target="#add" type="button" role="tab" aria-controls="add" aria-selected="false">Add</button>
+    </div>
+</nav>
+
+<!-- Tab panes -->
+<div class="tab-content">
+    <!-- Search tab -->
+    <div id="search" class="container tab-pane active">
+        <br>
+        <form>
+            <div class="form-group">
+                <label for="searchInput">Search:</label>
+                <input type="text" class="form-control" id="searchInput" placeholder="Enter keyword">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <!-- Add tab -->
+    <div id="add" class="container tab-pane fade">
+        <br>
+        <form>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" class="form-control" id="username" placeholder="Enter username">
+            </div>
+            <div class="form-group">
+                <label for="userno">Userno:</label>
+                <input type="text" class="form-control" id="userno" placeholder="Enter userno">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" placeholder="Enter password">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>

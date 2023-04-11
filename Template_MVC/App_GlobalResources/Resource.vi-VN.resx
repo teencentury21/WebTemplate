@@ -192,4 +192,7 @@
   <data name="RegistDone" xml:space="preserve">
     <value>Đăng ký thành công, vui lòng đăng nhập lại!</value>
   </data>
+  <data name="NotGAIA" xml:space="preserve">
+    <value>Mã số công việc không tồn tại trong GAIA!</value>
+  </data>
 </root>

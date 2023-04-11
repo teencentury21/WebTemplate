@@ -142,14 +142,18 @@
                                             <input id="loginPassword" name="loginPassword" type="password" class="form-control form-control-lg rounded-3" placeholder="Password">
                                             <label for="loginPassword">@Resources.Resource.Password</label>
                                         </div>
-                                        <div class="form-floating mb-3">
-                                            <canvas id="loginCanvas"></canvas>                                            
+                                        <div class="form-floating mb-3 justify-content-center">
+                                            <canvas id="loginCanvas"></canvas>
                                         </div>
                                         <div class="form-floating mb-3">
                                             <input id="loginCaptcha" name="loginCaptcha" type="text" class="form-control form-control-lg rounded-3" placeholder="Captcha">
                                             <label for="loginCaptcha">@Resources.Resource.Captcha</label>
                                         </div>
-                                        <input id="btn_login" name="btn_login" type="button" class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" value="@Resources.Resource.LoginTitle">
+                                        <div class="d-flex justify-content-between">
+                                            <input id="btn_login" name="btn_login" type="button" class="w-100 mb-2 btn btn-lg rounded-3 btn-primary mx-2" value="@Resources.Resource.LoginTitle">
+                                            <input id="btn_loginAD" name="btn_loginAD" type="button" class="w-100 mb-2 btn btn-lg rounded-3 btn-primary mx-2" value="@Resources.Resource.ADLogin">
+                                        </div>
+                                        @*<input id="btn_login" name="btn_login" type="button" class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" value="@Resources.Resource.LoginTitle">*@
                                     </form>
                                 </div>
                             </div>
@@ -224,6 +228,16 @@
             });
 
             $('#btn_login').on('click', function() {
+                login("/Account/Login");
+            });
+
+            // AD login
+            $('#btn_loginAD').on('click', function () {
+                login("/Account/ADLogin");
+            });
+
+            function login(targetURL) {
+
                 const val = $('input[name="loginCaptcha"]').val();
                 if (val === "") {
                     alert('@Resources.Resource.EmptyCaptcha');
@@ -231,16 +245,14 @@
                 }
                 if (loginCaptcha.valid(val)) {
                     // success
-                    loginCaptcha.refresh();
-                    login();
+                    loginCaptcha.refresh();                    
                 } else {
                     // failure
                     $("#lbl_errMsg").text('@Resources.Resource.ErrorCaptcha');
                     alert('@Resources.Resource.ErrorCaptcha');
+                    return
                 }
-            });
 
-            function login() {
                 // 取得使用者輸入的帳號和密碼
                 var username = $('#loginAccount').val();
                 var password = $('#loginPassword').val();
@@ -248,7 +260,7 @@
                 // 發送 HTTP POST 請求，並傳遞帳號和密碼作為參數
                 $.ajax({
                     type: "POST",
-                    url: "/Account/Login",
+                    url: targetURL,
                     data: { username: username, password: password },
                     success: function (result) {
                         if (result.success) {
@@ -263,7 +275,7 @@
                         // 登入失敗後的處理
                     }
                 });
-            }
+            }            
 
             // regist Captcha
             const registCaptcha = new Captcha($('#registCanvas'), {

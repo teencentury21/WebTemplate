@@ -232,6 +232,7 @@
     <Compile Include="Controllers\ProjectBase.cs" />
     <Compile Include="Controllers\QueryController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Entity\ReturnJson.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

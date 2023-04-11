@@ -57,6 +57,10 @@ namespace SYS.BLL.Domain.GAIA
                         result.GAIAId = omuser.id;
                     }
                 }
+                else
+                {
+                    omstaff = null;
+                }
             }
             catch (Exception ex)
             {

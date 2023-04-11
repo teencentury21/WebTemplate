@@ -41,3 +41,4 @@ D:\Users\User\Documents\Program\WebTemplate\SYS.Model\obj\Debug\SYS.Model.csproj
 D:\Users\User\Documents\Program\WebTemplate\SYS.Model\obj\Debug\SYS.Model.dll
 D:\Users\User\Documents\Program\WebTemplate\SYS.Model\obj\Debug\SYS.Model.pdb
 D:\Users\User\Documents\Program\WebTemplate\SYS.Model\obj\Debug\SYS.Model.csproj.AssemblyReference.cache
+E:\Program\WebTemplate\SYS.Model\obj\Debug\SYS.Model.csprojAssemblyReference.cache
