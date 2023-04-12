@@ -13,7 +13,7 @@ namespace SYS.DAL.Default
     {
         // Functions
         void Create(Users item);
-        IEnumerable<Users> Read();
+        List<Users> Read();
         void Update(Users item);
         void Delete(int regionId);
 
@@ -33,9 +33,9 @@ namespace SYS.DAL.Default
                    VALUES (@username, @userno, @password, @is_active, @is_admin, @email)";
             Connection.Execute(sql, user);
         }
-        public IEnumerable<Users> Read()
+        public List<Users> Read()
         {
-            return Connection.Query<Users>("SELECT * FROM [dbo].[Users]");
+            return Connection.Query<Users>("SELECT * FROM [dbo].[Users]").ToList();
         }
 
         public void Update(Users user)

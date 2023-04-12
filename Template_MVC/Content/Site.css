@@ -71,3 +71,8 @@ footer {
     font-weight: bold;
     font-size: 14pt;
 }
+
+/* remove all tag a underline*/
+a {
+    text-decoration: none;
+}

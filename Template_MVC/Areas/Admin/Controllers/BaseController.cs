@@ -12,12 +12,12 @@ namespace Template_MVC.Areas.Admin.Controllers
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);
-            
+
             // 檢查是否已經登入
             if (SessionManager.IsAdmin != "Y")
             {
                 // not admin
-                filterContext.Result = RedirectToAction("Login", "Account", new { area = "Admin" });
+                filterContext.Result = RedirectToAction("Unauthorized", "Error", new { area = "" });
             }
         }
     }

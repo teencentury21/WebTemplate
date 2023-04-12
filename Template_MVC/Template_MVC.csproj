@@ -304,6 +304,7 @@
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="Images\Darfon_logo_r.png" />
     <Content Include="Images\Darfon_logo_w.png" />
+    <Content Include="Images\dfbg.jpg" />
     <Content Include="Images\flag1x1\ac.svg" />
     <Content Include="Images\flag1x1\ad.svg" />
     <Content Include="Images\flag1x1\ae.svg" />
@@ -571,6 +572,8 @@
     <Content Include="Images\flag1x1\za.svg" />
     <Content Include="Images\flag1x1\zm.svg" />
     <Content Include="Images\flag1x1\zw.svg" />
+    <Content Include="Scripts\axios.js" />
+    <Content Include="Scripts\axios.min.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -607,6 +610,9 @@
     <Content Include="Areas\Admin\Views\Functions\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Maintain.cshtml" />
+    <Content Include="Scripts\axios.min.map" />
+    <Content Include="Scripts\axios.map" />
+    <Content Include="Areas\Admin\Views\Users\VueEmpty.cshtml" />
     <None Include="Scripts\jquery-3.6.3-vsdoc.js" />
     <Content Include="Scripts\jquery-3.6.3.js" />
     <Content Include="Scripts\jquery-3.6.3.min.js" />
@@ -615,6 +621,8 @@
     <Content Include="Scripts\jquery-captcha.js" />
     <Content Include="Scripts\jquery-captcha.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\vue.js" />
+    <Content Include="Scripts\vue.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -637,6 +645,7 @@
     <Content Include="Views\Error\Unauthorized.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\InternalServer.cshtml" />
+    <Content Include="Views\Account\Maintain.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

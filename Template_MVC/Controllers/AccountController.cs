@@ -171,5 +171,10 @@ namespace Template_MVC.Controllers
             return result;
         }
 
+        public ActionResult Maintain()
+        {
+            return View();
+        }
+
     }
 }

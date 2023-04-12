@@ -201,4 +201,16 @@
     <value>Gaia does not exist!</value>
     <comment>Regist</comment>
   </data>
+  <data name="Page404" xml:space="preserve">
+    <value>404 - Page not Found</value>
+    <comment>ErrorPage</comment>
+  </data>
+  <data name="Page401" xml:space="preserve">
+    <value>401 - Insufficient Permissions!</value>
+    <comment>ErrorPage</comment>
+  </data>
+  <data name="Page500" xml:space="preserve">
+    <value>500 Server Error</value>
+    <comment>ErrorPage</comment>
+  </data>
 </root>

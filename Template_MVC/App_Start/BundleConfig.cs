@@ -14,6 +14,8 @@ namespace Template_MVC
                         "~/Scripts/jquery-captcha.min.js"));
             bundles.Add(new ScriptBundle("~/bundles/vue").Include(
                         "~/Scripts/vue.min.js"));
+            bundles.Add(new ScriptBundle("~/bundles/axios").Include(
+                        "~/Scripts/axios.min.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.

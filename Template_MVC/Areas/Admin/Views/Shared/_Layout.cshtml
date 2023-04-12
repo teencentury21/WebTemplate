@@ -4,12 +4,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Admin</title>
+
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/vue")
+    @Scripts.Render("~/bundles/axios")
     @Scripts.Render("~/bundles/bootstrap")
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/captcha")
+
+    @RenderSection("scripts", required: false)
 
 </head>
 <body>
@@ -62,9 +67,6 @@
             </div>
         </div>
         </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    
 </body>
 </html>

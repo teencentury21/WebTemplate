@@ -232,6 +232,33 @@ namespace Template_MVC.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 401 - Insufficient Permissions!.
+        /// </summary>
+        public static string Page401 {
+            get {
+                return ResourceManager.GetString("Page401", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 404 - Page not Found.
+        /// </summary>
+        public static string Page404 {
+            get {
+                return ResourceManager.GetString("Page404", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 500 Server Error.
+        /// </summary>
+        public static string Page500 {
+            get {
+                return ResourceManager.GetString("Page500", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string Password {

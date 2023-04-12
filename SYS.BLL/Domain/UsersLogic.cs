@@ -26,6 +26,7 @@ namespace SYS.BLL.Domain
         FunctionResultEntity CreateUsers(string acc, string psw, bool checkGAIA);
         FunctionResultEntity UpdateUsersActive(Users user);
         Users GetUsersByAny(string acc);
+        List<Users> GetUsers();
         FunctionResultEntity ValidateLogin(string acc, string psw);
         FunctionResultEntity ValidateAdminLogin(string acc, string psw);
     }
@@ -111,6 +112,11 @@ namespace SYS.BLL.Domain
         {
             return _UsersRepository.GetUsersByAny(input);
         }
+        public List<Users> GetUsers()
+        {
+            return _UsersRepository.Read();
+        }
+
         public FunctionResultEntity ValidateLogin (string acc, string psw)
         {
             var result = new FunctionResultEntity { isSuccess = true, Message = "" };

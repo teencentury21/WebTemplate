@@ -195,4 +195,13 @@
   <data name="NotGAIA" xml:space="preserve">
     <value>GAIA不存在的工号!</value>
   </data>
+  <data name="Page404" xml:space="preserve">
+    <value>404 - 页面不存在</value>
+  </data>
+  <data name="Page401" xml:space="preserve">
+    <value>401 - 权限不足!</value>
+  </data>
+  <data name="Page500" xml:space="preserve">
+    <value>500 服务器错误</value>
+  </data>
 </root>
