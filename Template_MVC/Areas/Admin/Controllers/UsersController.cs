@@ -36,16 +36,26 @@ namespace Template_MVC.Areas.Admin.Controllers
             return View();
         }
 
-        public ActionResult VueEmpty()
-        {
-            return View();
-        }
-
         [HttpPost]
-        public string QueryUser(string input)
+        public string QueryUser(string input="")
         {
-            var result = _UserLogic.GetUsers();
+            List<Users> result=new List<Users>();
+            if (input == "")
+                result = _UserLogic.GetUsers();
+            else
+            {
+                if(_UserLogic.GetUsersByAny(input) != null)
+                {
+                    result.Add(_UserLogic.GetUsersByAny(input));
+                }
+            }
             return JsonConvert.SerializeObject(result);
+        }
+        public string UpdateUser(Users input)
+        {
+            var result = "";
+
+            return result;
         }
     }
 }

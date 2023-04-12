@@ -20,7 +20,10 @@
 <body>
     <div class="d-flex">        
         <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 200px; height: 100vh;">
-            @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <a href="@Url.Action("Index", "Home", new { area="" })" class="navbar-brand" style="background-image: url('../../Images/Darfon_logo_r.png'); width:150px; height:30px">
+                <!-- 將原本的文字內容移到 <span> 標籤內 -->
+                <span class="sr-only">&nbsp;</span>
+            </a>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
@@ -34,22 +37,22 @@
                 </li>
                 <li class="nav-item">
                     @Html.ActionLink("Functions", "Index", "Functions", new { area = "Admin" }, new { @class = "nav-link text-white" })
-                </li>                
+                </li>
             </ul>
             @*<hr>
-            <div class="dropdown">
-                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                    <strong>mdo</strong>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                    <li><a class="dropdown-item" href="#">New project...</a></li>
-                    <li><a class="dropdown-item" href="#">Settings</a></li>
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Sign out</a></li>
-                </ul>
-            </div>*@
+        <div class="dropdown">
+            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                <strong>mdo</strong>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                <li><a class="dropdown-item" href="#">New project...</a></li>
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Sign out</a></li>
+            </ul>
+        </div>*@
         </div>
         <div class="d-flex flex-fill ">
             <!-- Footer -->

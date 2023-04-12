@@ -24,7 +24,7 @@ namespace SYS.BLL.Domain
         IUsersRepository _UsersRepository { get; set; }
         // Functions
         FunctionResultEntity CreateUsers(string acc, string psw, bool checkGAIA);
-        FunctionResultEntity UpdateUsersActive(Users user);
+        FunctionResultEntity UpdateUsers(Users user);
         Users GetUsersByAny(string acc);
         List<Users> GetUsers();
         FunctionResultEntity ValidateLogin(string acc, string psw);
@@ -87,7 +87,7 @@ namespace SYS.BLL.Domain
 
             return result;
         }
-        public FunctionResultEntity UpdateUsersActive(Users user)
+        public FunctionResultEntity UpdateUsers(Users user)
         {
             var result = new FunctionResultEntity { isSuccess = true, Message = "" };
 

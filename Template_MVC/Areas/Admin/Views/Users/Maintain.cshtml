@@ -3,36 +3,6 @@
     ViewBag.Title = "User Maintain";
 }
 
-<script type="text/javascript">
-    new Vue({
-        el: '#search',
-        data: {
-            users: [],
-            searchText: $("#input_Search").val()
-        },
-        created() {
-            // alert('Hello');
-        },
-        mounted() {
-            this.fetchUsers();
-        },
-        methods: {
-            fetchUsers() {
-                axios.post('/Admin/Users/QueryUser', {
-                    input: this.searchText
-                })
-                .then(response => {
-                    this.users = response.data;
-                    //debugger;
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-            }
-        }
-    });
-</script>
-
 <div id="search" class="container tab-pane active">
     <div class="container mt-3">
         <h2>User Management</h2>
@@ -48,8 +18,6 @@
                 <button class="btn btn-success">New User</button>
             </div>
         </div>
-
-
 
         <table class="table">
                 <thead>
@@ -76,8 +44,8 @@
                         <td>{{ user.lastlogin }}</td>
                         <td>{{ user.cdt }}</td>
                         <td>
-                            <button class="btn btn-primary btn-sm">Edit</button>
-                            <button class="btn btn-danger btn-sm">Delete</button>
+                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#edit-user-modal">Edit</button>
+                            <button class="btn btn-danger btn-sm" v-on:click="DeleteUsers(user)">Delete</button>
                         </td>
                     </tr>
                 </tbody>
@@ -85,35 +53,95 @@
     </div>
 </div>
 
-@*<!-- Nav tabs -->
-    <nav>
-        <div class="nav nav-tabs d-flex align-items-center justify-content-center" id="login-register-tabs" role="tablist">
-            <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#search" type="button" role="tab" aria-controls="search" aria-selected="true">Search</button>
-            <button class="nav-link" id="register-tab" data-bs-toggle="tab" data-bs-target="#add" type="button" role="tab" aria-controls="add" aria-selected="false">Add</button>
+<!-- Edit Users-->
+<div id="edit-user-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit User</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="edit-username">Username:</label>
+                    <input type="text" class="form-control" id="edit-username" v-model="selectedUser.username">
+                </div>
+                <div class="form-group">
+                    <label for="edit-userno">User No:</label>
+                    <input type="text" class="form-control" id="edit-userno" v-model="selectedUser.userno">
+                </div>
+                <div class="form-group">
+                    <label for="edit-email">Email:</label>
+                    <input type="text" class="form-control" id="edit-email" v-model="selectedUser.email">
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="edit-active" v-model="selectedUser.is_active">
+                    <label class="form-check-label" for="edit-active">Active</label>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="edit-admin" v-model="selectedUser.is_admin">
+                    <label class="form-check-label" for="edit-admin">Admin</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" v-on:click="EditUsers(user)">Save changes</button>
+            </div>
         </div>
-    </nav>
+    </div>
+</div>
+<script type="text/javascript">
+    new Vue({
+        el: '#search',
+        data: {
+            users: [],
+            searchText: $("#input_Search").val()
+        },
+        created() {
+            // alert('Hello');
+        },
+        mounted() {
+            // this.fetchUsers();
+        },
+        methods: {
+            fetchUsers() {
+                var search = $("#input_Search").val();
 
-    <!-- Tab panes -->
-    <div class="tab-content">
-        <!-- Search tab -->
+                axios.post('/Admin/Users/QueryUser', {
+                    input: search
+                })
+                .then(response => {
+                    this.users = response.data;
+                    if (response.data.length == 0) {
+                        alert("User: " + search + " not found");
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+            },
+            UpdateUsers() {
+                alert('User Update !!');
+                //var user=this.selectedUser;
 
-        <!-- Add tab -->
-        <div id="add" class="container tab-pane fade">
-            <br>
-            <form>
-                <div class="form-group">
-                    <label for="username">Username:</label>
-                    <input type="text" class="form-control" id="username" placeholder="Enter username">
-                </div>
-                <div class="form-group">
-                    <label for="userno">Userno:</label>
-                    <input type="text" class="form-control" id="userno" placeholder="Enter userno">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password:</label>
-                    <input type="password" class="form-control" id="password" placeholder="Enter password">
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>
-    </div>*@
+                //axios.post('/Admin/Users/UpdateUser', this.selectedUser)
+                //.then(response => {
+                //    // Update the user in the table.
+                //    var updatedUserIndex = this.users.findIndex(user => user.user_id === this.selectedUser.user_id);
+                //    this.users.splice(updatedUserIndex, 1, this.selectedUser);
+
+                //    // Close the modal.
+                //    $("#edit-user-modal").modal('hide');
+                //})
+                //.catch(error => {
+                //    console.log(error);
+                //});
+            },
+            DeleteUsers() {
+                alert('Delete user');
+            }
+        }
+    });
+</script>

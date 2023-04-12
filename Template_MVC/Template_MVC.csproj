@@ -612,7 +612,6 @@
     <Content Include="Areas\Admin\Views\Users\Maintain.cshtml" />
     <Content Include="Scripts\axios.min.map" />
     <Content Include="Scripts\axios.map" />
-    <Content Include="Areas\Admin\Views\Users\VueEmpty.cshtml" />
     <None Include="Scripts\jquery-3.6.3-vsdoc.js" />
     <Content Include="Scripts\jquery-3.6.3.js" />
     <Content Include="Scripts\jquery-3.6.3.min.js" />
