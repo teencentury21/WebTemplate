@@ -15,7 +15,7 @@
                 <button class="btn btn-primary" v-on:click="fetchUsers()">Search</button>
             </div>
             <div class="col-6 text-end">
-                <button class="btn btn-success">New User</button>
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add-user-modal" v-on:click="AddUsers()">New User</button>
             </div>
         </div>
 
@@ -52,6 +52,48 @@
         </table>
     </div>
 
+    <!-- Add Users-->
+    <div id="add-user-modal" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add User</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="add-username">Username:</label>
+                        <input type="text" class="form-control" id="add-username">
+                    </div>
+                    <div class="form-group">
+                        <label for="add-userno">User No:</label>
+                        <input type="text" class="form-control" id="add-userno">
+                    </div>
+                    <div class="form-group">
+                        <label for="add-userpsw">Password:</label>
+                        <input type="password" class="form-control" id="add-userpsw">
+                    </div>
+                    <div class="form-group">
+                        <label for="add-email">Email:</label>
+                        <input type="text" class="form-control" id="add-email" required>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="add-active">
+                        <label class="form-check-label" for="add-active">Active</label>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="add-admin">
+                        <label class="form-check-label" for="add-admin">Admin</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" v-on:click="InsertUsers()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Edit Users-->
     <div id="edit-user-modal" class="modal fade" tabindex="-1">
         <div class="modal-dialog">
@@ -72,8 +114,8 @@
                     <div class="form-group">
                         <label for="edit-userpsw">Password:</label>
                         <input type="password" class="form-control" id="edit-userpsw" v-model="selectedUser.password" :disabled="!changePsw">
-                        <input type="checkbox" class="form-check-input" id="edit-changepsw" v-model="changePsw"/>
-                        <label class="form-check-label" for="edit-changepsw" >Change Password:</label>                        
+                        <input type="checkbox" class="form-check-input" id="edit-changepsw" v-model="changePsw" />
+                        <label class="form-check-label" for="edit-changepsw">Change Password:</label>
                     </div>
                     <div class="form-group">
                         <label for="edit-email">Email:</label>
@@ -100,9 +142,9 @@
 
 <script type="text/javascript">
     $(function () {
-   
-    }); 
-    
+
+    });
+
     new Vue({
         el: '#search',
         data: {
@@ -112,10 +154,10 @@
             searchText: $("#input_Search").val()
         },
         created() {
-            // alert('Hello');            
+            // alert('Hello');
         },
         mounted() {
-            // this.fetchUsers();            
+            // this.fetchUsers();
         },
         methods: {
             fetchUsers() {
@@ -135,6 +177,7 @@
             },
             EditUsers(user) {
                 // Set the selected user.
+                this.changePsw = false;
                 this.selectedUser = user;
             },
             UpdateUsers(input) {
@@ -171,18 +214,18 @@
                     axios.post('/Admin/Users/DeleteUser', {
                         userId: user.user_id
                     })
-                    .then(response => {
-                        console.log(response);
-                        if (response.data.isSuccess) {
-                            alert('User '+ user.username + ' deleted !!');
-                            location.reload();
-                        } else {
-                            alert(response.data.Message);
-                        }
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    });
+                        .then(response => {
+                            console.log(response);
+                            if (response.data.isSuccess) {
+                                alert('User ' + user.username + ' deleted !!');
+                                location.reload();
+                            } else {
+                                alert(response.data.Message);
+                            }
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
                 }
                 else {
                     // 取消按鈕被點擊
@@ -190,8 +233,11 @@
                 }
             },
             AddUsers() {
-
+                alert('add user');
+            },
+            InsertUsers() {
+                alert('call controller');
             }
-        }   
+        }
     });
 </script>
