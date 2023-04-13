@@ -27,8 +27,8 @@ namespace SYS.DAL.Default
         }
         public void Create(Users user)
         {
-            //var sql = @"INSERT INTO Users (username, userno, password, is_active, is_admin, email, role, LastLogin, Setting, Remark, Cdt)
-            //       VALUES (@username, @userno, @password, @is_active, @is_admin, @email, @role, @LastLogin, @Setting, @Remark, @Cdt)";
+            //var sql = @"INSERT INTO Users (username, userno, password, is_active, is_admin, email, role, Setting, Remark)
+            //       VALUES (@username, @userno, @password, @is_active, @is_admin, @email, @role, @Setting, @Remark)";
             var sql = @"INSERT INTO Users (username, userno, password, is_active, is_admin, email)
                    VALUES (@username, @userno, @password, @is_active, @is_admin, @email)";
             Connection.Execute(sql, user);

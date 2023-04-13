@@ -9,7 +9,7 @@ namespace Template_MVC.Areas.Admin.Controllers
     public class GroupsController : BaseController
     {
         // GET: Admin/Groups
-        public ActionResult Index()
+        public ActionResult Maintain()
         {
             return View();
         }

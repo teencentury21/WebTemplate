@@ -1,11 +1,11 @@
 ﻿
 @{
-    ViewBag.Title = "User Maintain";
+    ViewBag.Title = "Group Maintain";
 }
 
-<div id="search" class="container tab-pane active">
+<div id="app" class="container tab-pane active">
     <div class="container mt-3">
-        <h2>User Management</h2>
+        <h2>Group Management</h2>
         <hr>
         <div class="row mb-3">
             <div class="col-4">
@@ -34,7 +34,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="user in users" :key="user.user_id">
+                @*<tr v-for="user in users" :key="user.user_id">
                     <td>{{ user.user_id }}</td>
                     <td>{{ user.username }}</td>
                     <td>{{ user.userno }}</td>
@@ -47,13 +47,13 @@
                         <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#edit-user-modal" v-on:click="EditUsers(user)">Edit</button>
                         <button class="btn btn-danger btn-sm" v-on:click="DeleteUsers(user)">Delete</button>
                     </td>
-                </tr>
+                </tr>*@
             </tbody>
         </table>
     </div>
 
-    <!-- Edit Users-->
-    <div id="edit-user-modal" class="modal fade" tabindex="-1">
+    <!-- Edit Group-->
+    @*<div id="edit-user-modal" class="modal fade" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -72,8 +72,8 @@
                     <div class="form-group">
                         <label for="edit-userpsw">Password:</label>
                         <input type="password" class="form-control" id="edit-userpsw" v-model="selectedUser.password" :disabled="!changePsw">
-                        <input type="checkbox" class="form-check-input" id="edit-changepsw" v-model="changePsw"/>
-                        <label class="form-check-label" for="edit-changepsw" >Change Password:</label>                        
+                        <input type="checkbox" class="form-check-input" id="edit-changepsw" v-model="changePsw" />
+                        <label class="form-check-label" for="edit-changepsw">Change Password:</label>
                     </div>
                     <div class="form-group">
                         <label for="edit-email">Email:</label>
@@ -94,17 +94,11 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>*@
 </div>
-
-
-<script type="text/javascript">
-    $(function () {
-   
-    }); 
-    
+<script>
     new Vue({
-        el: '#search',
+        el: '#app',
         data: {
             users: [],
             selectedUser: {},
@@ -112,10 +106,12 @@
             searchText: $("#input_Search").val()
         },
         created() {
-            // alert('Hello');            
+            // alert('Hello');
+
         },
         mounted() {
-            // this.fetchUsers();            
+            // this.fetchUsers();
+
         },
         methods: {
             fetchUsers() {
@@ -168,30 +164,14 @@
             DeleteUsers(user) {
                 if (confirm('Are you sure delete user ' + user.username + '?')) {
                     console.log('User clicked confirm');
-                    axios.post('/Admin/Users/DeleteUser', {
-                        userId: user.user_id
-                    })
-                    .then(response => {
-                        console.log(response);
-                        if (response.data.isSuccess) {
-                            alert('User '+ user.username + ' deleted !!');
-                            location.reload();
-                        } else {
-                            alert(response.data.Message);
-                        }
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    });
+
                 }
                 else {
                     // 取消按鈕被點擊
                     console.log('User clicked Cancel');
                 }
-            },
-            AddUsers() {
-
             }
-        }   
+        }
     });
+
 </script>

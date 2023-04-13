@@ -254,6 +254,7 @@
                     // failure
                     $("#lbl_errMsg").text('@Resources.Resource.ErrorCaptcha');
                     alert('@Resources.Resource.ErrorCaptcha');
+                    $('input[name="loginCaptcha"]').val('');
                     return
                 }
 
@@ -305,6 +306,7 @@
                     var validatePsw = $('#validateRegistPassword').val();
                     if (psw != validatePsw) {
                         $("#lbl_errMsg").text('@Resources.Resource.PasswordNotSame');
+                        $('input[name="registCaptcha"]').val('');
                         alert('@Resources.Resource.PasswordNotSame');
                     } else {
                         // success

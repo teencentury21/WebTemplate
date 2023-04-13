@@ -46,16 +46,24 @@ namespace Template_MVC.Areas.Admin.Controllers
             {
                 if(_UserLogic.GetUsersByAny(input) != null)
                 {
-                    result.Add(_UserLogic.GetUsersByAny(input));
+                    result.Add(_UserLogic.GetUsersByAny(input.Trim()));
                 }
             }
             return JsonConvert.SerializeObject(result);
         }
-        public string UpdateUser(Users input)
-        {
-            var result = "";
 
-            return result;
+        [HttpPost]
+        public string UpdateUser(Users input, string newPsw="")
+        {            
+            var result=_UserLogic.UpdateUsers(input, newPsw);
+            return JsonConvert.SerializeObject(result);
+        }
+
+        [HttpPost]
+        public string DeleteUser(int userId)
+        {
+            var result = _UserLogic.DeleteUsers(userId);
+            return JsonConvert.SerializeObject(result);
         }
     }
 }

@@ -24,7 +24,8 @@ namespace SYS.BLL.Domain
         IUsersRepository _UsersRepository { get; set; }
         // Functions
         FunctionResultEntity CreateUsers(string acc, string psw, bool checkGAIA);
-        FunctionResultEntity UpdateUsers(Users user);
+        FunctionResultEntity UpdateUsers(Users user, string newPsw);
+        FunctionResultEntity DeleteUsers(int userId);
         Users GetUsersByAny(string acc);
         List<Users> GetUsers();
         FunctionResultEntity ValidateLogin(string acc, string psw);
@@ -38,10 +39,11 @@ namespace SYS.BLL.Domain
         // Repository
         public ITransactionLogRepository _TransactionLogRepository { get; set; }
         public IUsersRepository _UsersRepository { get; set; }
-
+        protected SHA256Wrapper _sha256;
         // Functions
         public UsersLogic(IBusinessLogicFactory BusinessLogicFactory, IRepositoryFactory RepositoryFactory = null) : base(BusinessLogicFactory, RepositoryFactory)
         {
+            _sha256= new SHA256Wrapper();
             _HttpContextStateLogic = CreateLogic<IHttpContextStateLogic>();
             _GAIALogic = CreateLogic<IGAIALogic>();
 
@@ -63,13 +65,12 @@ namespace SYS.BLL.Domain
                     "";
 
                 if (result.Message =="")
-                {
-                    SHA256Wrapper sha256 = new SHA256Wrapper();
+                {                    
                     _UsersRepository.Create(new Users {
                         username= checkGAIA ? gaiaUser.EnName : acc,
                         userno= checkGAIA ? gaiaUser.EmpNo : acc,
-                        email= checkGAIA ? gaiaUser.Email : "",
-                        password= sha256.EncryptData(psw, checkGAIA ? gaiaUser.EmpNo : acc),
+                        email= checkGAIA ? gaiaUser.Email : "example@darfon.com.tw",
+                        password= _sha256.EncryptData(psw, checkGAIA ? gaiaUser.EmpNo : acc),
                         is_active=true,
                         is_admin=false,
                     });
@@ -87,12 +88,13 @@ namespace SYS.BLL.Domain
 
             return result;
         }
-        public FunctionResultEntity UpdateUsers(Users user)
+        public FunctionResultEntity UpdateUsers(Users user, string newPsw)
         {
             var result = new FunctionResultEntity { isSuccess = true, Message = "" };
 
             try
-            {                
+            {
+                user.password = newPsw == "" ? user.password : _sha256.EncryptData(newPsw, user.userno);
                 _UsersRepository.Update(user);
             }
             catch (Exception ex)
@@ -101,6 +103,20 @@ namespace SYS.BLL.Domain
                 result.Message = ex.ToString();
             }
 
+            return result;
+        }
+        public FunctionResultEntity DeleteUsers(int userId)
+        {
+            var result = new FunctionResultEntity { isSuccess = true, Message = "" };
+            try
+            {                
+                _UsersRepository.Delete(userId);
+            }
+            catch (Exception ex)
+            {
+                result.isSuccess = false;
+                result.Message = ex.ToString();
+            }
             return result;
         }
         /// <summary>
@@ -116,16 +132,13 @@ namespace SYS.BLL.Domain
         {
             return _UsersRepository.Read();
         }
-
         public FunctionResultEntity ValidateLogin (string acc, string psw)
         {
             var result = new FunctionResultEntity { isSuccess = true, Message = "" };
             try
             {
-                SHA256Wrapper sha256 = new SHA256Wrapper();
-
                 var user = GetUsersByAny(acc);
-                var inputPsw = user == null ? "" : sha256.EncryptData(psw, user.userno);
+                var inputPsw = user == null ? "" : _sha256.EncryptData(psw, user.userno);
 
                 result.Message = user == null ? FunctionResultConstant.Account_Invalidate :
                                 !user.is_active ? FunctionResultConstant.Account_Invalidate :
@@ -147,10 +160,8 @@ namespace SYS.BLL.Domain
             var result = new FunctionResultEntity { isSuccess = false, Message = "" };
             try
             {
-                SHA256Wrapper sha256 = new SHA256Wrapper();
-
                 var user = GetUsersByAny(acc);
-                var inputPsw = user == null ? "" : sha256.EncryptData(psw, user.userno);
+                var inputPsw = user == null ? "" : _sha256.EncryptData(psw, user.userno);
 
                 result.Message = user == null ? FunctionResultConstant.Account_Invalidate :
                                 !user.is_active ? FunctionResultConstant.Account_Invalidate :

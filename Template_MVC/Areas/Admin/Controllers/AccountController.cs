@@ -26,12 +26,12 @@ namespace Template_MVC.Areas.Admin.Controllers
             _UserLogic = factory.GetLogic<IUsersLogic>();
         }
 
-        // GET: Admin/Account
-        public ActionResult Index()
-        {
-            // 已登入，進入Landing Page
-            return View();
-        }
+        //// GET: Admin/Account
+        //public ActionResult Index()
+        //{
+        //    // 已登入，進入Landing Page
+        //    return View();
+        //}
 
         // GET: Admin/Account
         public ActionResult Login()
