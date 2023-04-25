@@ -65,5 +65,11 @@ namespace Template_MVC.Areas.Admin.Controllers
             var result = _UserLogic.DeleteUsers(userId);
             return JsonConvert.SerializeObject(result);
         }
+        [HttpPost]
+        public string AdminAddUser(Users input)
+        {            
+            var result = _UserLogic.CreateUsersAdmin(input);
+            return JsonConvert.SerializeObject(result);
+        }
     }
 }

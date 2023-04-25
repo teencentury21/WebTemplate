@@ -54,6 +54,7 @@
         } else {
             // failure                    
             $("#lbl_errMsg").text('@Resources.Resource.ErrorCaptcha');
+            $('input[name="loginCaptcha"]').val('');
             alert('@Resources.Resource.ErrorCaptcha');
         }
     });

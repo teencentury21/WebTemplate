@@ -221,6 +221,7 @@
     <Compile Include="Common\Mail\MailContentKey.cs" />
     <Compile Include="Common\Mail\MailContentStatus.cs" />
     <Compile Include="Common\Mail\MailDataContent.cs" />
+    <Compile Include="Constants\AccountConstants.cs" />
     <Compile Include="Constants\FunctionResultConstant.cs" />
     <Compile Include="Constants\GAIASystemsConstants.cs" />
     <Compile Include="Constants\Line\ConstData.cs" />

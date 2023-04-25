@@ -18,7 +18,9 @@ namespace SYS.DAL.Default
         void Update(TransactionLog item);
         void Delete(int regionId);
         List<TransactionLog> GetItmeByApplicationName(string applicationName);
+        List<TransactionLog> GetItemByApplicationNameWithData(string applicationName, string data);
         List<TransactionLog> GetItmeByAppNameNData(string applicationName, string data);
+
     }
     internal class TransactionLogRepository : SQLRepository, ITransactionLogRepository
     {
@@ -65,6 +67,12 @@ namespace SYS.DAL.Default
         }
 
         public List<TransactionLog> GetItmeByAppNameNData(string applicationName, string data)
+        {
+            var parameters = new { ApplicationName = applicationName, Data = data };
+            var sql = "SELECT * FROM [dbo].[Transaction_Log] WHERE Application_Name = @ApplicationName AND Data = @Data ORDER BY Cdt DESC";
+            return Connection.Query<TransactionLog>(sql, parameters).ToList();
+        }
+        public List<TransactionLog> GetItemByApplicationNameWithData(string applicationName, string data)
         {
             var parameters = new { ApplicationName = applicationName, Data = data };
             var sql = "SELECT * FROM [dbo].[Transaction_Log] WHERE Application_Name = @ApplicationName AND Data = @Data ORDER BY Cdt DESC";

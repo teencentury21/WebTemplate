@@ -204,4 +204,7 @@
   <data name="Page500" xml:space="preserve">
     <value>500 - 伺服器錯誤</value>
   </data>
+  <data name="Function" xml:space="preserve">
+    <value>功能</value>
+  </data>
 </root>

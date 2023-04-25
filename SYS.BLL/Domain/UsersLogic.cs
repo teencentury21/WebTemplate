@@ -24,12 +24,15 @@ namespace SYS.BLL.Domain
         IUsersRepository _UsersRepository { get; set; }
         // Functions
         FunctionResultEntity CreateUsers(string acc, string psw, bool checkGAIA);
+        FunctionResultEntity CreateUsersAdmin(Users user);
         FunctionResultEntity UpdateUsers(Users user, string newPsw);
         FunctionResultEntity DeleteUsers(int userId);
         Users GetUsersByAny(string acc);
         List<Users> GetUsers();
-        FunctionResultEntity ValidateLogin(string acc, string psw);
+        FunctionResultEntity ValidateLogin(string acc, string psw, bool isAdLogin=false);
         FunctionResultEntity ValidateAdminLogin(string acc, string psw);
+        FunctionResultEntity ValidateLoginBlock(string acc);
+        void RecordLogin(string account, string descr, string source, bool result);
     }
     class UsersLogic : DataDrivenLogic, IUsersLogic
     {
@@ -85,9 +88,24 @@ namespace SYS.BLL.Domain
                 result.isSuccess = false;
                 result.Message = ex.ToString();                
             }
-
             return result;
         }
+        public FunctionResultEntity CreateUsersAdmin(Users user)
+        {
+            var result = new FunctionResultEntity { isSuccess = true, Message = "" };
+            try
+            {
+                user.password = _sha256.EncryptData(user.password, user.userno);
+                _UsersRepository.Create(user);
+            }
+            catch (Exception ex)
+            {
+                result.isSuccess = false;
+                result.Message = ex.ToString();
+            }
+            return result;
+        }
+
         public FunctionResultEntity UpdateUsers(Users user, string newPsw)
         {
             var result = new FunctionResultEntity { isSuccess = true, Message = "" };
@@ -132,7 +150,7 @@ namespace SYS.BLL.Domain
         {
             return _UsersRepository.Read();
         }
-        public FunctionResultEntity ValidateLogin (string acc, string psw)
+        public FunctionResultEntity ValidateLogin (string acc, string psw, bool isAdLogin=false)
         {
             var result = new FunctionResultEntity { isSuccess = true, Message = "" };
             try
@@ -143,9 +161,14 @@ namespace SYS.BLL.Domain
                 result.Message = user == null ? FunctionResultConstant.Account_Invalidate :
                                 !user.is_active ? FunctionResultConstant.Account_Invalidate :
                                 user.password != inputPsw ? FunctionResultConstant.Error_PassWord : "";
-
                 result.isSuccess = string.IsNullOrEmpty(result.Message);
                 result.item = user;
+                RecordLogin(user == null ? acc : user.username.ToLower()
+                    , "Front end Login"
+                    , isAdLogin ? AccountConstants.ADLogin : AccountConstants.NormalLogin
+                    , result.isSuccess ? result.isSuccess :
+                    isAdLogin && result.Message == FunctionResultConstant.Error_PassWord ? true : false
+                );
             }
             catch (Exception ex)
             {
@@ -171,6 +194,11 @@ namespace SYS.BLL.Domain
                 result.isSuccess = string.IsNullOrEmpty(result.Message);
                 result.item = result.isSuccess ? user : null;
 
+                RecordLogin(user == null ? acc : user.username.ToLower()
+                    , "Admin Login"
+                    , AccountConstants.NormalLogin
+                    , result.isSuccess
+                );
             }
             catch (Exception ex)
             {
@@ -180,11 +208,31 @@ namespace SYS.BLL.Domain
 
             return result;
         }
-        private FunctionResultEntity ValidateLoginBlock(string acc)
+        public FunctionResultEntity ValidateLoginBlock(string acc)
         {
-            var result = new FunctionResultEntity { isSuccess = false, Message = "" };
-
+            var result = new FunctionResultEntity { isSuccess = true, Message = "" };
+            var records = _TransactionLogRepository.GetItemByApplicationNameWithData(TransactionLogConstants.LoginLog, acc);
+            records = records.OrderByDescending(x => x.Cdt).Take(3).Where(x => x.Cdt > DateTime.Now.AddMinutes(-15)).ToList();
+            //15分鐘內登入錯誤三次
+            if (records.Count(x=>x.Message==AccountConstants.LoginFail) >= 3)
+            {
+                result.isSuccess = false;
+                result.Message = FunctionResultConstant.Error_3Times;
+            }
             return result;
+        }
+        public void RecordLogin(string account, string descr, string source, bool result)
+        {
+            _TransactionLogRepository.Create(new TransactionLog
+            {
+                Id = Guid.NewGuid(),
+                Application_Name = TransactionLogConstants.LoginLog,
+                Data = account,
+                Description = descr,
+                Editor = source,
+                Message = result ? AccountConstants.LoginSuccess : AccountConstants.LoginFail,
+                Cdt = DateTime.Now
+            });
         }
     }
 }

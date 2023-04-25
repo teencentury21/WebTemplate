@@ -36,17 +36,30 @@ namespace Template_MVC.Controllers
         // Post: Account/Login
         [HttpPost]
         public ActionResult Login(string username, string password)
-        {            
+        {
+            var check = LoginCheck(username);
+
+            if (!check.isSuccess)
+            {
+                return Json(new { success = check.isSuccess, message = check.Message });
+            }
+
             var loginResult = ProcessLoginResult(_UserLogic.ValidateLogin(username, password));
-            return Json(new { success = loginResult.isSuccess, message = loginResult.Message });
+            return Json(new { success = loginResult.isSuccess, message = loginResult.Message });            
         }
 
         [HttpPost]
         public ActionResult ADLogin(string username, string password)
         {
+            var check = LoginCheck(username);
+
+            if (!check.isSuccess)
+            {
+                return Json(new { success = check.isSuccess, message = check.Message });
+            }
+
             var domain = ConfigurationManager.AppSettings["Domain"];
             string adPath = "LDAP://" + domain;
-
             LdapAuthentication adAuth = new LdapAuthentication(adPath);
 
             try
@@ -54,21 +67,20 @@ namespace Template_MVC.Controllers
                 if (adAuth.IsAuthenticated(domain, username, password))
                 {                    
                     // check account exist in user table
-                    var loginResult = ProcessLoginResult(_UserLogic.ValidateLogin(username, password),true);
+                    var loginResult = ProcessLoginResult(_UserLogic.ValidateLogin(username, password, true),true);
                     return Json(new { success = loginResult.isSuccess, message = loginResult.Message });
                 }
                 else
                 {
-                    // Account 登入
-                    // AccountService.RecordLogin(_acc, AccountConstants.ADLogin, _ip, false);
-                    return Json(new { success = false, message = App_GlobalResources.Resource.ErrorPassword });
-                    
+                    // Account 登入                    
+                    return Json(new { success = false, message = App_GlobalResources.Resource.ErrorPassword });                    
                 }
             }
             catch (Exception ex)
             {
                 if (ex.Message == "使用者名稱或密碼不正確。")
                 {
+                    _UserLogic.RecordLogin(username.ToLower(), "Front end AD Login", AccountConstants.ADLogin, false);
                     return Json(new { success = false, message = App_GlobalResources.Resource.ErrorPassword });
                 }
                 else
@@ -79,6 +91,7 @@ namespace Template_MVC.Controllers
 
 
         }
+        
         // Post Account/ Logout
         [HttpPost]
         public ActionResult Logout()
@@ -119,6 +132,31 @@ namespace Template_MVC.Controllers
                 }
                 return Json(new { success = false, message = errorMsg });
             }
+        }
+
+        private FunctionResultEntity LoginCheck(string username)
+        {
+            var result = new FunctionResultEntity();
+            var loginCheck = _UserLogic.ValidateLoginBlock(username);
+            var responseMsg = "";
+
+            if (!loginCheck.isSuccess)
+            {
+                switch (loginCheck.Message)
+                {
+                    case FunctionResultConstant.Error_3Times:
+                        responseMsg = App_GlobalResources.Resource.LoginBlock;
+                        break;                    
+                    default:
+                        responseMsg = loginCheck.Message;
+                        break;
+                }
+            }
+
+            result.isSuccess = loginCheck.isSuccess;
+            result.Message = responseMsg;
+            
+            return result;
         }
 
         private ReturnJson ProcessLoginResult(FunctionResultEntity loginResult, bool isADLogin=false)

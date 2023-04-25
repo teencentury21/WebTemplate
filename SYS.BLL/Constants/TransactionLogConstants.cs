@@ -16,5 +16,8 @@ namespace SYS.BLL.Constants
         public const string Registed = "Registed";
 
         public const string SendMail = "SendMail";
+        // record login.
+        public const string LoginLog = "LoginLog";
+
     }
 }

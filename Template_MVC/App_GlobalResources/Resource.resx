@@ -213,4 +213,8 @@
     <value>500 Server Error</value>
     <comment>ErrorPage</comment>
   </data>
+  <data name="Function" xml:space="preserve">
+    <value>Function</value>
+    <comment>Nav bar</comment>
+  </data>
 </root>

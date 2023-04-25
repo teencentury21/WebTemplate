@@ -40,16 +40,13 @@ namespace SYS.DAL.Default
 
         public void Update(Users user)
         {
-            var sql = @"UPDATE Users
-                   SET password = @password,
-                       is_active = @is_active,
-                       is_admin = @is_admin,                       
-                       role = @role,
-                       LastLogin = @LastLogin,
-                       Setting = @Setting,
-                       Remark = @Remark,
-                       Cdt = @Cdt
-                   WHERE user_id = @user_id";
+            var sql = @"UPDATE Users SET password = @password, is_active = @is_active, is_admin = @is_admin, Cdt = @Cdt, ";
+            sql = user.email == null ? sql : sql += "email=@email, ";
+            sql = user.role == null ? sql : sql += "role = @role, ";
+            sql = user.setting == null ? sql : sql += "Setting = @Setting, ";
+            sql = user.remark == null ? sql : sql += "Remark = @Remark, ";
+            sql = user.lastlogin == null ? sql : sql += "LastLogin = @LastLogin ";
+            sql+=" WHERE user_id = @user_id";
 
             Connection.Execute(sql, user);
         }

@@ -204,4 +204,7 @@
   <data name="Page500" xml:space="preserve">
     <value>500 - Lỗi máy chủ!</value>
   </data>
+  <data name="Function" xml:space="preserve">
+    <value>Tính năng:</value>
+  </data>
 </root>
