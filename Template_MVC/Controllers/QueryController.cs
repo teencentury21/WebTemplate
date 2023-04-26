@@ -8,11 +8,11 @@ using System.Web.Mvc;
 
 namespace Template_MVC.Controllers
 {
-    public class QueryController : Controller
+    public class QueryController : BaseController
     {
         public ActionResult Localization()
         {
-            ViewBag.Title = "Darfon Template";
+            ViewBag.Title = "Localization";
 
             return View(); 
         }

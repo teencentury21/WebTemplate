@@ -9,7 +9,9 @@
 # 忽略所有 db 目錄下附檔名是 .sqlite3 的檔案
 # /db/*.sqlite3
 /.vs/*.*
-
+/build/*.*
+/Template_MVC/bin/*.*
+/Template_MVC/obj/*
 # 忽略所有附檔名是 .bak 的檔案
 *.bak
 *.pdb
@@ -18,4 +20,3 @@
 
 # 當然你要忽略自己也可以，只是通常不會這麼做
 # .gitignore
-/.vs

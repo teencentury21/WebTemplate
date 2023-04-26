@@ -52,6 +52,7 @@
     <Compile Include="SQL\Default\Functions.cs" />
     <Compile Include="SQL\Default\Groups.cs" />
     <Compile Include="SQL\Default\GroupFunctions.cs" />
+    <Compile Include="SQL\Default\INI.cs" />
     <Compile Include="SQL\Default\Users.cs" />
     <Compile Include="SQL\Default\TransactionLog.cs" />
     <Compile Include="SQL\Default\UserFunctions.cs" />

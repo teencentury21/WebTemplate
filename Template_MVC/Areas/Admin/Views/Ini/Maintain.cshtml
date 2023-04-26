@@ -1,0 +1,244 @@
+﻿
+@{
+    ViewBag.Title = "Maintain";
+}
+
+<div id="app" class="container tab-pane active">
+    <div class="container mt-3">
+        <h2>Config Maintain</h2>
+        <hr>
+        <div class="row mb-3">
+            <div class="col-4">
+                <input id="input_Search" type="text" class="form-control" placeholder="Search">
+            </div>
+            <div class="col-2">
+                <button class="btn btn-primary" v-on:click="fetchConfigs()">Search</button>
+            </div>
+            <div class="col-6 text-end">
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add-config-modal" v-on:click="AddConfig()">New Config</button>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Config Id</th>
+                    <th>Item</th>
+                    <th>Data</th>
+                    <th>Description</th>
+                    <th>Editor</th>
+                    <th>Cdt</th>
+                    <th>Udt</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="config in configs" :key="config.id">
+                    <td>{{ config.id }}</td>
+                    <td>{{ config.Item }}</td>
+                    <td>{{ config.Data }}</td>
+                    <td>{{ config.Description }}</td>
+                    <td>{{ config.Editor }}</td>
+                    <td>{{ config.Cdt | formatDateTime }}</td>
+                    <td>{{ config.Udt | formatDateTime }}</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#edit-config-modal" v-on:click="EditConfigs(config)">Edit</button>
+                        <button class="btn btn-danger btn-sm" v-on:click="DeleteConfigs(config)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- Add Configs-->
+    <div id="add-config-modal" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Config</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="add-item">Item:</label>
+                        <input type="text" class="form-control" id="add-item">
+                    </div>
+                    <div class="form-group">
+                        <label for="add-data">Data:</label>
+                        <input type="text" class="form-control" id="add-data">
+                    </div>
+                    <div class="form-group">
+                        <label for="add-description">Description:</label>
+                        <input type="text" class="form-control" id="add-description">
+                    </div>                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" v-on:click="InsertConfig()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Configss-->
+    <div id="edit-config-modal" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit {{selectedConfig.id}}/ {{selectedConfig.Item}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="edit-item">Item:</label>
+                        <input type="text" class="form-control" id="edit-item" v-model="selectedConfig.Item" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-data">Data:</label>
+                        <input type="text" class="form-control" id="edit-data" v-model="selectedConfig.Data" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-description">Description:</label>
+                        <input type="text" class="form-control" id="edit-description" v-model="selectedConfig.Description" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" v-on:click="UpdateConfigs(selectedConfig)">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+
+    });
+
+    new Vue({
+        el: '#app',
+        data: {
+            configs: [],
+            selectedConfig: {},
+            searchText: $("#input_Search").val(),
+            insertConfig: {
+                Itme: "",
+                Data: "",
+                Description: "",
+                Editor: "",
+            }
+        },
+        filters: {
+            formatDateTime: function (value) {
+                const date = new Date(value);
+                const year = date.getFullYear();
+                const month = ('0' + (date.getMonth() + 1)).slice(-2);
+                const day = ('0' + date.getDate()).slice(-2);
+                const hours = ('0' + date.getHours()).slice(-2);
+                const minutes = ('0' + date.getMinutes()).slice(-2);
+                const seconds = ('0' + date.getSeconds()).slice(-2);
+                return `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
+            }
+        },
+        created() {
+            // alert('Hello');
+        },
+        mounted() {
+            // this.fetchConfigs();
+        },
+        methods: {
+            fetchConfigs() {
+                var search = $("#input_Search").val();
+                axios.post('/Admin/Ini/QueryConfig', {
+                    input: search
+                })
+                .then(response => {
+                    this.configs = response.data;
+                    if (response.data.length == 0) {
+                        alert("Config: " + search + " not found");
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+            },
+            EditConfigs(config) {
+                // Set the selected config.
+                this.selectedConfig = config;                
+            },
+            UpdateConfigs(input) {
+                console.log(input);
+                if (confirm('Are you sure update config ' + this.selectedConfig.Item + '?')) {
+                    var inputConfig = this.configs.find(config => config.id === input.id);                    
+
+                    axios.post('/Admin/Ini/UpdateConfig', {
+                        input: inputConfig,                        
+                    })
+                    .then(response => {
+                        console.log(response);
+                        if (response.data.isSuccess) {
+                            alert('Config Update !!');
+                            location.reload();
+                        } else {
+                            alert(response.data.Message);
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+                } else {
+                    // 取消按鈕被點擊
+                    
+                }
+            },
+            DeleteConfigs(config) {
+                if (confirm('Are you sure delete config ' + config.Item + '?')) {                    
+                    axios.post('/Admin/Ini/DeleteConfig', {
+                        configId: config.id
+                    })
+                    .then(response => {
+                        console.log(response);
+                        if (response.data.isSuccess) {
+                            alert('Config ' + config.Item + ' deleted !!');
+                            location.reload();
+                        } else {
+                            alert(response.data.Message);
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+                }
+                else {
+                    // 取消按鈕被點擊                    
+                }
+            },
+            AddConfig() {
+
+            },
+            InsertConfig() {
+
+                this.insertConfig.Item = $("#add-item").val();
+                this.insertConfig.Data = $("#add-data").val();
+                this.insertConfig.Description = $("#add-description").val();
+
+                console.log(this.insertConfig);
+
+                axios.post('/Admin/Ini/AdminAddConfig', {
+                    input: this.insertConfig
+                })
+                .then(response => {
+                    console.log(response);
+                    if (response.data.isSuccess) {
+                        alert('Add config ' + this.insertConfig.Item + ' success !!');
+                        location.reload();
+                    } else {
+                        alert(response.data.Message);
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+            }
+        }
+    });
+</script>
+

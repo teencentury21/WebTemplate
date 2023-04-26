@@ -1,6 +1,9 @@
 {
   "mappings": [
-
+    {
+      "logicType": "SYS.BLL.IRegionLogic",
+      "implementationType": "SYS.BLL.RegionLogic"
+    },
     {
       "logicType": "SYS.BLL.Domain.IDateTimeLogic",
       "implementationType": "SYS.BLL.Domain.DateTimeLogic"
@@ -8,14 +11,6 @@
     {
       "logicType": "SYS.BLL.Domain.GAIA.IGAIALogic",
       "implementationType": "SYS.BLL.Domain.GAIA.GAIALogic"
-    },
-    {
-      "logicType": "SYS.BLL.Domain.IHttpContextStateLogic",
-      "implementationType": "SYS.BLL.Domain.HttpContextStateLogic"
-    },
-    {
-      "logicType": "SYS.BLL.Domain.IMailLogic",
-      "implementationType": "SYS.BLL.Domain.MailLogic"
     },
     {
       "logicType": "SYS.BLL.Domain.Line.ILineBotLogic",
@@ -26,12 +21,20 @@
       "implementationType": "SYS.BLL.Domain.Line.LineBotReplyLogic"
     },
     {
-      "logicType": "SYS.BLL.Domain.IWebServiceLogic",
-      "implementationType": "SYS.BLL.Domain.WebServiceLogic"
+      "logicType": "SYS.BLL.Domain.IHttpContextStateLogic",
+      "implementationType": "SYS.BLL.Domain.HttpContextStateLogic"
     },
     {
-      "logicType": "SYS.BLL.IRegionLogic",
-      "implementationType": "SYS.BLL.RegionLogic"
+      "logicType": "SYS.BLL.Domain.IIniLogic",
+      "implementationType": "SYS.BLL.Domain.IniLogic"
+    },
+    {
+      "logicType": "SYS.BLL.Domain.IMailLogic",
+      "implementationType": "SYS.BLL.Domain.MailLogic"
+    },
+    {
+      "logicType": "SYS.BLL.Domain.IWebServiceLogic",
+      "implementationType": "SYS.BLL.Domain.WebServiceLogic"
     },
     {
       "logicType": "SYS.BLL.Domain.IUsersLogic",

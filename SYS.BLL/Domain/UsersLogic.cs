@@ -9,8 +9,6 @@ using SYS.Utilities.Security.Cryptography;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace SYS.BLL.Domain
@@ -34,7 +32,7 @@ namespace SYS.BLL.Domain
         FunctionResultEntity ValidateLoginBlock(string acc);
         void RecordLogin(string account, string descr, string source, bool result);
     }
-    class UsersLogic : DataDrivenLogic, IUsersLogic
+    internal class UsersLogic : DataDrivenLogic, IUsersLogic
     {
         // Logic
         public IHttpContextStateLogic _HttpContextStateLogic { get; set; }

@@ -15,7 +15,7 @@
                 <button class="btn btn-primary" v-on:click="fetchUsers()">Search</button>
             </div>
             <div class="col-6 text-end">
-                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add-user-modal" v-on:click="AddUsers()">New User</button>
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add-user-modal" v-on:click="AddUser()">New User</button>
             </div>
         </div>
 
@@ -88,7 +88,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" v-on:click="InsertUsers()">Save changes</button>
+                    <button type="button" class="btn btn-primary" v-on:click="InsertUser()">Save changes</button>
                 </div>
             </div>
         </div>
@@ -245,10 +245,10 @@
                     console.log('User clicked Cancel');
                 }
             },
-            AddUsers() {
+            AddUser() {
                 
             },
-            InsertUsers() {
+            InsertUser() {
                 
                 this.insertUser.username = $("#add-username").val();
                 this.insertUser.userno = $("#add-userno").val();

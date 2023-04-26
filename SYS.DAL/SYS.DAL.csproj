@@ -62,6 +62,7 @@
     <Compile Include="Default\FunctionsRepository.cs" />
     <Compile Include="Default\GroupFunctionsRepository.cs" />
     <Compile Include="Default\GroupsRepository.cs" />
+    <Compile Include="Default\IniRepository.cs" />
     <Compile Include="Default\UserFunctionsRepository.cs" />
     <Compile Include="Default\UsersRepository.cs" />
     <Compile Include="Default\TransactionLogRepository.cs" />

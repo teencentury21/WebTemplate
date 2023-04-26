@@ -21,6 +21,10 @@
       "implementationType": "SYS.DAL.Default.GroupFunctionsRepository"
     },
     {
+      "repositoryType": "SYS.DAL.Default.IIniRepository",
+      "implementationType": "SYS.DAL.Default.IniRepository"
+    },
+    {
       "repositoryType": "SYS.DAL.GAIA.IOmUserRepository",
       "implementationType": "SYS.DAL.GAIA.OmUserRepository"
     },

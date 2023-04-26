@@ -197,6 +197,7 @@
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\FunctionsController.cs" />
     <Compile Include="Areas\Admin\Controllers\GroupsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\IniController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
@@ -227,6 +228,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CaptchaController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -612,6 +614,7 @@
     <Content Include="Scripts\axios.min.map" />
     <Content Include="Scripts\axios.map" />
     <Content Include="Areas\Admin\Views\Groups\Maintain.cshtml" />
+    <Content Include="Areas\Admin\Views\Ini\Maintain.cshtml" />
     <None Include="Scripts\jquery-3.6.3-vsdoc.js" />
     <Content Include="Scripts\jquery-3.6.3.js" />
     <Content Include="Scripts\jquery-3.6.3.min.js" />
@@ -652,6 +655,7 @@
     <Folder Include="Areas\Admin\Views\Base\" />
     <Folder Include="Resources\" />
     <Folder Include="Views\Admin\" />
+    <Folder Include="Views\Base\" />
     <Folder Include="Views\Captcha\" />
     <Folder Include="Views\ProjectBase\" />
   </ItemGroup>

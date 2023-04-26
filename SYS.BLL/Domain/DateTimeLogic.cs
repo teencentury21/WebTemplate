@@ -20,7 +20,7 @@ namespace SYS.BLL.Domain
         string ConvertDateTimeString(DateTime datetime);
         string GetWeekCode(DateTime currentDate, DayOfWeek firstDayOfWeek);
     }
-    class DateTimeLogic : DataDrivenLogic, IDateTimeLogic
+    internal class DateTimeLogic : DataDrivenLogic, IDateTimeLogic
     {
         public DateTimeLogic(IBusinessLogicFactory BusinessLogicFactory, IRepositoryFactory RepositoryFactory = null) : base(BusinessLogicFactory, RepositoryFactory)
         {            
