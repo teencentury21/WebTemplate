@@ -3,20 +3,22 @@
 # 忽略 secret.yml 檔案
 # secret.yml
 
+# ignore folder
+bin/
+obj/
+build/
+.vs/
+
 # 忽略 config 目錄下的 database.yml 檔案
 # config/database.yml
 
 # 忽略所有 db 目錄下附檔名是 .sqlite3 的檔案
 # /db/*.sqlite3
-/.vs/*.*
-/build/*.*
-/Template_MVC/bin/*.*
-/Template_MVC/obj/*
+
 # 忽略所有附檔名是 .bak 的檔案
 *.bak
 *.pdb
 *.exe
 *.cache
-
 # 當然你要忽略自己也可以，只是通常不會這麼做
 # .gitignore
