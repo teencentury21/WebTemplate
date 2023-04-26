@@ -4,9 +4,6 @@ using SYS.BLL.Domain;
 using SYS.Model.SQL.Default;
 using SYS.Web.Session;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Template_MVC.Areas.Admin.Controllers
@@ -35,7 +32,7 @@ namespace Template_MVC.Areas.Admin.Controllers
         [HttpPost]
         public string QueryConfig(string input = "")
         {
-            var result = _IniLogic.GetItemByName(input);
+            var result = _IniLogic.GetMultiItemByName(input);
             
             return JsonConvert.SerializeObject(result);
         }

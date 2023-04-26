@@ -18,7 +18,8 @@ namespace SYS.BLL.Domain
         FunctionResultEntity CreateIniItem(INI input);
         FunctionResultEntity UpdateIniItem(INI input);
         FunctionResultEntity DeleteIniItem(int input);
-        List<INI> GetItemByName(string itemName = "");
+        INI GetSingleItemByName(string itemName);
+        List<INI> GetMultiItemByName(string itemName = "");
     }
     internal class IniLogic : DataDrivenLogic, IIniLogic
     {
@@ -77,7 +78,11 @@ namespace SYS.BLL.Domain
 
             return result;
         }
-        public List<INI> GetItemByName(string itemName = "")
+        public INI GetSingleItemByName(string itemName)
+        {
+            return _IniRepository.GetSingleItemByName(itemName);
+        }
+        public List<INI> GetMultiItemByName(string itemName = "")
         {
             return _IniRepository.GetMultiItemByName(itemName);
         }

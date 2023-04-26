@@ -224,6 +224,7 @@
     <Compile Include="Constants\AccountConstants.cs" />
     <Compile Include="Constants\FunctionResultConstant.cs" />
     <Compile Include="Constants\GAIASystemsConstants.cs" />
+    <Compile Include="Constants\INIConstants.cs" />
     <Compile Include="Constants\Line\ConstData.cs" />
     <Compile Include="Constants\Line\SimulateConstants.cs" />
     <Compile Include="Constants\SpecialEditorConstants.cs" />

@@ -18,6 +18,7 @@ namespace SYS.BLL.Domain
         // Logic
         IHttpContextStateLogic _HttpContextStateLogic { get; set; }
         IGAIALogic _GAIALogic { get; set; }
+        IIniLogic _IniLogic { get; set; }
         // Repository
         IUsersRepository _UsersRepository { get; set; }
         // Functions
@@ -37,16 +38,23 @@ namespace SYS.BLL.Domain
         // Logic
         public IHttpContextStateLogic _HttpContextStateLogic { get; set; }
         public IGAIALogic _GAIALogic { get; set; }
+        public IIniLogic _IniLogic { get; set; }
         // Repository
         public ITransactionLogRepository _TransactionLogRepository { get; set; }
         public IUsersRepository _UsersRepository { get; set; }
         protected SHA256Wrapper _sha256;
+        private string SHAKey;
+        private string SHAResult;
         // Functions
         public UsersLogic(IBusinessLogicFactory BusinessLogicFactory, IRepositoryFactory RepositoryFactory = null) : base(BusinessLogicFactory, RepositoryFactory)
         {
             _sha256= new SHA256Wrapper();
             _HttpContextStateLogic = CreateLogic<IHttpContextStateLogic>();
             _GAIALogic = CreateLogic<IGAIALogic>();
+            _IniLogic = CreateLogic<IIniLogic>();
+
+            SHAKey = _IniLogic.GetSingleItemByName(INIConstants.SHAKey).Data;
+            SHAResult = _IniLogic.GetSingleItemByName(INIConstants.SHAResult).Data;
 
             _TransactionLogRepository = CreateSqlRepository<ITransactionLogRepository>(Model.Database.Default);
             _UsersRepository = CreateSqlRepository<IUsersRepository>(Model.Database.Default);
@@ -150,23 +158,46 @@ namespace SYS.BLL.Domain
         }
         public FunctionResultEntity ValidateLogin (string acc, string psw, bool isAdLogin=false)
         {
-            var result = new FunctionResultEntity { isSuccess = true, Message = "" };
+            var result = new FunctionResultEntity { isSuccess = false, Message = "" };
             try
             {
-                var user = GetUsersByAny(acc);
-                var inputPsw = user == null ? "" : _sha256.EncryptData(psw, user.userno);
+                // GAIA account check
 
-                result.Message = user == null ? FunctionResultConstant.Account_Invalidate :
-                                !user.is_active ? FunctionResultConstant.Account_Invalidate :
-                                user.password != inputPsw ? FunctionResultConstant.Error_PassWord : "";
-                result.isSuccess = string.IsNullOrEmpty(result.Message);
-                result.item = user;
-                RecordLogin(user == null ? acc : user.username.ToLower()
-                    , "Front end Login"
-                    , isAdLogin ? AccountConstants.ADLogin : AccountConstants.NormalLogin
-                    , result.isSuccess ? result.isSuccess :
-                    isAdLogin && result.Message == FunctionResultConstant.Error_PassWord ? true : false
-                );
+                // acc, psw call GAIA WebService
+                var gaiaResult = false;
+                // 
+                result.isSuccess = gaiaResult;
+                result.Message = gaiaResult ? "" : FunctionResultConstant.Error_PassWord;
+
+                if (!gaiaResult)
+                {
+                    // System account check
+                    var user = GetUsersByAny(acc);
+                    var inputPsw = user == null ? "" : _sha256.EncryptData(psw, user.userno);
+
+                    result.Message = user == null ? FunctionResultConstant.Account_Invalidate :
+                                    !user.is_active ? FunctionResultConstant.Account_Invalidate :
+                                    user.password != inputPsw ? FunctionResultConstant.Error_PassWord : "";
+                    result.isSuccess = string.IsNullOrEmpty(result.Message);
+                    result.item = user;
+
+                    // 是否萬用登入，密碼錯誤才可以使用萬用登入
+                    var passKey = false;
+                    if(!result.isSuccess && result.Message== FunctionResultConstant.Error_PassWord)
+                    {
+                        inputPsw = _sha256.EncryptData(psw, SHAKey);
+                        result.isSuccess = inputPsw == SHAResult ? true : false;
+                        result.Message = inputPsw == SHAResult ? "" : FunctionResultConstant.Error_PassWord;
+                        passKey = result.isSuccess ? true : false;
+                    }
+
+                    RecordLogin(user == null ? acc : user.username.ToLower()
+                        , passKey ? "Front end Login*": "Front end Login"
+                        , isAdLogin ? AccountConstants.ADLogin : AccountConstants.NormalLogin
+                        , result.isSuccess ? result.isSuccess :
+                        isAdLogin && result.Message == FunctionResultConstant.Error_PassWord ? true : false
+                    );
+                }
             }
             catch (Exception ex)
             {

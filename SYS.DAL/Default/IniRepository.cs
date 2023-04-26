@@ -59,12 +59,12 @@ namespace SYS.DAL.Default
 
         public INI GetSingleItemByName(string itemName)
         {
-            var sql = itemName == "" ? "SELECT * FROM INI" : "SELECT * FROM INI WHERE Item = @Item";
+            var sql = itemName == "" ? "SELECT * FROM INI" : "SELECT TOP 1 * FROM INI WHERE Item = @Item ORDER BY id";
             return Connection.Query<INI>(sql, new { Item = itemName }).FirstOrDefault();
         }
         public List<INI> GetMultiItemByName(string itemName)
         {
-            var sql = itemName == "" ? "SELECT * FROM INI" : "SELECT * FROM INI WHERE Item = @Item";
+            var sql = itemName == "" ? "SELECT * FROM INI" : "SELECT * FROM INI WHERE Item = @Item ORDER BY id";
             return Connection.Query<INI>(sql, new { Item = itemName }).ToList();
         }
     }
