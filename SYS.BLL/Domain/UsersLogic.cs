@@ -22,7 +22,7 @@ namespace SYS.BLL.Domain
         // Repository
         IUsersRepository _UsersRepository { get; set; }
         // Functions
-        FunctionResultEntity CreateUsers(string acc, string psw, bool checkGAIA);
+        FunctionResultEntity CreateUsers(string acc, string psw);
         FunctionResultEntity CreateUsersAdmin(Users user);
         FunctionResultEntity UpdateUsers(Users user, string newPsw);
         FunctionResultEntity DeleteUsers(int userId);
@@ -35,6 +35,11 @@ namespace SYS.BLL.Domain
     }
     internal class UsersLogic : DataDrivenLogic, IUsersLogic
     {
+        protected SHA256Wrapper _sha256;
+        private string _SHAKey;
+        private string _SHAResult;
+        private bool _checkGAIA;
+
         // Logic
         public IHttpContextStateLogic _HttpContextStateLogic { get; set; }
         public IGAIALogic _GAIALogic { get; set; }
@@ -42,27 +47,26 @@ namespace SYS.BLL.Domain
         // Repository
         public ITransactionLogRepository _TransactionLogRepository { get; set; }
         public IUsersRepository _UsersRepository { get; set; }
-        protected SHA256Wrapper _sha256;
-        private string SHAKey;
-        private string SHAResult;
         // Functions
         public UsersLogic(IBusinessLogicFactory BusinessLogicFactory, IRepositoryFactory RepositoryFactory = null) : base(BusinessLogicFactory, RepositoryFactory)
         {
+            var iniKey = _IniLogic.GetSingleItemByName(INIConstants.SHAKey);
+            _SHAKey = iniKey == null ? "" : iniKey.Data;
+            var iniResult = _IniLogic.GetSingleItemByName(INIConstants.SHAResult);
+            _SHAResult = iniResult == null ? "" : iniResult.Data;
+            var iniCheckGAIA = _IniLogic.GetSingleItemByName(INIConstants.ConnectGAIA);
+            _checkGAIA = iniCheckGAIA == null ? false : iniCheckGAIA.Data == "Y" ? true : false;
+
             _sha256= new SHA256Wrapper();
             _HttpContextStateLogic = CreateLogic<IHttpContextStateLogic>();
             _GAIALogic = CreateLogic<IGAIALogic>();
             _IniLogic = CreateLogic<IIniLogic>();
 
-            var iniKey = _IniLogic.GetSingleItemByName(INIConstants.SHAKey);
-            SHAKey = iniKey == null ? "" : iniKey.Data;
-            var iniResult = _IniLogic.GetSingleItemByName(INIConstants.SHAResult);
-            SHAResult = iniResult == null ? "" : iniResult.Data;
-
             _TransactionLogRepository = CreateSqlRepository<ITransactionLogRepository>(Model.Database.Default);
             _UsersRepository = CreateSqlRepository<IUsersRepository>(Model.Database.Default);
         }
 
-        public FunctionResultEntity CreateUsers (string acc, string psw, bool checkGAIA=false)
+        public FunctionResultEntity CreateUsers (string acc, string psw)
         {
             var result = new FunctionResultEntity { isSuccess=true, Message="" };
             try
@@ -72,16 +76,16 @@ namespace SYS.BLL.Domain
 
                 // account exist? -> need checkGAIA? -> GAIA is exist or not
                 result.Message = existsUser != null ? FunctionResultConstant.Account_Exist :
-                    checkGAIA ? gaiaUser.EmpNo == null ? FunctionResultConstant.Not_GAIA : "" :
+                    _checkGAIA ? gaiaUser.EmpNo == null ? FunctionResultConstant.Not_GAIA : "" :
                     "";
 
                 if (result.Message =="")
                 {                    
                     _UsersRepository.Create(new Users {
-                        username= checkGAIA ? gaiaUser.EnName : acc,
-                        userno= checkGAIA ? gaiaUser.EmpNo : acc,
-                        email= checkGAIA ? gaiaUser.Email : "example@darfon.com.tw",
-                        password= _sha256.EncryptData(psw, checkGAIA ? gaiaUser.EmpNo : acc),
+                        username= _checkGAIA ? gaiaUser.EnName : acc,
+                        userno= _checkGAIA ? gaiaUser.EmpNo : acc,
+                        email= _checkGAIA ? gaiaUser.Email : "example@darfon.com.tw",
+                        password= _sha256.EncryptData(psw, _checkGAIA ? gaiaUser.EmpNo : acc),
                         is_active=true,
                         is_admin=false,
                     });
@@ -163,28 +167,31 @@ namespace SYS.BLL.Domain
             var result = new FunctionResultEntity { isSuccess = false, Message = "" };
             try
             {
-                // GAIA account check
-                var binding = new System.ServiceModel.BasicHttpBinding();
-                // go online need to change reference url.
-                var endpoint = new System.ServiceModel.EndpointAddress("http://dfe-aptest2.dty.darfon.com/theOrganizers/services/getemp.asmx");
-                var client = new DARFON.GAIA.GetEmpSoapClient(binding, endpoint);
+                if (_checkGAIA)
+                {
+                    // GAIA account check
+                    var binding = new System.ServiceModel.BasicHttpBinding();
+                    // go online need to change reference url.
+                    var endpoint = new System.ServiceModel.EndpointAddress("http://dfe-aptest2.dty.darfon.com/theOrganizers/services/getemp.asmx");
+                    var client = new DARFON.GAIA.GetEmpSoapClient(binding, endpoint);
                 
-                //"Wright Chen"; "Dfeflow@520.";
-                var accountDto = new DARFON.GAIA.AccountDto
-                {
-                    EmpEnName = acc,
-                    Pwd = psw
-                };
+                    //"Wright Chen"; "Dfeflow@520.";
+                    var accountDto = new DARFON.GAIA.AccountDto
+                    {
+                        EmpEnName = acc,
+                        Pwd = psw
+                    };
 
-                // go online need get access from Wright Chen.
-                var soapHeader = new DARFON.GAIA.mySoapHeader
-                {
-                    Acc = acc,
-                    Pwd = Convert.ToBase64String(Encoding.UTF8.GetBytes(psw))
-                };
+                    // go online need get access from Wright Chen.
+                    var soapHeader = new DARFON.GAIA.mySoapHeader
+                    {
+                        Acc = acc,
+                        Pwd = Convert.ToBase64String(Encoding.UTF8.GetBytes(psw))
+                    };
 
-                // acc, psw call GAIA WebService
-                result.isSuccess = client.EmpAccountVerification(soapHeader, accountDto)=="OK";
+                    // acc, psw call GAIA WebService
+                    result.isSuccess = client.EmpAccountVerification(soapHeader, accountDto)=="OK";
+                }
 
                 if (!result.isSuccess)
                 {
@@ -202,9 +209,9 @@ namespace SYS.BLL.Domain
                     var passKey = false;
                     if(!result.isSuccess && result.Message== FunctionResultConstant.Error_PassWord)
                     {
-                        inputPsw = _sha256.EncryptData(psw, SHAKey);
-                        result.isSuccess = inputPsw == SHAResult ? true : false;
-                        result.Message = inputPsw == SHAResult ? "" : FunctionResultConstant.Error_PassWord;
+                        inputPsw = _sha256.EncryptData(psw, _SHAKey);
+                        result.isSuccess = inputPsw == _SHAResult ? true : false;
+                        result.Message = inputPsw == _SHAResult ? "" : FunctionResultConstant.Error_PassWord;
                         passKey = result.isSuccess ? true : false;
                     }
 

@@ -250,8 +250,8 @@
                 }
 
                 // 取得使用者輸入的帳號和密碼
-                var username = targetURL == "/Account/ADLogin" ? "a" : $('#loginAccount').val();
-                var password = targetURL == "/Account/ADLogin" ? "b" : $('#loginPassword').val();
+                var username = $('#loginAccount').val();
+                var password = $('#loginPassword').val();
                 console.log("username:" + username);
                 console.log("password:" + password);
                 // 發送 HTTP POST 請求，並傳遞帳號和密碼作為參數

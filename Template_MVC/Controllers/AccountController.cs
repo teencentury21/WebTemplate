@@ -108,10 +108,8 @@ namespace Template_MVC.Controllers
         public ActionResult Regist(string username, string password)
         {
             var iniCheckGAIA = _IniLogic.GetSingleItemByName(INIConstants.ConnectGAIA);
-            var checkGAIA = iniCheckGAIA==null? false:
-                            iniCheckGAIA.Data == "Y" ? true : false;
 
-            var registResult = _UserLogic.CreateUsers(username, password, checkGAIA);
+            var registResult = _UserLogic.CreateUsers(username, password);
 
             if (registResult.isSuccess)
             {

@@ -16,6 +16,8 @@ CREATE TABLE Users(
 	remark VARCHAR(200) NOT NULL ,
 	cdt DATETIME2 NOT NULL ,
 );
+INSERT INTO Users (username, userno, password, is_active, is_active, email, role, lastlogin, setting, remark, cdt)
+VALUES('admin', 'admin', '93460bf7b593b082b1f5239db9969f7685ea9020f53a2e514a71c59dc2c08c67', '1', '1', 'admin@darfon.com.tw', '', GETDATE(), '', '', GETDATE())
 
 ALTER TABLE Users ADD CONSTRAINT df_Users_username DEFAULT '' FOR username
 ALTER TABLE Users ADD CONSTRAINT df_Users_userno DEFAULT '' FOR userno
@@ -78,6 +80,11 @@ CREATE TABLE INI (
     Cdt DATETIME NOT NULL DEFAULT GETDATE(),
     Udt DATETIME NOT NULL DEFAULT GETDATE()
 );
+INSERT INTO INI (Item, Data, Description, Editor, Cdt, Udt) VALUES ('Domain','Darfon','AD Login Domain','System',GETDATE(),GETDATE())
+INSERT INTO INI (Item, Data, Description, Editor, Cdt, Udt) VALUES ('GAIA','Y','Connect with GAIA','System',GETDATE(),GETDATE())
+INSERT INTO INI (Item, Data, Description, Editor, Cdt, Udt) VALUES ('SHAKey','DFE','SHAKey','System',GETDATE(),GETDATE())
+INSERT INTO INI (Item, Data, Description, Editor, Cdt, Udt) VALUES ('j04m/','d871cfd11d4e9d8024d6491b60ea62a24c3d5b149b5fb71238271632c0b31659','SHA Result','System',GETDATE(),GETDATE())
+
 
 -- Transaction_Log
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Transaction_Log]') AND type in (N'U')) DROP TABLE [dbo].[Transaction_Log] 
