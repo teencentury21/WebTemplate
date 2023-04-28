@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmpByEmpID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EmpID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmpByEmpIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEmpByEmpIDResult" type="tns:EmpALL" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="EmpALL">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="EmpID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmpName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmpEnName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SiteCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Active" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreateDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="EditDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="GaiaID" nillable="true" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="FlowerID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmpType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EMail" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="HireDay" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="LeaveDay" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sex" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="birthday" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmpInfos" type="tns:ArrayOfEmpInfo_Dto" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfEmpInfo_Dto">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EmpInfo_Dto" nillable="true" type="tns:EmpInfo_Dto" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EmpInfo_Dto">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="EmpID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmpNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmpName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmpEnName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SiteID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeptCode" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetEmpByEmpNo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EmpNo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmpByEmpNoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEmpByEmpNoResult" type="tns:EmpALL" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmpByEmpEnName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EmpEnName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmpByEmpEnNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEmpByEmpEnNameResult" type="tns:EmpALL" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmpByDeptCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeptCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Active" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmpByDeptCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEmpByDeptCodeResult" type="tns:ArrayOfEmpALL" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfEmpALL">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EmpALL" nillable="true" type="tns:EmpALL" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetEmpBySiteCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SiteCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Active" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmpBySiteCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEmpBySiteCodeResult" type="tns:ArrayOfEmpALL" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetChangeDateByDate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Stdate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="EdDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetChangeDateByDateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetChangeDateByDateResult" type="tns:ArrayOfEmpALLMain" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfEmpALLMain">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EmpALLMain" nillable="true" type="tns:EmpALLMain" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EmpALLMain">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="EmpID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmpName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmpEnName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SiteCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmpNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Active" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreateDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="EditDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="GaiaID" nillable="true" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="FlowerID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmpType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EMail" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="HireDay" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="LeaveDay" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sex" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="birthday" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeptCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="JobClass" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Rank" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ext" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetALLEmp">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="site" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Active" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetALLEmpResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetALLEmpResult" type="tns:ArrayOfEmpALLMain" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EmpAccountVerification">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Empacc" type="tns:AccountDto" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AccountDto">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="EmpID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmpNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmpEnName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Pwd" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="EmpAccountVerificationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EmpAccountVerificationResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="mySoapHeader" type="tns:mySoapHeader" />
+      <s:complexType name="mySoapHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Acc" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Pwd" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEmpByEmpIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEmpByEmpID" />
+  </wsdl:message>
+  <wsdl:message name="GetEmpByEmpIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEmpByEmpIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEmpByEmpNoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEmpByEmpNo" />
+  </wsdl:message>
+  <wsdl:message name="GetEmpByEmpNoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEmpByEmpNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEmpByEmpEnNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEmpByEmpEnName" />
+  </wsdl:message>
+  <wsdl:message name="GetEmpByEmpEnNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEmpByEmpEnNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEmpByDeptCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEmpByDeptCode" />
+  </wsdl:message>
+  <wsdl:message name="GetEmpByDeptCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEmpByDeptCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEmpBySiteCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEmpBySiteCode" />
+  </wsdl:message>
+  <wsdl:message name="GetEmpBySiteCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEmpBySiteCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetChangeDateByDateSoapIn">
+    <wsdl:part name="parameters" element="tns:GetChangeDateByDate" />
+  </wsdl:message>
+  <wsdl:message name="GetChangeDateByDateSoapOut">
+    <wsdl:part name="parameters" element="tns:GetChangeDateByDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetALLEmpSoapIn">
+    <wsdl:part name="parameters" element="tns:GetALLEmp" />
+  </wsdl:message>
+  <wsdl:message name="GetALLEmpSoapOut">
+    <wsdl:part name="parameters" element="tns:GetALLEmpResponse" />
+  </wsdl:message>
+  <wsdl:message name="EmpAccountVerificationSoapIn">
+    <wsdl:part name="parameters" element="tns:EmpAccountVerification" />
+  </wsdl:message>
+  <wsdl:message name="EmpAccountVerificationSoapOut">
+    <wsdl:part name="parameters" element="tns:EmpAccountVerificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="EmpAccountVerificationmySoapHeader">
+    <wsdl:part name="mySoapHeader" element="tns:mySoapHeader" />
+  </wsdl:message>
+  <wsdl:portType name="GetEmpSoap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmpByEmpID">
+      <wsdl:input message="tns:GetEmpByEmpIDSoapIn" />
+      <wsdl:output message="tns:GetEmpByEmpIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmpByEmpNo">
+      <wsdl:input message="tns:GetEmpByEmpNoSoapIn" />
+      <wsdl:output message="tns:GetEmpByEmpNoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmpByEmpEnName">
+      <wsdl:input message="tns:GetEmpByEmpEnNameSoapIn" />
+      <wsdl:output message="tns:GetEmpByEmpEnNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmpByDeptCode">
+      <wsdl:input message="tns:GetEmpByDeptCodeSoapIn" />
+      <wsdl:output message="tns:GetEmpByDeptCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmpBySiteCode">
+      <wsdl:input message="tns:GetEmpBySiteCodeSoapIn" />
+      <wsdl:output message="tns:GetEmpBySiteCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetChangeDateByDate">
+      <wsdl:input message="tns:GetChangeDateByDateSoapIn" />
+      <wsdl:output message="tns:GetChangeDateByDateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetALLEmp">
+      <wsdl:input message="tns:GetALLEmpSoapIn" />
+      <wsdl:output message="tns:GetALLEmpSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EmpAccountVerification">
+      <wsdl:input message="tns:EmpAccountVerificationSoapIn" />
+      <wsdl:output message="tns:EmpAccountVerificationSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GetEmpSoap" type="tns:GetEmpSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmpByEmpID">
+      <soap:operation soapAction="http://tempuri.org/GetEmpByEmpID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmpByEmpNo">
+      <soap:operation soapAction="http://tempuri.org/GetEmpByEmpNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmpByEmpEnName">
+      <soap:operation soapAction="http://tempuri.org/GetEmpByEmpEnName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmpByDeptCode">
+      <soap:operation soapAction="http://tempuri.org/GetEmpByDeptCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmpBySiteCode">
+      <soap:operation soapAction="http://tempuri.org/GetEmpBySiteCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChangeDateByDate">
+      <soap:operation soapAction="http://tempuri.org/GetChangeDateByDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetALLEmp">
+      <soap:operation soapAction="http://tempuri.org/GetALLEmp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EmpAccountVerification">
+      <soap:operation soapAction="http://tempuri.org/EmpAccountVerification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:EmpAccountVerificationmySoapHeader" part="mySoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="GetEmpSoap12" type="tns:GetEmpSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmpByEmpID">
+      <soap12:operation soapAction="http://tempuri.org/GetEmpByEmpID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmpByEmpNo">
+      <soap12:operation soapAction="http://tempuri.org/GetEmpByEmpNo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmpByEmpEnName">
+      <soap12:operation soapAction="http://tempuri.org/GetEmpByEmpEnName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmpByDeptCode">
+      <soap12:operation soapAction="http://tempuri.org/GetEmpByDeptCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmpBySiteCode">
+      <soap12:operation soapAction="http://tempuri.org/GetEmpBySiteCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChangeDateByDate">
+      <soap12:operation soapAction="http://tempuri.org/GetChangeDateByDate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetALLEmp">
+      <soap12:operation soapAction="http://tempuri.org/GetALLEmp" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EmpAccountVerification">
+      <soap12:operation soapAction="http://tempuri.org/EmpAccountVerification" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:EmpAccountVerificationmySoapHeader" part="mySoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GetEmp">
+    <wsdl:port name="GetEmpSoap" binding="tns:GetEmpSoap">
+      <soap:address location="http://dfe-aptest2.dty.darfon.com/theOrganizers/services/getemp.asmx" />
+    </wsdl:port>
+    <wsdl:port name="GetEmpSoap12" binding="tns:GetEmpSoap12">
+      <soap12:address location="http://dfe-aptest2.dty.darfon.com/theOrganizers/services/getemp.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

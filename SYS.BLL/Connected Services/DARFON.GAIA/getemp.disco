@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="http://dfe-aptest2.dty.darfon.com/theOrganizers/services/getemp.asmx?wsdl" docRef="http://dfe-aptest2.dty.darfon.com/theOrganizers/services/getemp.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://dfe-aptest2.dty.darfon.com/theOrganizers/services/getemp.asmx" xmlns:q1="http://tempuri.org/" binding="q1:GetEmpSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://dfe-aptest2.dty.darfon.com/theOrganizers/services/getemp.asmx" xmlns:q2="http://tempuri.org/" binding="q2:GetEmpSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

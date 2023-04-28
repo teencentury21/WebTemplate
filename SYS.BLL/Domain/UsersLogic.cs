@@ -9,7 +9,7 @@ using SYS.Utilities.Security.Cryptography;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Text;
 
 namespace SYS.BLL.Domain
 {
@@ -53,8 +53,10 @@ namespace SYS.BLL.Domain
             _GAIALogic = CreateLogic<IGAIALogic>();
             _IniLogic = CreateLogic<IIniLogic>();
 
-            SHAKey = _IniLogic.GetSingleItemByName(INIConstants.SHAKey).Data;
-            SHAResult = _IniLogic.GetSingleItemByName(INIConstants.SHAResult).Data;
+            var iniKey = _IniLogic.GetSingleItemByName(INIConstants.SHAKey);
+            SHAKey = iniKey == null ? "" : iniKey.Data;
+            var iniResult = _IniLogic.GetSingleItemByName(INIConstants.SHAResult);
+            SHAResult = iniResult == null ? "" : iniResult.Data;
 
             _TransactionLogRepository = CreateSqlRepository<ITransactionLogRepository>(Model.Database.Default);
             _UsersRepository = CreateSqlRepository<IUsersRepository>(Model.Database.Default);
@@ -162,14 +164,29 @@ namespace SYS.BLL.Domain
             try
             {
                 // GAIA account check
+                var binding = new System.ServiceModel.BasicHttpBinding();
+                // go online need to change reference url.
+                var endpoint = new System.ServiceModel.EndpointAddress("http://dfe-aptest2.dty.darfon.com/theOrganizers/services/getemp.asmx");
+                var client = new DARFON.GAIA.GetEmpSoapClient(binding, endpoint);
+                
+                //"Wright Chen"; "Dfeflow@520.";
+                var accountDto = new DARFON.GAIA.AccountDto
+                {
+                    EmpEnName = acc,
+                    Pwd = psw
+                };
+
+                // go online need get access from Wright Chen.
+                var soapHeader = new DARFON.GAIA.mySoapHeader
+                {
+                    Acc = acc,
+                    Pwd = Convert.ToBase64String(Encoding.UTF8.GetBytes(psw))
+                };
 
                 // acc, psw call GAIA WebService
-                var gaiaResult = false;
-                // 
-                result.isSuccess = gaiaResult;
-                result.Message = gaiaResult ? "" : FunctionResultConstant.Error_PassWord;
+                result.isSuccess = client.EmpAccountVerification(soapHeader, accountDto)=="OK";
 
-                if (!gaiaResult)
+                if (!result.isSuccess)
                 {
                     // System account check
                     var user = GetUsersByAny(acc);
@@ -192,11 +209,23 @@ namespace SYS.BLL.Domain
                     }
 
                     RecordLogin(user == null ? acc : user.username.ToLower()
-                        , passKey ? "Front end Login*": "Front end Login"
+                        , passKey ? $"Front end Login*; {result.Message};": $"Front end Login; {result.Message};"
                         , isAdLogin ? AccountConstants.ADLogin : AccountConstants.NormalLogin
                         , result.isSuccess ? result.isSuccess :
                         isAdLogin && result.Message == FunctionResultConstant.Error_PassWord ? true : false
                     );
+                }
+                else
+                {
+                    result.item = new Users
+                    {
+                        username = acc.ToLower(),
+                        role = "GAIA",
+                        is_active=true,
+                        is_admin=false,
+                    };
+                    RecordLogin(acc, "Front end Login with GAIA", AccountConstants.NormalLogin, result.isSuccess);
+
                 }
             }
             catch (Exception ex)

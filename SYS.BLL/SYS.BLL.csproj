@@ -185,6 +185,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Text.Encodings.Web, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Text.Encodings.Web.7.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
     </Reference>
@@ -221,6 +222,11 @@
     <Compile Include="Common\Mail\MailContentKey.cs" />
     <Compile Include="Common\Mail\MailContentStatus.cs" />
     <Compile Include="Common\Mail\MailDataContent.cs" />
+    <Compile Include="Connected Services\DARFON.GAIA\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Constants\AccountConstants.cs" />
     <Compile Include="Constants\FunctionResultConstant.cs" />
     <Compile Include="Constants\GAIASystemsConstants.cs" />
@@ -260,9 +266,26 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\DARFON.GAIA\getemp.disco" />
+    <None Include="Connected Services\DARFON.GAIA\configuration91.svcinfo" />
+    <None Include="Connected Services\DARFON.GAIA\configuration.svcinfo" />
+    <None Include="Connected Services\DARFON.GAIA\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="LogicMapping.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Connected Services\DARFON.GAIA\getemp.wsdl" />
+    <None Include="Connected Services\DARFON.GAIA\SYS.BLL.DARFON.GAIA.EmpAccountVerificationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\DARFON.GAIA\SYS.BLL.DARFON.GAIA.EmpALL.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\DARFON.GAIA\SYS.BLL.DARFON.GAIA.EmpALLMain.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -271,7 +294,9 @@
       <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\DARFON.ChatBot\chatbotwebservice.disco" />
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -313,6 +338,9 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>SYS_BLL_DARFON_ChatBot_ChatBotWebService</CachedSettingsPropName>
     </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\DARFON.GAIA\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

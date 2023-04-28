@@ -16,6 +16,7 @@ namespace Template_MVC.Controllers
     {
         private readonly IBusinessLogicFactory _factory;
         private IUsersLogic _UserLogic;
+        private IIniLogic _IniLogic;
 
         public AccountController() : this(new BusinessLogicFactory())
         {
@@ -25,6 +26,7 @@ namespace Template_MVC.Controllers
         {
             _factory = factory;
             _UserLogic = factory.GetLogic<IUsersLogic>();
+            _IniLogic = factory.GetLogic<IIniLogic>();
         }
 
         // GET: Account
@@ -58,22 +60,23 @@ namespace Template_MVC.Controllers
                 return Json(new { success = check.isSuccess, message = check.Message });
             }
 
-            var domain = ConfigurationManager.AppSettings["Domain"];
-            string adPath = "LDAP://" + domain;
+            var iniDomain = _IniLogic.GetSingleItemByName(INIConstants.Domain);
+            var domain = iniDomain == null ? "Darfon" : iniDomain.Data;
+            string adPath = $"LDAP://{domain}";
             LdapAuthentication adAuth = new LdapAuthentication(adPath);
 
             try
             {
                 if (adAuth.IsAuthenticated(domain, username, password))
-                {                    
+                {
                     // check account exist in user table
-                    var loginResult = ProcessLoginResult(_UserLogic.ValidateLogin(username, password, true),true);
+                    var loginResult = ProcessLoginResult(_UserLogic.ValidateLogin(username, password, true), true);
                     return Json(new { success = loginResult.isSuccess, message = loginResult.Message });
                 }
                 else
                 {
                     // Account 登入                    
-                    return Json(new { success = false, message = App_GlobalResources.Resource.ErrorPassword });                    
+                    return Json(new { success = false, message = App_GlobalResources.Resource.ErrorPassword });
                 }
             }
             catch (Exception ex)
@@ -88,8 +91,6 @@ namespace Template_MVC.Controllers
                     return Json(new { success = false, message = $"{ex.Message}" });
                 }
             }
-
-
         }
         
         // Post Account/ Logout
@@ -106,7 +107,10 @@ namespace Template_MVC.Controllers
         [HttpPost]
         public ActionResult Regist(string username, string password)
         {
-            var checkGAIA = ConfigurationManager.AppSettings["GAIA"] == "Y" ? true : false;
+            var iniCheckGAIA = _IniLogic.GetSingleItemByName(INIConstants.ConnectGAIA);
+            var checkGAIA = iniCheckGAIA==null? false:
+                            iniCheckGAIA.Data == "Y" ? true : false;
+
             var registResult = _UserLogic.CreateUsers(username, password, checkGAIA);
 
             if (registResult.isSuccess)
@@ -172,6 +176,7 @@ namespace Template_MVC.Controllers
                 SessionManager.UserName = user.username;
                 SessionManager.IsLogin = "Y";
                 SessionManager.IsAdmin = user.is_admin ? "Y" : "";
+                SessionManager.UserRole = user.role == null ? "" : user.role;
 
                 result.isSuccess = true;
                 return result;
@@ -183,7 +188,7 @@ namespace Template_MVC.Controllers
                 SessionManager.UserName = user.username;
                 SessionManager.IsLogin = "Y";
                 SessionManager.IsAdmin = user.is_admin ? "Y" : "";
-
+                SessionManager.UserRole = user.role == null ? "" : user.role;
                 result.isSuccess = true;
             }
             else

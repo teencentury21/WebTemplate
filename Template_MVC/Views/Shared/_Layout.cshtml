@@ -18,7 +18,6 @@
         <!-- Nav header-->
         <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
             <div class="container">
-                @*<a class="navbar-brand" href="#">Navbar</a>*@
                 <a class="navbar-brand" href="~/">
                     <img src="~/Images/Darfon_logo_w.png" alt="Bootstrap" width="90" height="25">
                 </a>
@@ -62,9 +61,6 @@
                                 <li><a class="dropdown-item" href="#">Something else here</a></li>
                             </ul>
                         </li>
-                        @*<li class="nav-item">
-                <a class="nav-link disabled">Disabled</a>
-            </li>*@
                     </ul>
                     @{ 
                         if (HttpContext.Current.Session["userName"] == null)
@@ -92,10 +88,6 @@
                             </ul>
                         </li>
                     </ul>
-                    @*<form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>*@
                 </div>
             </div>
         </nav>
@@ -110,10 +102,6 @@
                     </a>
                     <ul class="nav col-md-4 justify-content-end">
                         <li class="nav-item"><a href="~/" class="nav-link px-2 text-muted">@Resources.Resource.Home</a></li>
-                        @*<li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>*@
                     </ul>
                 </footer>
             </div>
@@ -157,7 +145,6 @@
                                             <input id="btn_login" name="btn_login" type="button" class="w-100 mb-2 btn btn-lg rounded-3 btn-primary mx-2" value="@Resources.Resource.LoginTitle">
                                             <input id="btn_loginAD" name="btn_loginAD" type="button" class="w-100 mb-2 btn btn-lg rounded-3 btn-primary mx-2" value="@Resources.Resource.ADLogin">
                                         </div>
-                                        @*<input id="btn_login" name="btn_login" type="button" class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" value="@Resources.Resource.LoginTitle">*@
                                     </form>
                                 </div>
                             </div>
@@ -243,25 +230,30 @@
             function login(targetURL) {
 
                 const val = $('input[name="loginCaptcha"]').val();
-                if (val === "") {
-                    alert('@Resources.Resource.EmptyCaptcha');
-                    return
-                }
-                if (loginCaptcha.valid(val)) {
-                    // success
-                    loginCaptcha.refresh();                    
-                } else {
-                    // failure
-                    $("#lbl_errMsg").text('@Resources.Resource.ErrorCaptcha');
-                    alert('@Resources.Resource.ErrorCaptcha');
-                    $('input[name="loginCaptcha"]').val('');
-                    return
+
+                // account login need captcha test
+                if (targetURL != "/Account/ADLogin") {
+                    if (val === "") {
+                        alert('@Resources.Resource.EmptyCaptcha');
+                        return
+                    }
+                    if (loginCaptcha.valid(val)) {
+                        // success
+                        loginCaptcha.refresh();                    
+                    } else {
+                        // failure
+                        $("#lbl_errMsg").text('@Resources.Resource.ErrorCaptcha');
+                        alert('@Resources.Resource.ErrorCaptcha');
+                        $('input[name="loginCaptcha"]').val('');
+                        return
+                    }
                 }
 
                 // 取得使用者輸入的帳號和密碼
-                var username = $('#loginAccount').val();
-                var password = $('#loginPassword').val();
-
+                var username = targetURL == "/Account/ADLogin" ? "a" : $('#loginAccount').val();
+                var password = targetURL == "/Account/ADLogin" ? "b" : $('#loginPassword').val();
+                console.log("username:" + username);
+                console.log("password:" + password);
                 // 發送 HTTP POST 請求，並傳遞帳號和密碼作為參數
                 $.ajax({
                     type: "POST",
@@ -352,10 +344,6 @@
             var modal = new bootstrap.Modal(myModal)
             var tab = new bootstrap.Tab(myModalTab)
 
-            //document.querySelector('.btn-primary').addEventListener('click', function () {
-            //    modal.show()
-            //    tab.show('login-tab')
-            //});
         </script>
     </body>
 </html>
