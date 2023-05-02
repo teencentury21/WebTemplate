@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using Template_MVC.Controllers.PageControl;
 
 namespace Template_MVC.Controllers
 {
-    public class QueryController : BaseController
+    public class QueryController : ADPageController
     {
         public ActionResult Localization()
         {

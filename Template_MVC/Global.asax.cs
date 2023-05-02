@@ -30,10 +30,10 @@ namespace Template_MVC
         protected void Application_AcquireRequestState(Object sender, EventArgs e)
         {
             HttpContext context = HttpContext.Current;
-            var languageSession = "en";
+            var languageSession = "zh-TW";
             if (context != null && context.Session != null)
             {
-                languageSession = context.Session["lang"] != null ? context.Session["lang"].ToString() : "en";
+                languageSession = context.Session["lang"] != null ? context.Session["lang"].ToString() : "zh-TW";
             }
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(languageSession);
             Thread.CurrentThread.CurrentCulture = new CultureInfo(languageSession);

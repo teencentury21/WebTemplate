@@ -1,19 +1,22 @@
 ﻿<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width" />
-        <title>@ViewBag.Title</title>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
 
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        
-        @Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")
-        @Scripts.Render("~/bundles/captcha")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/vue")
+    @Scripts.Render("~/bundles/axios")
 
-        @RenderSection("scripts", required: false)
-    </head>
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/captcha")
+
+    @RenderSection("scripts", required: false)
+</head>
     <body>
         <!-- Nav header-->
         <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
@@ -34,18 +37,9 @@
                                 @Resources.Resource.Query
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href='/Query/Localization'>Localization</a></li>
-                                @*<li><a class="dropdown-item" href='/Query/Localization'>@Resource.Content.Language</a></li>*@
-                                @*<li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="https://google.com">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>*@
+                                <li><a class="dropdown-item" href='/Query/Localization'>Localization</a></li>                                
                             </ul>
                         </li>
-
-                        @*<li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>*@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 @Resources.Resource.Function
@@ -172,7 +166,7 @@
                                             <label for="registCaptcha">@Resources.Resource.Captcha</label>
                                         </div>
 
-                                        <input id="btn_regist" name="btn_login" type="button" class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" value="@Resources.Resource.RegistTitle">
+                                        <input id="btn_regist" name="btn_regist" type="button" class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" value="@Resources.Resource.RegistTitle">
                                     </form>
                                 </div>
                             </div>

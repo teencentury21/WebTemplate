@@ -5,9 +5,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Template_MVC.Controllers
+namespace Template_MVC.Controllers.PageControl
 {
-    public class BaseController : Controller
+    public class ADPageController : BaseController
     {
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
@@ -28,6 +28,6 @@ namespace Template_MVC.Controllers
                 // not login
                 filterContext.Result = RedirectToAction("Unauthorized", "Error", new { area = "" });
             }
-        }        
+        }
     }
 }

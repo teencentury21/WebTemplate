@@ -217,4 +217,40 @@
     <value>Function</value>
     <comment>Nav bar</comment>
   </data>
+  <data name="User_ChangePassword" xml:space="preserve">
+    <value>Change password</value>
+    <comment>User</comment>
+  </data>
+  <data name="UserPL_CurrentPassWordPL" xml:space="preserve">
+    <value>Please enter current password</value>
+    <comment>User Placeholder</comment>
+  </data>
+  <data name="User_CurrentPassword" xml:space="preserve">
+    <value>Current password:</value>
+    <comment>User</comment>
+  </data>
+  <data name="User_NewPassword" xml:space="preserve">
+    <value>New password:</value>
+    <comment>User</comment>
+  </data>
+  <data name="User_ConfrimNewPassword" xml:space="preserve">
+    <value>Confirm new password:</value>
+    <comment>User</comment>
+  </data>
+  <data name="UserPL_NewPassword" xml:space="preserve">
+    <value>Enter a new password.</value>
+    <comment>User Placeholder</comment>
+  </data>
+  <data name="UserPL_ConfrimNewPassword" xml:space="preserve">
+    <value>Confirm new password</value>
+    <comment>UserPlaceholder</comment>
+  </data>
+  <data name="User_ChangePwsSuccess" xml:space="preserve">
+    <value>Password changed successfully!</value>
+    <comment>User</comment>
+  </data>
+  <data name="User_OriginalPswError" xml:space="preserve">
+    <value>Incorrect original password!</value>
+    <comment>User</comment>
+  </data>
 </root>

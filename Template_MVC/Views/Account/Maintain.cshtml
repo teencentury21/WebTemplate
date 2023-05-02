@@ -3,5 +3,77 @@
     ViewBag.Title = "User maintain";
 }
 
-<h2>User maintain</h2>
+<h2>@Resources.Resource.User_ChangePassword</h2>
+<hr />
 
+<div id="app" class="container tab-pane active">    
+    <div class="container">    
+        
+        <div class="mb-3">
+            <label for="currentPassword" class="form-label">@Resources.Resource.User_CurrentPassword</label>
+            <input type="password" class="form-control" id="currentPassword" name="currentPassword" required>
+            <div class="invalid-feedback">
+                @Resources.Resource.UserPL_CurrentPassWordPL
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="newPassword" class="form-label">@Resources.Resource.User_NewPassword</label>
+            <input type="password" class="form-control" id="newPassword" name="newPassword" required>
+            <div class="invalid-feedback">
+                @Resources.Resource.UserPL_NewPassword
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="confirmNewPassword" class="form-label">@Resources.Resource.User_ConfrimNewPassword</label>
+            <input type="password" class="form-control" id="confirmNewPassword" name="confirmNewPassword" required>
+            <div class="invalid-feedback">
+                @Resources.Resource.UserPL_ConfrimNewPassword
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary" v-on:click="ChangePassword()" >提交</button>
+        
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+
+    });
+    new Vue({
+        el: '#app',
+        data: {
+            currentUser: {
+                username: "",
+                userno: "",
+                password: "123",
+                remark:""
+            }
+        },
+        created() {
+            // alert('Hello');
+        },
+        mounted() {
+            // this.fetchUsers();
+        },
+        methods: {
+            ChangePassword() {
+                this.currentUser.password = $("#currentPassword").val();
+                this.currentUser.remark = $("#newPassword").val();
+                if ($("#newPassword").val() != $("#confirmNewPassword").val()) {
+                    alert('@Resources.Resource.PasswordNotSame');
+                } else {
+                    axios.post('/Account/UserChangePassword', {
+                        user: this.currentUser
+                    })
+                    .then(response => {
+                        console.log(response);
+                        alert(response.data.message);
+                        location.reload();                        
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+                }
+            }
+        }
+    });
+</script>

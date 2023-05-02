@@ -207,4 +207,31 @@
   <data name="Function" xml:space="preserve">
     <value>Tính năng:</value>
   </data>
+  <data name="User_ChangePassword" xml:space="preserve">
+    <value>Thay đổi Mật khẩu…</value>
+  </data>
+  <data name="UserPL_CurrentPassWordPL" xml:space="preserve">
+    <value>Vui lòng nhập mật khẩu hiện tại!</value>
+  </data>
+  <data name="User_CurrentPassword" xml:space="preserve">
+    <value>mật khẩu hiện tại</value>
+  </data>
+  <data name="User_NewPassword" xml:space="preserve">
+    <value>Mật khẩu mới</value>
+  </data>
+  <data name="User_ConfrimNewPassword" xml:space="preserve">
+    <value>Xác nhận Mật khẩu Mới</value>
+  </data>
+  <data name="UserPL_NewPassword" xml:space="preserve">
+    <value>Nhập một mật khẩu mới.</value>
+  </data>
+  <data name="UserPL_ConfrimNewPassword" xml:space="preserve">
+    <value>Xác nhận Mật khẩu Mới</value>
+  </data>
+  <data name="User_ChangePwsSuccess" xml:space="preserve">
+    <value>Mật khẩu đã thay đổi thành công!</value>
+  </data>
+  <data name="User_OriginalPswError" xml:space="preserve">
+    <value>Mật khẩu ban đầu không chính xác!</value>
+  </data>
 </root>

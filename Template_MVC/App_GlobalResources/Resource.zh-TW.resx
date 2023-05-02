@@ -207,4 +207,31 @@
   <data name="Function" xml:space="preserve">
     <value>功能</value>
   </data>
+  <data name="User_ChangePassword" xml:space="preserve">
+    <value>變更密碼</value>
+  </data>
+  <data name="UserPL_CurrentPassWordPL" xml:space="preserve">
+    <value>請輸入當前密碼</value>
+  </data>
+  <data name="User_CurrentPassword" xml:space="preserve">
+    <value>當前密碼</value>
+  </data>
+  <data name="User_NewPassword" xml:space="preserve">
+    <value>新密碼</value>
+  </data>
+  <data name="User_ConfrimNewPassword" xml:space="preserve">
+    <value>確認新密碼</value>
+  </data>
+  <data name="UserPL_NewPassword" xml:space="preserve">
+    <value>請輸入新密碼</value>
+  </data>
+  <data name="UserPL_ConfrimNewPassword" xml:space="preserve">
+    <value>確認新密碼</value>
+  </data>
+  <data name="User_ChangePwsSuccess" xml:space="preserve">
+    <value>修改密碼成功</value>
+  </data>
+  <data name="User_OriginalPswError" xml:space="preserve">
+    <value>原始密碼錯誤</value>
+  </data>
 </root>

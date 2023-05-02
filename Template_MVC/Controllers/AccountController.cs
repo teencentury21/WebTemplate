@@ -6,8 +6,8 @@ using SYS.Model.SQL.Default;
 using SYS.Utilities.Security.LDAP;
 using SYS.Web.Session;
 using System;
-using System.Configuration;
 using System.Web.Mvc;
+using Template_MVC.Controllers.PageControl;
 using Template_MVC.Entity;
 
 namespace Template_MVC.Controllers
@@ -15,7 +15,7 @@ namespace Template_MVC.Controllers
     public class AccountController : Controller
     {
         private readonly IBusinessLogicFactory _factory;
-        private IUsersLogic _UserLogic;
+        private IUsersLogic _UserLogic;        
         private IIniLogic _IniLogic;
 
         public AccountController() : this(new BusinessLogicFactory())
@@ -214,8 +214,26 @@ namespace Template_MVC.Controllers
 
         public ActionResult Maintain()
         {
+            
             return View();
         }
+        public ActionResult UserChangePassword(Users user)
+        {
+            var responseMsg = "";
+            if (SessionManager.IsLogin == "Y") {
+                user.username = SessionManager.UserName;
 
+                var checkPassWord = _UserLogic.UserChangePassword(user);
+                responseMsg = checkPassWord.Message == FunctionResultConstant.Error_PassWord ? App_GlobalResources.Resource.User_OriginalPswError :
+                    checkPassWord.Message == FunctionResultConstant.Account_Invalidate ? App_GlobalResources.Resource.AccInvalidate : App_GlobalResources.Resource.User_ChangePwsSuccess;
+                _UserLogic.RecordLogin(user.username, "User Change Password", "Front UI", checkPassWord.isSuccess);
+
+                return Json(new { success = checkPassWord.isSuccess, message = responseMsg });
+            }
+            else
+            {
+                return RedirectToAction("Home");
+            }
+        }
     }
 }

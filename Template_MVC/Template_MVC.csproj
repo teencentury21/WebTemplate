@@ -228,7 +228,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\PageControl\ADPageController.cs" />
+    <Compile Include="Controllers\PageControl\BaseController.cs" />
     <Compile Include="Controllers\CaptchaController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -655,6 +656,7 @@
     <Folder Include="Areas\Admin\Views\Base\" />
     <Folder Include="Resources\" />
     <Folder Include="Views\Admin\" />
+    <Folder Include="Views\ADPage\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Captcha\" />
     <Folder Include="Views\ProjectBase\" />

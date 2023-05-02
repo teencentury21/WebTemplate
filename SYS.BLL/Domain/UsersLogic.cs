@@ -32,6 +32,7 @@ namespace SYS.BLL.Domain
         FunctionResultEntity ValidateAdminLogin(string acc, string psw);
         FunctionResultEntity ValidateLoginBlock(string acc);
         void RecordLogin(string account, string descr, string source, bool result);
+        FunctionResultEntity UserChangePassword(Users input);
     }
     internal class UsersLogic : DataDrivenLogic, IUsersLogic
     {
@@ -50,17 +51,18 @@ namespace SYS.BLL.Domain
         // Functions
         public UsersLogic(IBusinessLogicFactory BusinessLogicFactory, IRepositoryFactory RepositoryFactory = null) : base(BusinessLogicFactory, RepositoryFactory)
         {
+
+            _sha256= new SHA256Wrapper();
+            _HttpContextStateLogic = CreateLogic<IHttpContextStateLogic>();
+            _GAIALogic = CreateLogic<IGAIALogic>();
+            _IniLogic = CreateLogic<IIniLogic>();
+
             var iniKey = _IniLogic.GetSingleItemByName(INIConstants.SHAKey);
             _SHAKey = iniKey == null ? "" : iniKey.Data;
             var iniResult = _IniLogic.GetSingleItemByName(INIConstants.SHAResult);
             _SHAResult = iniResult == null ? "" : iniResult.Data;
             var iniCheckGAIA = _IniLogic.GetSingleItemByName(INIConstants.ConnectGAIA);
             _checkGAIA = iniCheckGAIA == null ? false : iniCheckGAIA.Data == "Y" ? true : false;
-
-            _sha256= new SHA256Wrapper();
-            _HttpContextStateLogic = CreateLogic<IHttpContextStateLogic>();
-            _GAIALogic = CreateLogic<IGAIALogic>();
-            _IniLogic = CreateLogic<IIniLogic>();
 
             _TransactionLogRepository = CreateSqlRepository<ITransactionLogRepository>(Model.Database.Default);
             _UsersRepository = CreateSqlRepository<IUsersRepository>(Model.Database.Default);
@@ -298,6 +300,36 @@ namespace SYS.BLL.Domain
                 Message = result ? AccountConstants.LoginSuccess : AccountConstants.LoginFail,
                 Cdt = DateTime.Now
             });
+        }
+        public FunctionResultEntity UserChangePassword(Users input)
+        {
+            var result = new FunctionResultEntity { isSuccess = false, Message = "" };
+            var existsUser = _UsersRepository.GetUsersByAny(input.username);
+            try
+            {
+                if (existsUser != null)
+                {
+                    if (existsUser.password != _sha256.EncryptData(input.password, existsUser.userno))
+                    {
+                        result.Message = FunctionResultConstant.Error_PassWord;
+                    }
+                    else
+                    {
+                        existsUser.password = _sha256.EncryptData(input.remark, existsUser.userno);
+                        _UsersRepository.Update(existsUser);
+                        result.isSuccess = true;
+                    }
+                }
+                else
+                {
+                    result.Message = FunctionResultConstant.Account_Invalidate;
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Message = ex.Message;                
+            }
+            return result;
         }
     }
 }

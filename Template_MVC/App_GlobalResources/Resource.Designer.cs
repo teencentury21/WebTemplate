@@ -322,6 +322,87 @@ namespace Template_MVC.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change password.
+        /// </summary>
+        public static string User_ChangePassword {
+            get {
+                return ResourceManager.GetString("User_ChangePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password changed successfully!.
+        /// </summary>
+        public static string User_ChangePwsSuccess {
+            get {
+                return ResourceManager.GetString("User_ChangePwsSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm new password:.
+        /// </summary>
+        public static string User_ConfrimNewPassword {
+            get {
+                return ResourceManager.GetString("User_ConfrimNewPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current password:.
+        /// </summary>
+        public static string User_CurrentPassword {
+            get {
+                return ResourceManager.GetString("User_CurrentPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New password:.
+        /// </summary>
+        public static string User_NewPassword {
+            get {
+                return ResourceManager.GetString("User_NewPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incorrect original password!.
+        /// </summary>
+        public static string User_OriginalPswError {
+            get {
+                return ResourceManager.GetString("User_OriginalPswError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm new password.
+        /// </summary>
+        public static string UserPL_ConfrimNewPassword {
+            get {
+                return ResourceManager.GetString("UserPL_ConfrimNewPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter current password.
+        /// </summary>
+        public static string UserPL_CurrentPassWordPL {
+            get {
+                return ResourceManager.GetString("UserPL_CurrentPassWordPL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter a new password..
+        /// </summary>
+        public static string UserPL_NewPassword {
+            get {
+                return ResourceManager.GetString("UserPL_NewPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Vietnamese.
         /// </summary>
         public static string Vietnamese {
