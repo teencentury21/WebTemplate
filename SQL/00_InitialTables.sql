@@ -15,9 +15,8 @@ CREATE TABLE Users(
 	setting VARCHAR(1000) NOT NULL ,
 	remark VARCHAR(200) NOT NULL ,
 	cdt DATETIME2 NOT NULL ,
+	udt DATETIME2 NOT NULL ,	
 );
-INSERT INTO Users (username, userno, password, is_active, is_active, email, role, lastlogin, setting, remark, cdt)
-VALUES('admin', 'admin', '93460bf7b593b082b1f5239db9969f7685ea9020f53a2e514a71c59dc2c08c67', '1', '1', 'admin@darfon.com.tw', '', GETDATE(), '', '', GETDATE())
 
 ALTER TABLE Users ADD CONSTRAINT df_Users_username DEFAULT '' FOR username
 ALTER TABLE Users ADD CONSTRAINT df_Users_userno DEFAULT '' FOR userno
@@ -30,7 +29,10 @@ ALTER TABLE Users ADD CONSTRAINT df_Users_lastlogin DEFAULT GETDATE() FOR lastlo
 ALTER TABLE Users ADD CONSTRAINT df_Users_setting DEFAULT '' FOR setting
 ALTER TABLE Users ADD CONSTRAINT df_Users_remark DEFAULT '' FOR remark
 ALTER TABLE Users ADD CONSTRAINT df_Users_cdt DEFAULT GETDATE() FOR cdt
+ALTER TABLE Users ADD CONSTRAINT df_Users_udt DEFAULT GETDATE() FOR udt
 
+INSERT INTO Users (username, userno, password, is_active, is_admin, email, role, lastlogin, setting, remark, cdt, udt)
+VALUES('admin', 'admin', 'd75aa8a2058c87b1fa97e5821735cb0586d19cb0e0c5f173c40b84fb2c2c2621', 1, 1, 'admin@darfon.com.tw', '', GETDATE(), '', '', GETDATE(), GETDATE())
 
 -- Functions
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Functions]') AND type in (N'U')) DROP TABLE [dbo].[Functions]
@@ -39,6 +41,7 @@ CREATE TABLE Functions (
     parent_function_id INT NULL,
     function_name VARCHAR(50) NOT NULL,
     function_description TEXT NULL,
+	editor VARCHAR(50) NOT NULL ,
     FOREIGN KEY (parent_function_id) REFERENCES Functions(function_id)
 );
 
@@ -47,9 +50,10 @@ IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[User_F
 CREATE TABLE User_Functions (
     user_id INT NOT NULL,
     function_id INT NOT NULL,
-    -- PRIMARY KEY (user_id, function_id),
-    -- FOREIGN KEY (user_id) REFERENCES Users(user_id),
-    -- FOREIGN KEY (function_id) REFERENCES Functions(function_id)
+	editor VARCHAR(50) NOT NULL ,
+    --PRIMARY KEY (user_id, function_id),
+    --FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    --FOREIGN KEY (function_id) REFERENCES Functions(function_id)
 );
 
 -- Groups
@@ -64,6 +68,7 @@ IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Group_
 CREATE TABLE Group_Functions (
     group_id INT NOT NULL,
     function_id INT NOT NULL,
+	editor VARCHAR(50) NOT NULL ,
     --PRIMARY KEY (group_id, function_id),
     --FOREIGN KEY (group_id) REFERENCES Groups(group_id),
     --FOREIGN KEY (function_id) REFERENCES Functions(function_id)
@@ -81,7 +86,7 @@ CREATE TABLE INI (
     Udt DATETIME NOT NULL DEFAULT GETDATE()
 );
 INSERT INTO INI (Item, Data, Description, Editor, Cdt, Udt) VALUES ('Domain','Darfon','AD Login Domain','System',GETDATE(),GETDATE())
-INSERT INTO INI (Item, Data, Description, Editor, Cdt, Udt) VALUES ('GAIA','Y','Connect with GAIA','System',GETDATE(),GETDATE())
+INSERT INTO INI (Item, Data, Description, Editor, Cdt, Udt) VALUES ('GAIA','N','Connect with GAIA','System',GETDATE(),GETDATE())
 INSERT INTO INI (Item, Data, Description, Editor, Cdt, Udt) VALUES ('SHAKey','DFE','SHAKey','System',GETDATE(),GETDATE())
 INSERT INTO INI (Item, Data, Description, Editor, Cdt, Udt) VALUES ('j04m/','d871cfd11d4e9d8024d6491b60ea62a24c3d5b149b5fb71238271632c0b31659','SHA Result','System',GETDATE(),GETDATE())
 
@@ -106,3 +111,10 @@ ALTER TABLE Transaction_Log ADD CONSTRAINT df_Transaction_Log_Editor DEFAULT '' 
 ALTER TABLE Transaction_Log ADD CONSTRAINT df_Transaction_Log_Message DEFAULT '' FOR Message
 ALTER TABLE Transaction_Log ADD CONSTRAINT df_Transaction_Log_Cdt DEFAULT GETDATE() FOR Cdt
 
+SELECT * FROM Users
+SELECT * FROM Groups
+SELECT * FROM Functions
+SELECT * FROM User_Functions
+SELECT * FROM Group_Functions
+SELECT * FROM INI
+SELECT * FROM Transaction_Log
