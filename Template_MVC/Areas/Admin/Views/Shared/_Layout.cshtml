@@ -1,78 +1,54 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Admin</title>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title - Admin</title>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/vue")
-    @Scripts.Render("~/bundles/axios")
-    @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/vue")
+        @Scripts.Render("~/bundles/axios")
+        @Scripts.Render("~/bundles/bootstrap")
 
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/captcha")
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/captcha")
 
-    @RenderSection("scripts", required: false)
+        @RenderSection("scripts", required: false)
 
-</head>
-<body>
-    <div class="d-flex">        
-        <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 200px; height: 100vh;">
-            <a href="@Url.Action("Index", "Home", new { area="" })" class="navbar-brand" style="background-image: url('../../Images/Darfon_logo_r.png'); width:150px; height:30px">
-                <!-- 將原本的文字內容移到 <span> 標籤內 -->
-                <span class="sr-only">&nbsp;</span>
-            </a>
-            <hr>
-            <ul class="nav nav-pills flex-column mb-auto">
-                <li class="nav-item">
-                    @Html.ActionLink("Home", "Index", "Users", new { area = "Admin" }, new { @class = "nav-link text-white" })
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Users", "Maintain", "Users", new { area = "Admin" }, new { @class = "nav-link text-white" })
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Groups", "Maintain", "Groups", new { area = "Admin" }, new { @class = "nav-link text-white" })
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Functions", "Index", "Functions", new { area = "Admin" }, new { @class = "nav-link text-white" })
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Config", "Maintain", "Ini", new { area = "Admin" }, new { @class = "nav-link text-white" })
-                </li>
-            </ul>
-            @*<hr>
-        <div class="dropdown">
-            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                <strong>mdo</strong>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                <li><a class="dropdown-item" href="#">New project...</a></li>
-                <li><a class="dropdown-item" href="#">Settings</a></li>
-                <li><a class="dropdown-item" href="#">Profile</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Sign out</a></li>
-            </ul>
-        </div>*@
-        </div>
-        <div class="d-flex flex-fill ">
-            <!-- Footer -->
-            <div class="container">
-                @RenderBody()
-                @*<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-                    <p class="col-md-4 mb-0 text-muted">Copyright &copy; @DateTime.Now.Year Darfon Company, Inc</p>
-                    <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-                        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap" /></svg>
-                    </a>
-                    <ul class="nav col-md-4 justify-content-end">
-                        <li class="nav-item"><a href="~/" class="nav-link px-2 text-muted">@Resources.Resource.Home</a></li>                        
-                    </ul>
-                </footer>*@
+    </head>
+    <body>
+        <div class="d-flex">        
+            <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 200px; height: 100vh;">
+                <a href="@Url.Action("Index", "Home", new { area="" })" class="navbar-brand" style="background-image: url('../../Images/Darfon_logo_r.png'); width:150px; height:30px">
+                    <!-- 將原本的文字內容移到 <span> 標籤內 -->
+                    <span class="sr-only">&nbsp;</span>
+                </a>
+                <hr>
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        @Html.ActionLink("Home", "Index", "Users", new { area = "Admin" }, new { @class = "nav-link text-white" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Users", "UserMaintain", "Users", new { area = "Admin" }, new { @class = "nav-link text-white" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Groups", "GroupMaintain", "Groups", new { area = "Admin" }, new { @class = "nav-link text-white" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Functions", "FunctionMaintain", "Functions", new { area = "Admin" }, new { @class = "nav-link text-white" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Config", "ConfigMaintain", "Ini", new { area = "Admin" }, new { @class = "nav-link text-white" })
+                    </li>
+                </ul>
             </div>
-        </div>
-        </div>
-    
-</body>
+            <div class="d-flex flex-fill ">
+                <!-- Footer -->
+                <div class="container">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>    
+    </body>
 </html>

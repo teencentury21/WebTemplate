@@ -27,7 +27,7 @@ namespace SYS.BLL.Domain
         FunctionResultEntity UpdateUsers(Users user, string newPsw);
         FunctionResultEntity DeleteUsers(int userId);
         Users GetUsersByAny(string acc);
-        List<Users> GetUsers();
+        List<Users> GetUsers(string input = "");
         FunctionResultEntity ValidateLogin(string acc, string psw, bool isAdLogin=false);
         FunctionResultEntity ValidateAdminLogin(string acc, string psw);
         FunctionResultEntity ValidateLoginBlock(string acc);
@@ -160,9 +160,9 @@ namespace SYS.BLL.Domain
         {
             return _UsersRepository.GetUsersByAny(input);
         }
-        public List<Users> GetUsers()
+        public List<Users> GetUsers(string input="")
         {
-            return _UsersRepository.Read();
+            return _UsersRepository.Read(input);
         }
         public FunctionResultEntity ValidateLogin (string acc, string psw, bool isAdLogin=false)
         {
@@ -301,6 +301,11 @@ namespace SYS.BLL.Domain
                 Cdt = DateTime.Now
             });
         }
+        /// <summary>
+        /// Use Users.Remark record UI input new password.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public FunctionResultEntity UserChangePassword(Users input)
         {
             var result = new FunctionResultEntity { isSuccess = false, Message = "" };

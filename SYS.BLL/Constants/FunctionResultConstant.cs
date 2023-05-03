@@ -11,6 +11,7 @@ namespace SYS.BLL.Constants
         // UserLogic
         public const string Account_Exist = "AccExisted";
         public const string Account_Invalidate = "AccInvalidate";
+        public const string Data_Exists = "Data is already exists in database.";
         public const string Error_PassWord = "ErrorPassWord";
         public const string Error_3Times = "Error3Times";
         public const string Not_Admin = "NotAdmin";

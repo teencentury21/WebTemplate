@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SYS.Model.SQL.Default
 {
@@ -11,6 +7,7 @@ namespace SYS.Model.SQL.Default
         public bool is_active { get; set; }
         public bool is_admin { get; set; }
         public DateTime cdt { get; set; }
+        public DateTime udt { get; set; }
         public DateTime lastlogin { get; set; }
         public int user_id { get; set; }
         public string email { get; set; }

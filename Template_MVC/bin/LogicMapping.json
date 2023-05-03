@@ -5,10 +5,6 @@
       "implementationType": "SYS.BLL.RegionLogic"
     },
     {
-      "logicType": "SYS.BLL.Domain.IDateTimeLogic",
-      "implementationType": "SYS.BLL.Domain.DateTimeLogic"
-    },
-    {
       "logicType": "SYS.BLL.Domain.GAIA.IGAIALogic",
       "implementationType": "SYS.BLL.Domain.GAIA.GAIALogic"
     },
@@ -19,6 +15,18 @@
     {
       "logicType": "SYS.BLL.Domain.Line.ILineBotReplyLogic",
       "implementationType": "SYS.BLL.Domain.Line.LineBotReplyLogic"
+    },
+    {
+      "logicType": "SYS.BLL.Domain.IDateTimeLogic",
+      "implementationType": "SYS.BLL.Domain.DateTimeLogic"
+    },
+    {
+      "logicType": "SYS.BLL.Domain.IFunctionsLogic",
+      "implementationType": "SYS.BLL.Domain.FunctionsLogic"
+    },
+    {
+      "logicType": "SYS.BLL.Domain.IGroupsLogic",
+      "implementationType": "SYS.BLL.Domain.GroupsLogic"
     },
     {
       "logicType": "SYS.BLL.Domain.IHttpContextStateLogic",

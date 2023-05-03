@@ -31,7 +31,7 @@ namespace Template_MVC.Areas.Admin.Controllers
             return View();
         }
 
-        public ActionResult Maintain()
+        public ActionResult UserMaintain()
         {
             return View();
         }
@@ -40,15 +40,8 @@ namespace Template_MVC.Areas.Admin.Controllers
         public string QueryUser(string input="")
         {
             List<Users> result=new List<Users>();
-            if (input == "")
-                result = _UserLogic.GetUsers();
-            else
-            {
-                if(_UserLogic.GetUsersByAny(input) != null)
-                {
-                    result.Add(_UserLogic.GetUsersByAny(input.Trim()));
-                }
-            }
+            result = _UserLogic.GetUsers(input);
+            
             return JsonConvert.SerializeObject(result);
         }
 

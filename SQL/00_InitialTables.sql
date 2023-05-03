@@ -42,8 +42,14 @@ CREATE TABLE Functions (
     function_name VARCHAR(50) NOT NULL,
     function_description TEXT NULL,
 	editor VARCHAR(50) NOT NULL ,
+	cdt DATETIME2 NOT NULL ,
+	udt DATETIME2 NOT NULL ,
     FOREIGN KEY (parent_function_id) REFERENCES Functions(function_id)
 );
+ALTER TABLE Functions ADD CONSTRAINT df_Functions_function_description DEFAULT 'System' FOR function_description
+ALTER TABLE Functions ADD CONSTRAINT df_Functions_editor DEFAULT 'System' FOR editor
+ALTER TABLE Functions ADD CONSTRAINT df_Functions_cdt DEFAULT GETDATE() FOR cdt
+ALTER TABLE Functions ADD CONSTRAINT df_Functions_udt DEFAULT GETDATE() FOR udt
 
 -- User_Functions
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[User_Functions]') AND type in (N'U')) DROP TABLE [dbo].[User_Functions]
@@ -51,28 +57,47 @@ CREATE TABLE User_Functions (
     user_id INT NOT NULL,
     function_id INT NOT NULL,
 	editor VARCHAR(50) NOT NULL ,
-    --PRIMARY KEY (user_id, function_id),
+    cdt DATETIME2 NOT NULL ,
+	udt DATETIME2 NOT NULL ,
+	--PRIMARY KEY (user_id, function_id),
     --FOREIGN KEY (user_id) REFERENCES Users(user_id),
     --FOREIGN KEY (function_id) REFERENCES Functions(function_id)
 );
+ALTER TABLE User_Functions ADD CONSTRAINT df_User_Functions_editor DEFAULT 'System' FOR editor
+ALTER TABLE User_Functions ADD CONSTRAINT df_User_Functions_cdt DEFAULT GETDATE() FOR cdt
+ALTER TABLE User_Functions ADD CONSTRAINT df_User_Functions_udt DEFAULT GETDATE() FOR udt
 
 -- Groups
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Groups]') AND type in (N'U')) DROP TABLE [dbo].[Groups]
 CREATE TABLE Groups (
     group_id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-    group_name VARCHAR(50) NOT NULL
+    group_name VARCHAR(50) NOT NULL,
+    group_description TEXT NULL,
+	editor VARCHAR(50) NOT NULL ,
+	cdt DATETIME2 NOT NULL ,
+	udt DATETIME2 NOT NULL ,
 );
+ALTER TABLE Groups ADD CONSTRAINT df_Groups_group_description DEFAULT '' FOR group_description
+ALTER TABLE Groups ADD CONSTRAINT df_Groups_editor DEFAULT 'System' FOR editor
+ALTER TABLE Groups ADD CONSTRAINT df_Groups_cdt DEFAULT GETDATE() FOR cdt
+ALTER TABLE Groups ADD CONSTRAINT df_Groups_udt DEFAULT GETDATE() FOR udt
 
--- Group_Functions
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Group_Functions]') AND type in (N'U')) DROP TABLE [dbo].[Group_Functions] 
 CREATE TABLE Group_Functions (
     group_id INT NOT NULL,
     function_id INT NOT NULL,
 	editor VARCHAR(50) NOT NULL ,
+	cdt DATETIME2 NOT NULL ,
+	udt DATETIME2 NOT NULL ,
     --PRIMARY KEY (group_id, function_id),
     --FOREIGN KEY (group_id) REFERENCES Groups(group_id),
     --FOREIGN KEY (function_id) REFERENCES Functions(function_id)
 );
+
+ALTER TABLE Group_Functions ADD CONSTRAINT df_Group_Functions_editor DEFAULT 'System' FOR editor
+ALTER TABLE Group_Functions ADD CONSTRAINT df_Group_Functions_cdt DEFAULT GETDATE() FOR cdt
+ALTER TABLE Group_Functions ADD CONSTRAINT df_Group_Functions_udt DEFAULT GETDATE() FOR udt
+
 
 -- INI
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[INI]') AND type in (N'U')) DROP TABLE [dbo].[INI] 

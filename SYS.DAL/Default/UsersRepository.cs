@@ -13,7 +13,7 @@ namespace SYS.DAL.Default
     {
         // Functions
         void Create(Users item);
-        List<Users> Read();
+        List<Users> Read(string input = "");
         void Update(Users item);
         void Delete(int regionId);
 
@@ -27,26 +27,28 @@ namespace SYS.DAL.Default
         }
         public void Create(Users user)
         {
-            //var sql = @"INSERT INTO Users (username, userno, password, is_active, is_admin, email, role, Setting, Remark)
-            //       VALUES (@username, @userno, @password, @is_active, @is_admin, @email, @role, @Setting, @Remark)";
             var sql = @"INSERT INTO Users (username, userno, password, is_active, is_admin, email)
                    VALUES (@username, @userno, @password, @is_active, @is_admin, @email)";
             Connection.Execute(sql, user);
         }
-        public List<Users> Read()
+        public List<Users> Read(string input = "")
         {
-            return Connection.Query<Users>("SELECT * FROM [dbo].[Users]").ToList();
+            var sql = "SELECT * FROM [dbo].[Users]";
+            sql = input == "" ? sql : $"{sql} WHERE (LOWER(username) LIKE '%' + @condiction + '%' OR LOWER(email) LIKE '%' + @condiction + '%' OR userno LIKE '%' + @condiction + '%' )";
+            return Connection.Query<Users>(sql, new { condiction = input.ToLower() }).ToList();
         }
 
         public void Update(Users user)
         {
-            var sql = @"UPDATE Users SET password = @password, is_active = @is_active, is_admin = @is_admin, Cdt = @Cdt, ";
-            sql = user.email == null ? sql : sql += "email=@email, ";
-            sql = user.role == null ? sql : sql += "role = @role, ";
-            sql = user.setting == null ? sql : sql += "Setting = @Setting, ";
-            sql = user.remark == null ? sql : sql += "Remark = @Remark, ";
-            sql = user.lastlogin == null ? sql : sql += "LastLogin = @LastLogin ";
-            sql+=" WHERE user_id = @user_id";
+            user.udt = DateTime.Now;
+
+            var sql = @"UPDATE Users SET password = @password, is_active = @is_active, is_admin = @is_admin, udt = @udt";            
+            sql = user.email == null ? sql : $"{sql}, email = @email";
+            sql = user.role == null ? sql : $"{sql}, role = @role";
+            sql = user.setting == null ? sql : $"{sql}, setting = @setting";
+            sql = user.remark == null ? sql : $"{sql}, remark = @remark";
+            sql = user.lastlogin == null ? sql : $"{sql}, lastLogin = @lastLogin";
+            sql = $"{sql} WHERE user_id = @user_id";
 
             Connection.Execute(sql, user);
         }
@@ -59,7 +61,11 @@ namespace SYS.DAL.Default
             Connection.Execute(sql, user);
 
         }
-
+        /// <summary>
+        /// Get single by username/ userno/ email
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public Users GetUsersByAny(string input)
         {
             return Connection.Query<Users>("SELECT * FROM Users WHERE (LOWER(username) = @condiction OR LOWER(email) = @condiction OR userno = @condiction) AND is_active=1",

@@ -235,6 +235,8 @@
     <Compile Include="Constants\Line\SimulateConstants.cs" />
     <Compile Include="Constants\SpecialEditorConstants.cs" />
     <Compile Include="Constants\TransactionLogConstants.cs" />
+    <Compile Include="Domain\FunctionsLogic.cs" />
+    <Compile Include="Domain\GroupsLogic.cs" />
     <Compile Include="Domain\IniLogic.cs" />
     <Compile Include="Domain\UsersLogic.cs" />
     <Compile Include="Domain\DateTimeLogic.cs" />

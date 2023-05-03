@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SYS.Model.SQL.Default
 {
@@ -12,5 +8,9 @@ namespace SYS.Model.SQL.Default
         public int? parent_function_id { get; set; }
         public string function_description { get; set; }
         public string function_name { get; set; }
+        public string editor { get; set; }
+        public DateTime cdt { get; set; }
+        public DateTime udt { get; set; }
+
     }
 }

@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Template_MVC.Areas.Admin.Controllers
 {
-    public class IniController : Controller
+    public class IniController : BaseController
     {
         private readonly IBusinessLogicFactory _factory;
         private IIniLogic _IniLogic;
@@ -24,7 +24,7 @@ namespace Template_MVC.Areas.Admin.Controllers
         }
 
         // GET: Admin/Ini
-        public ActionResult Maintain()
+        public ActionResult ConfigMaintain()
         {
             return View();
         }
