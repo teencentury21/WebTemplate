@@ -74,7 +74,7 @@
   <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="RepositoryMapping.json">
+    <Content Include="Config\RepositoryMapping.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

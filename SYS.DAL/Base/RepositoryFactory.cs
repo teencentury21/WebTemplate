@@ -58,7 +58,7 @@ namespace SYS.DAL.Base
                 ConnectionPool.Add(item.Key, new SqlConnection(item.Value[appSettings.Stage]));
             }
 
-            var mappings = JsonConvert.DeserializeObject<RepositoryMappingConfig>(File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"bin\RepositoryMapping.json")));
+            var mappings = JsonConvert.DeserializeObject<RepositoryMappingConfig>(File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"bin\Config\RepositoryMapping.json")));
 
             _kernel
                 .Bind<IRepositoryFactory>()

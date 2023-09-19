@@ -30,7 +30,7 @@ namespace SYS.BLL.Base
             _kernel
                 .Bind<IBusinessLogicFactory>().ToConstant(this).InSingletonScope();
             
-            var mappings = JsonConvert.DeserializeObject<LogicMappingConfig>(File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"bin\LogicMapping.json")));
+            var mappings = JsonConvert.DeserializeObject<LogicMappingConfig>(File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"bin\Config\LogicMapping.json")));
 
             foreach (var mapping in mappings.Mappings)
             {
