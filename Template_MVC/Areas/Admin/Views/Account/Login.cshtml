@@ -42,7 +42,7 @@
     });
 
     $('#btn_login').on('click', function() {
-        const val = $('input[name="loginCaptcha"]').val();                
+        const val = $('input[name="loginCaptcha"]').val();
         if (val === "") {
             alert('@Resources.Resource.EmptyCaptcha');
             return
@@ -52,7 +52,7 @@
             loginCaptcha.refresh();
             login();
         } else {
-            // failure                    
+            // failure
             $("#lbl_errMsg").text('@Resources.Resource.ErrorCaptcha');
             $('input[name="loginCaptcha"]').val('');
             alert('@Resources.Resource.ErrorCaptcha');
@@ -67,14 +67,14 @@
         // 發送 HTTP POST 請求，並傳遞帳號和密碼作為參數
         $.ajax({
             type: "POST",
-            url: "/Admin/Account/Login",
+            url: "@Url.Content("~/Admin/Account/Login")",
             data: { username: username, password: password },
             success: function (result) {
                 if (result.success) {
                     // 登入成功，可以進行相應的處理
                     // console.log("Login done");
                     // location.reload();
-                    window.location.replace('/Admin/Users/Index');
+                    window.location.replace('@Url.Content("~/Admin/Users/Index")');
                 } else {
                     alert(result.message);
                     $("#lbl_errMsg").text(result.message);

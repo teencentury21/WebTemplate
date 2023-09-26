@@ -174,7 +174,7 @@
         methods: {
             fetchUsers() {
                 var search = $("#input_Search").val();
-                axios.post('/Admin/Users/QueryUser', {
+                axios.post('@Url.Content("~/Admin/Users/QueryUser")', {
                     input: search
                 })
                 .then(response => {
@@ -200,7 +200,7 @@
                     if (this.changePsw) {
                         inputPsw = $("#edit-userpsw").val();
                     }
-                    axios.post('/Admin/Users/UpdateUser', {
+                    axios.post('@Url.Content("~/Admin/Users/UpdateUser")', {
                         input: inputUser,
                         newPsw: inputPsw
                     })
@@ -224,7 +224,7 @@
             DeleteUsers(user) {
                 if (confirm('Are you sure delete user ' + user.username + '?')) {
                     console.log('User clicked confirm');
-                    axios.post('/Admin/Users/DeleteUser', {
+                    axios.post('@Url.Content("~/Admin/Users/DeleteUser")', {
                         userId: user.user_id
                     })
                     .then(response => {
@@ -259,7 +259,7 @@
                 
                 console.log(this.insertUser);
 
-                axios.post('/Admin/Users/AdminAddUser', {
+                axios.post('@Url.Content("~/Admin/Users/AdminAddUser")', {
                     input: this.insertUser
                 })
                 .then(response => {

@@ -147,7 +147,7 @@
         methods: {
             fetchConfigs() {
                 var search = $("#input_Search").val();
-                axios.post('/Admin/Ini/QueryConfig', {
+                axios.post('@Url.Content("~/Admin/Ini/QueryConfig")', {
                     input: search
                 })
                 .then(response => {
@@ -169,7 +169,7 @@
                 if (confirm('Are you sure update config ' + this.selectedConfig.Item + '?')) {
                     var inputConfig = this.configs.find(config => config.id === input.id);                    
 
-                    axios.post('/Admin/Ini/UpdateConfig', {
+                    axios.post('@Url.Content("~/Admin/Ini/UpdateConfig")', {
                         input: inputConfig,                        
                     })
                     .then(response => {
@@ -191,7 +191,7 @@
             },
             DeleteConfigs(config) {
                 if (confirm('Are you sure delete config ' + config.Item + '?')) {                    
-                    axios.post('/Admin/Ini/DeleteConfig', {
+                    axios.post('@Url.Content("~/Admin/Ini/DeleteConfig")', {
                         configId: config.id
                     })
                     .then(response => {
@@ -222,7 +222,7 @@
 
                 console.log(this.insertConfig);
 
-                axios.post('/Admin/Ini/AdminAddConfig', {
+                axios.post('@Url.Content("~/Admin/Ini/AdminAddConfig")', {
                     input: this.insertConfig
                 })
                 .then(response => {

@@ -132,7 +132,7 @@
         methods: {
             fetchGroups() {
                 var search = $("#input_Search").val();
-                axios.post('/Admin/Groups/QueryGroups', {
+                axios.post('@Url.Content("~/Admin/Groups/QueryGroups")', {
                     input: search
                 })
                 .then(response => {
@@ -152,7 +152,7 @@
             UpdateGroups(input) {
                 if (confirm('Are you sure update group ' + this.selectedGroup.group_name + '?')) {
                     var inputGroup = this.groups.find(group => group.group_id === input.group_id);                                        
-                    axios.post('/Admin/Groups/UpdateGroups', {
+                    axios.post('@Url.Content("~/Admin/Groups/UpdateGroups")', {
                         input: inputGroup                        
                     })
                         .then(response => {
@@ -175,7 +175,7 @@
             DeleteGroups(group) {
                 if (confirm('Are you sure delete group ' + group.group_name + '?')) {
                     console.log('User clicked confirm');
-                    axios.post('/Admin/Groups/DeleteGroups', {
+                    axios.post('@Url.Content("~/Admin/Groups/DeleteGroups")', {
                         userId: group.group_id
                     })
                         .then(response => {
@@ -206,7 +206,7 @@
 
                 console.log(this.insertGroup);
 
-                axios.post('/Admin/Groups/AdminAddGroups', {
+                axios.post('@Url.Content("~/Admin/Groups/AdminAddGroups")', {
                     input: this.insertGroup
                 })
                     .then(response => {
