@@ -1,22 +1,24 @@
 ﻿<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>@ViewBag.Title - Admin</title>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="@Url.Content("~/favicon.ico")" rel="shortcut icon" type="image/x-icon" />
 
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/vue")
-        @Scripts.Render("~/bundles/axios")
-        @Scripts.Render("~/bundles/bootstrap")
+    <title>@ViewBag.Title - Admin</title>
 
-        @Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")
-        @Scripts.Render("~/bundles/captcha")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/vue")
+    @Scripts.Render("~/bundles/axios")
+    @Scripts.Render("~/bundles/bootstrap")
 
-        @RenderSection("scripts", required: false)
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/captcha")
 
-    </head>
+    @RenderSection("scripts", required: false)
+
+</head>
     <body>
         <div class="d-flex">        
             <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 200px; height: 100vh;">

@@ -70,8 +70,8 @@
                     </div>                    
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" v-on:click="InsertConfig()">Save changes</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" v-on:click="InsertConfig()">Save changes</button>
                 </div>
             </div>
         </div>
@@ -100,8 +100,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" v-on:click="UpdateConfigs(selectedConfig)">Save changes</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" v-on:click="UpdateConfigs(selectedConfig)">Save changes</button>
                 </div>
             </div>
         </div>
@@ -198,7 +198,8 @@
                         console.log(response);
                         if (response.data.isSuccess) {
                             alert('Config ' + config.Item + ' deleted !!');
-                            location.reload();
+                            this.fetchConfigs();
+                            //location.reload();
                         } else {
                             alert(response.data.Message);
                         }
@@ -229,7 +230,8 @@
                     console.log(response);
                     if (response.data.isSuccess) {
                         alert('Add config ' + this.insertConfig.Item + ' success !!');
-                        location.reload();
+                        this.fetchConfigs();
+                        // location.reload();
                     } else {
                         alert(response.data.Message);
                     }

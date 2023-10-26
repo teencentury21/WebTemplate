@@ -96,6 +96,9 @@
     <Reference Include="SYS.Utilities.Exceptions">
       <HintPath>..\Lib\SYS.Utilities.Exceptions.dll</HintPath>
     </Reference>
+    <Reference Include="SYS.Utilities.Extensions">
+      <HintPath>..\Lib\SYS.Utilities.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="SYS.Utilities.Logging">
       <HintPath>..\Lib\SYS.Utilities.Logging.dll</HintPath>
     </Reference>
@@ -640,7 +643,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_ErrorLayout.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Services\ValidatePicture.ashx" />
     <Content Include="Views\Account\Login.cshtml" />

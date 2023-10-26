@@ -5,16 +5,18 @@ using System.Data;
 using SYS.DAL.Base;
 using SYS.Model.SQL.Default;
 using System.Linq;
+using DapperExtensions;
+using DapperExtensions.Predicate;
 
 namespace SYS.DAL.Default
 {
     public interface IIniRepository : ISQLRepository
     {
         // Functions
-        void Create(INI item);
+        void Create(INI input);
         List<INI> Read();
-        void Update(INI item);
-        void Delete(INI item);
+        void Update(INI input);
+        void Delete(INI input);
         INI GetSingleItemByName(string itemName);
         List<INI> GetMultiItemByName(string itemName);
     }
@@ -25,24 +27,27 @@ namespace SYS.DAL.Default
         {
 
         }
-        public void Create(INI user)
+        public void Create(INI input)
         {
-            var sql = @"INSERT INTO [dbo].[INI] ([Item] ,[Data] ,[Description] ,[Editor] ,[Cdt] ,[Udt])
-                VALUES (@Item ,@Data ,@Description ,@Editor ,@Cdt ,@Udt)";
-            Connection.Execute(sql, user);
+            //var sql = @"INSERT INTO [dbo].[INI] ([Item] ,[Data] ,[Description] ,[Editor] ,[Cdt] ,[Udt])
+            //    VALUES (@Item ,@Data ,@Description ,@Editor ,@Cdt ,@Udt)";
+            //Connection.Execute(sql, user);
+            Connection.Insert<INI>(input);
         }
 
-        public void Delete(INI item)
+        public void Delete(INI input)
         {
-            // var item = new INI { id = itemId };
-            var sql = @"DELETE FROM [dbo].[INI] WHERE [id] = @id";
-
-            Connection.Execute(sql, item);
+            //var sql = @"DELETE FROM [dbo].[INI] WHERE [id] = @id";
+            //Connection.Execute(sql, input);
+            Connection.Delete(input);
         }
 
         public List<INI> Read()
         {
-            return Connection.Query<INI>("SELECT * FROM [dbo].[INI] ORDER BY id").ToList();
+            var predicate = Predicates.Field<INI>(f => 1, Operator.Eq, 1);
+            return Connection.GetList<INI>(predicate).OrderBy(f=>f.id).ToList();
+            // return Connection.Query<INI>("SELECT * FROM [dbo].[INI] ORDER BY id").ToList();
+
         }
 
         public void Update(INI item)

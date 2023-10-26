@@ -567,3 +567,8 @@ E:\Program\DFMVCTemplate\Template_MVC\obj\Debug\Template_MVC.pdb
 E:\Program\WebTemplate\Template_MVC\bin\Config\RepositoryMapping.json
 E:\Program\WebTemplate\Template_MVC\bin\Config\LogicMapping.json
 E:\Program\WebTemplate\Template_MVC\bin\Config\appsettings.json
+E:\Program\WebTemplate\Template_MVC\bin\SYS.Utilities.Extensions.dll
+E:\Program\WebTemplate\Template_MVC\bin\DapperExtensions.dll
+E:\Program\WebTemplate\Template_MVC\bin\Slapper.dll
+E:\Program\WebTemplate\Template_MVC\bin\Oracle.ManagedDataAccess.dll
+E:\Program\WebTemplate\Template_MVC\bin\SYS.DAL.dll.config
